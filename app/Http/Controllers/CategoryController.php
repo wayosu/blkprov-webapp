@@ -70,7 +70,8 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $category = Category::findorfail($id);
+        return view('admin.category.edit', compact('category'));
     }
 
     /**
@@ -82,7 +83,20 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name' => ['required']
+        ]);
+
+        $category = [
+            'name' => $request->name,
+            'slug' => Str::slug($request->name)
+        ];
+        
+        Category::whereId($id)->update($category);
+
+        session()->flash('success', 'Category successfully updated');
+
+        return redirect('category');
     }
 
     /**

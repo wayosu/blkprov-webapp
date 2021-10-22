@@ -32,7 +32,7 @@
                                             <td>{{ $result + $category->firstitem() }}</td>
                                             <td>{{ $hasil->name }}</td>
                                             <td>
-                                                <a href="#" class="btn btn-warning">Edit</a>
+                                                <a href="{{ route('category.edit', $hasil->id) }}" class="btn btn-warning">Edit</a>
                                                 <a href="#" class="btn btn-danger">Delete</a>
                                             </td>
                                         </tr>
