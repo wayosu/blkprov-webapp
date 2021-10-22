@@ -46,7 +46,9 @@ class CategoryController extends Controller
             'slug' => Str::slug($request->name)
         ]);
 
-        return redirect()->back();
+        session()->flash('success', 'Category created successfully');
+
+        return redirect('category');
     }
 
     /**

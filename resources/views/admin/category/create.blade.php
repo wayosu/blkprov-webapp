@@ -17,7 +17,12 @@
                             @csrf
                             <div class="form-group">
                                 <label>Category</label>
-                                <input type="text" class="form-control" name="name">
+                                <input type="text" name="name" class="form-control @error('name') is-invalid @enderror">
+                                @error('name')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
                             <button type="submit" class="btn btn-primary">Create</button>
                         </form>
