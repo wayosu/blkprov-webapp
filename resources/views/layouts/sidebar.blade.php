@@ -26,8 +26,9 @@
                     <li><a class="nav-link" href="layout-top-navigation.html">Top Navigation</a></li>
                 </ul>
             </li>
-            <li class="active"><a class="nav-link" href="blank.html"><i class="far fa-square"></i>
-                <span>Blank Page</span></a>
+            <li class="active"><a class="nav-link" href="{{ route('category.index') }}">
+                <i class="far fa-square"></i>
+                <span>Category</span></a>
             </li>
         </ul>
     </aside>
