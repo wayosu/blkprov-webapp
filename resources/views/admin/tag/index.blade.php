@@ -4,7 +4,6 @@
     <div class="section-header">
         <h1>Tag</h1>
         <div class="section-header-breadcrumb">
-            <div class="breadcrumb-item"><a href="/home">Dashboard</a></div>
             <div class="breadcrumb-item">Tag</div>
         </div>
     </div>

@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Posts;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
@@ -25,7 +27,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        $category = Category::all();
+        return view('admin.post.create', compact('category'));
     }
 
     /**
@@ -36,7 +39,29 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'judul' => ['required'],
+            'category_id' => ['required'],
+            'konten' => ['required'],
+            'gambar' => ['required']
+        ]);
+
+        $gambar = $request->gambar;
+        $new_gambar = time().$gambar->getClientOriginalName();
+
+        Posts::create([
+            'judul' => $request->judul,
+            'category_id' => $request->category_id,
+            'konten' => $request->konten,
+            'gambar' => 'uploads/posts/'.$new_gambar,
+            'slug' => Str::slug($request->judul)
+        ]);
+
+        $gambar->move('uploads/posts/', $new_gambar);
+
+        session()->flash('success', 'Post created successfully');
+
+        return redirect('post');
     }
 
     /**

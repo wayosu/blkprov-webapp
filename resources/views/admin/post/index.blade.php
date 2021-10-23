@@ -4,7 +4,6 @@
     <div class="section-header">
         <h1>Post</h1>
         <div class="section-header-breadcrumb">
-            <div class="breadcrumb-item"><a href="/home">Dashboard</a></div>
             <div class="breadcrumb-item">Post</div>
         </div>
     </div>
@@ -23,6 +22,8 @@
                                     <tr>
                                         <th>#</th>
                                         <th>Judul</th>
+                                        <th>Kategori</th>
+                                        <th>Thumbnail</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -31,13 +32,21 @@
                                         <tr>
                                             <td>{{ $result + $post->firstitem() }}</td>
                                             <td>{{ $hasil->judul }}</td>
-                                            <td>
+                                            <td>{{ $hasil->category->name }}</td>
+                                            <td align="center">
+                                                <div class="image-link">
+                                                    <a href="{{ asset($hasil->gambar) }}" class="btn btn-secondary" target="_blank">
+                                                        <i class="fas fa-eye"></i>
+                                                    </a>
+                                                </div>
+                                            </td>
+                                            <td align="center">
                                                 <form action="{{ route('post.destroy', $hasil->id) }}" method="POST">
                                                     <a href="{{ route('post.edit', $hasil->id) }}"
-                                                        class="btn btn-warning">Edit</a>
+                                                        class="btn btn-warning"><i class="fas fa-edit"></i></a>
                                                     @csrf
                                                     @method('delete')
-                                                    <button type="submit" class="btn btn-danger" onclick="return confirm('Yaknin menghapus data ini?')">Delete</button>
+                                                    <button type="submit" class="btn btn-danger" onclick="return confirm('Yaknin menghapus data ini?')"><i class="fas fa-trash"></i></button>
                                                 </form>
                                             </td>
                                         </tr>
