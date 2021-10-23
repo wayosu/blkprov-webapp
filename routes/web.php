@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\TagController;
 use Illuminate\Support\Facades\Route;
 
@@ -25,3 +26,4 @@ Route::get('/home', function () {
 
 Route::resource('/category', CategoryController::class);
 Route::resource('/tag', TagController::class);
+Route::resource('/post', PostController::class);
