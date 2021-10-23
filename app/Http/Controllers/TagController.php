@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Tags;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class TagController extends Controller
 {
@@ -36,7 +37,18 @@ class TagController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => ['required']
+        ]);
+
+        Tags::create([
+            'name' => $request->name,
+            'slug' => Str::slug($request->name)
+        ]);
+
+        session()->flash('success', 'Tag created successfully');
+
+        return redirect('tag');
     }
 
     /**
@@ -58,7 +70,8 @@ class TagController extends Controller
      */
     public function edit($id)
     {
-        //
+        $tag = Tags::findorfail($id);
+        return view('admin.tag.edit', compact('tag'));
     }
 
     /**
@@ -70,7 +83,20 @@ class TagController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name' => ['required']
+        ]);
+
+        $tag = [
+            'name' => $request->name,
+            'slug' => Str::slug($request->name)
+        ];
+        
+        Tags::whereId($id)->update($tag);
+
+        session()->flash('success', 'Tag successfully updated');
+
+        return redirect('tag');
     }
 
     /**
@@ -81,6 +107,10 @@ class TagController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Tags::where('id', $id)->delete();
+
+        session()->flash('success', 'Tag successfully deleted');
+
+        return redirect('tag');
     }
 }
