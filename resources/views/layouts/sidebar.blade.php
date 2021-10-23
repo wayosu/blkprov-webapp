@@ -26,9 +26,13 @@
                     <li><a class="nav-link" href="layout-top-navigation.html">Top Navigation</a></li>
                 </ul>
             </li>
-            <li class="active"><a class="nav-link" href="{{ route('category.index') }}">
+            <li><a class="nav-link" href="{{ route('category.index') }}">
                 <i class="far fa-square"></i>
                 <span>Category</span></a>
+            </li>
+            <li><a class="nav-link" href="{{ route('tag.index') }}">
+                <i class="far fa-square"></i>
+                <span>Tag</span></a>
             </li>
         </ul>
     </aside>

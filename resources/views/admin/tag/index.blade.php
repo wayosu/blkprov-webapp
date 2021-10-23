@@ -1,11 +1,11 @@
-@extends('layouts.app', ['title' => 'Category'])
+@extends('layouts.app', ['title' => 'Tag'])
 
 @section('content')
     <div class="section-header">
-        <h1>Category</h1>
+        <h1>Tag</h1>
         <div class="section-header-breadcrumb">
             <div class="breadcrumb-item"><a href="/home">Dashboard</a></div>
-            <div class="breadcrumb-item">Category</div>
+            <div class="breadcrumb-item">Tag</div>
         </div>
     </div>
 
@@ -15,25 +15,25 @@
             <div class="col">
                 <div class="card">
                     <div class="card-body">
-                        <a href="{{ route('category.create') }}" class="btn btn-primary mb-4"><i
-                                class="fas fa-plus-circle"></i> Create Category</a>
+                        <a href="{{ route('tag.create') }}" class="btn btn-primary mb-4"><i
+                                class="fas fa-plus-circle"></i> Create Tag</a>
                         <div class="table-responsive">
                             <table class="table table-striped table-md table-bordered">
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Category</th>
+                                        <th>Tag</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($category as $result => $hasil)
+                                    @foreach ($tag as $result => $hasil)
                                         <tr>
-                                            <td>{{ $result + $category->firstitem() }}</td>
+                                            <td>{{ $result + $tag->firstitem() }}</td>
                                             <td>{{ $hasil->name }}</td>
                                             <td>
-                                                <form action="{{ route('category.destroy', $hasil->id) }}" method="POST">
-                                                    <a href="{{ route('category.edit', $hasil->id) }}"
+                                                <form action="{{ route('tag.destroy', $hasil->id) }}" method="POST">
+                                                    <a href="{{ route('tag.edit', $hasil->id) }}"
                                                         class="btn btn-warning">Edit</a>
                                                     @csrf
                                                     @method('delete')
@@ -45,7 +45,7 @@
                                 </tbody>
                             </table>
                         </div>
-                        {{ $category->links() }}
+                        {{ $tag->links() }}
                     </div>
                 </div>
             </div>

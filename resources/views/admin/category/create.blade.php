@@ -3,6 +3,11 @@
 @section('content')
     <div class="section-header">
         <h1>Create Category</h1>
+        <div class="section-header-breadcrumb">
+            <div class="breadcrumb-item"><a href="/home">Dashboard</a></div>
+            <div class="breadcrumb-item"><a href="/category">Category</a></div>
+            <div class="breadcrumb-item">Create Category</div>
+        </div>
     </div>
 
     <div class="section-body">
