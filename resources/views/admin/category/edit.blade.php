@@ -14,8 +14,8 @@
                                 class="fas fa-arrow-circle-left"></i> Back to Category</a>
 
                         <form action="{{ route('category.update', $category->id) }}" method="POST">
-                            @method('put')
                             @csrf
+                            @method('put')
                             <div class="form-group">
                                 <label>Category</label>
                                 <input type="text" name="name" value="{{ $category->name }}" class="form-control @error('name') is-invalid @enderror">

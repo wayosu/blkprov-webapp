@@ -107,6 +107,10 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Category::where('id', $id)->delete();
+
+        session()->flash('success', 'Category successfully deleted');
+
+        return redirect('category');
     }
 }

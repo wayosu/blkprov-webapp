@@ -32,8 +32,13 @@
                                             <td>{{ $result + $category->firstitem() }}</td>
                                             <td>{{ $hasil->name }}</td>
                                             <td>
-                                                <a href="{{ route('category.edit', $hasil->id) }}" class="btn btn-warning">Edit</a>
-                                                <a href="#" class="btn btn-danger">Delete</a>
+                                                <form action="{{ route('category.destroy', $hasil->id) }}" method="POST">
+                                                    <a href="{{ route('category.edit', $hasil->id) }}"
+                                                        class="btn btn-warning">Edit</a>
+                                                    @csrf
+                                                    @method('delete')
+                                                    <button type="submit" class="btn btn-danger" onclick="return confirm('Yaknin menghapus data ini?')">Delete</button>
+                                                </form>
                                             </td>
                                         </tr>
                                     @endforeach
