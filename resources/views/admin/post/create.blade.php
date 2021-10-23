@@ -30,16 +30,24 @@
                             </div>
                             <div class="form-group">
                                 <label>Kategori</label>
-                                <select name="category_id" class="form-control">
-                                    <option value="" hidden>Pilih Kategori</option>
+                                <select name="category_id" class="form-control select2">
+                                    <option value="" disabled selected>Pilih Kategori</option>
                                     @foreach ($category as $result)
                                         <option value="{{ $result->id }}">{{ $result->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="form-group">
+                                <label>Tag</label>
+                                <select name="tags[]" class="form-control select2" multiple="">
+                                    @foreach ($tags as $r_tags)
+                                        <option value="{{ $r_tags->id }}">{{ $r_tags->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group">
                                 <label>Konten</label>
-                                <textarea name="konten" class="form-control"></textarea>
+                                <textarea name="konten" class="form-control summernote-simple"></textarea>
                             </div>
                             <div class="form-group">
                                 <label>Thumbnail</label>

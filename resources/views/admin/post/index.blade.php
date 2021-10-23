@@ -19,10 +19,11 @@
                         <div class="table-responsive">
                             <table class="table table-striped table-md table-bordered">
                                 <thead>
-                                    <tr>
+                                    <tr align="center">
                                         <th>#</th>
                                         <th>Judul</th>
                                         <th>Kategori</th>
+                                        <th>Tags</th>
                                         <th>Thumbnail</th>
                                         <th>Action</th>
                                     </tr>
@@ -30,17 +31,24 @@
                                 <tbody>
                                     @foreach ($post as $result => $hasil)
                                         <tr>
-                                            <td>{{ $result + $post->firstitem() }}</td>
-                                            <td>{{ $hasil->judul }}</td>
-                                            <td>{{ $hasil->category->name }}</td>
-                                            <td align="center">
+                                            <td align="center" style="vertical-align: middle">{{ $result + $post->firstitem() }}</td>
+                                            <td style="vertical-align: middle">{{ $hasil->judul }}</td>
+                                            <td style="vertical-align: middle">{{ $hasil->category->name }}</td>
+                                            <td>
+                                                <ul>
+                                                    @foreach ($hasil->tags as $tag)
+                                                        <li>{{ $tag->name }}</li>
+                                                    @endforeach
+                                                </ul>
+                                            </td>
+                                            <td align="center" style="vertical-align: middle">
                                                 <div class="image-link">
                                                     <a href="{{ asset($hasil->gambar) }}" class="btn btn-secondary" target="_blank">
                                                         <i class="fas fa-eye"></i>
                                                     </a>
                                                 </div>
                                             </td>
-                                            <td align="center">
+                                            <td align="center" style="vertical-align: middle">
                                                 <form action="{{ route('post.destroy', $hasil->id) }}" method="POST">
                                                     <a href="{{ route('post.edit', $hasil->id) }}"
                                                         class="btn btn-warning"><i class="fas fa-edit"></i></a>
