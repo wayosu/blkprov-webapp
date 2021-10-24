@@ -25,7 +25,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.user.create');
     }
 
     /**
@@ -36,7 +36,28 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => ['required'],
+            'email' => ['required', 'email'],
+            'roles' => ['required']
+        ]);
+
+        if ($request->input('password')) {
+            $password = bcrypt($request->password);
+        } else {
+            $password = bcrypt('blk-gorontalo');
+        }
+
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'roles' => $request->roles,
+            'password' => $password
+        ]);
+        
+        session()->flash('success', 'User created successfully');
+
+        return redirect('user');
     }
 
     /**
