@@ -79,7 +79,8 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::findorfail($id);
+        return view('admin.user.edit', compact('user'));
     }
 
     /**
@@ -91,7 +92,30 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name' => ['required'],
+            'roles' => ['required']
+        ]);
+
+        if ($request->input('password')) {
+            $user_data = [
+                'name' => $request->name,
+                'roles' => $request->roles,
+                'password' => bcrypt($request->password)
+            ];
+        } else {
+            $user_data = [
+                'name' => $request->name,
+                'roles' => $request->roles
+            ];
+        }
+
+        $user = User::findorfail($id);
+        $user->update($user_data);
+
+        session()->flash('success', 'User updated successfully');
+
+        return redirect('user');
     }
 
     /**
@@ -102,6 +126,11 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::findorfail($id);
+        $user->delete();
+
+        session()->flash('success', 'User deleted successfully');
+
+        return redirect('user');
     }
 }

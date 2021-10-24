@@ -46,7 +46,7 @@
                                                         class="btn btn-warning"><i class="fas fa-edit"></i></a>
                                                     @csrf
                                                     @method('delete')
-                                                    <button type="submit" class="btn btn-danger" onclick="return confirm('Yaknin menghapus data ini?')"><i class="fas fa-trash"></i></button>
+                                                    <button type="submit" class="btn btn-danger" onclick="return confirm('Yakin menghapus data ini?')"><i class="fas fa-trash"></i></button>
                                                 </form>
                                             </td>
                                         </tr>
