@@ -1,10 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
-    <meta charset="UTF-8">
-    <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <title>{{ $title }}</title>
+
+    <link rel="shortcut icon" href="{{ asset('assets/img/logo-kemenaker-small.png') }}" type="image/x-icon">
 
     <!-- General CSS Files -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -20,32 +26,38 @@
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/components.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}">
 </head>
 
 <body>
     <div id="app">
-        <div class="main-wrapper">
-            <div class="navbar-bg"></div>
+        @if (Auth::check())
+            <div class="main-wrapper">
+                <div class="navbar-bg"></div>
+                @include('layouts.navbar')
+                @include('layouts.sidebar')
 
-            @include('layouts.navbar')
-            @include('layouts.sidebar')
+                <!-- Main Content -->
+                <div class="main-content">
+                    <section class="section">
+                        @yield('content')
+                    </section>
+                </div>
 
-            <!-- Main Content -->
-            <div class="main-content">
-                <section class="section">
-                    @yield('content')
-                </section>
+                <footer class="main-footer">
+                    <div class="footer-left">
+                        Copyright &copy; 2021 <div class="bullet"></div> BLK Provinsi Gorontalo
+                    </div>
+                    <div class="footer-right">
+                        1.0
+                    </div>
+                </footer>
             </div>
-
-            <footer class="main-footer">
-                <div class="footer-left">
-                    Copyright &copy; 2021 <div class="bullet"></div> BLK Provinsi Gorontalo
-                </div>
-                <div class="footer-right">
-                    1.0
-                </div>
-            </footer>
-        </div>
+        @else
+            <section class="section">
+                @yield('content')
+            </section>
+        @endif
     </div>
 
     <!-- General JS Scripts -->
@@ -65,6 +77,7 @@
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
     <script src="{{ asset('assets/js/select2.full.min.js') }}"></script>
     <script src="{{ asset('assets/js/jquery.magnific-popup.min.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery.pwstrength.min.js') }}"></script>
 
     <!-- Template JS File -->
     <script src="{{ asset('assets/js/scripts.js') }}"></script>
@@ -79,13 +92,13 @@
                 });
             }, 4000);
         });
-
         $(document).ready(function() {
             $('.image-link').magnificPopup({
                 delegate: 'a',
                 type: 'image',
             });
         });
+        $(".pwstrength").pwstrength();
     </script>
 </body>
 

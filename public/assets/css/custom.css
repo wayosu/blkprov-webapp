@@ -6,3 +6,35 @@
  */
 
 /*# sourceMappingURL=custom.css.map */
+:root {
+    --color1: #284a61;
+    --color2: #4c7088;
+    --color3: #768b99;
+}
+
+.blk-bg {
+    background: var(--color1) !important;
+}
+
+.blk-text {
+    color: var(--color1) !important;
+}
+
+.blk-card {
+    border-top: 2px solid var(--color1) !important;
+}
+
+.blk-form-control:focus {
+    border-color: var(--color2) !important; 
+}
+
+.blk-btn, .blk-btn.disabled {
+    box-shadow: 0 2px 6px var(--color3);
+    background-color: var(--color2);
+    border-color: var(--color2); }
+    .blk-btn:focus, .blk-btn.disabled:focus {
+      background-color: var(--color1) !important; }
+      .blk-btn:focus:active, .blk-btn.disabled:focus:active {
+        background-color: var(--color1) !important; }
+    .blk-btn:active, .blk-btn:hover, .blk-btn.disabled:active, .blk-btn.disabled:hover {
+      background-color: var(--color1) !important; }

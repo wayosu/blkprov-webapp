@@ -3,6 +3,7 @@
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\TagController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,17 +17,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Auth::routes();
+
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/home', function () {
-    return view('admin.home');
+Route::group(['middleware' => 'auth'], function() {
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::resource('/category', CategoryController::class);
+    Route::resource('/tag', TagController::class);
+    Route::get('/post/recyclebin', [PostController::class, 'recyclebin'])->name('post.recyclebin');
+    Route::get('/post/restore/{id}', [PostController::class, 'restore'])->name('post.restore');
+    Route::delete('/post/deletepermanently/{id}', [PostController::class, 'deletePermanently'])->name('post.deletepermanently');
+    Route::resource('/post', PostController::class);
 });
 
-Route::resource('/category', CategoryController::class);
-Route::resource('/tag', TagController::class);
-Route::get('/post/recyclebin', [PostController::class, 'recyclebin'])->name('post.recyclebin');
-Route::get('/post/restore/{id}', [PostController::class, 'restore'])->name('post.restore');
-Route::delete('/post/deletepermanently/{id}', [PostController::class, 'deletePermanently'])->name('post.deletepermanently');
-Route::resource('/post', PostController::class);
