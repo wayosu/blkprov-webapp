@@ -24,7 +24,7 @@
                 <span>Category</span></a>
             </li>
             <li><a class="nav-link" href="{{ route('tag.index') }}">
-                <i class="fas fa-tag"></i>
+                <i class="fas fa-bookmark"></i>
                 <span>Tag</span></a>
             </li>
         </ul>

@@ -1,10 +1,11 @@
-@extends('layouts.app', ['title' => 'Post'])
+@extends('layouts.app', ['title' => 'Recycle Bin'])
 
 @section('content')
     <div class="section-header">
-        <h1>Post</h1>
+        <h1>Recycle Bin</h1>
         <div class="section-header-breadcrumb">
-            <div class="breadcrumb-item">Post</div>
+            <div class="breadcrumb-item"><a href="/post">Post</a></div>
+            <div class="breadcrumb-item">Recycle Bin</div>
         </div>
     </div>
 
@@ -14,10 +15,8 @@
             <div class="col">
                 <div class="card">
                     <div class="card-body">
-                        <a href="{{ route('post.create') }}" class="btn btn-primary mb-4"><i
-                                class="fas fa-plus-circle"></i> Create Post</a>
-                        <a href="{{ route('post.recyclebin') }}" class="btn btn-primary mb-4"><i
-                                class="fas fa-trash"></i> Recycle Bin</a>
+                        <a href="{{ route('post.index') }}" class="btn btn-secondary mb-4"><i
+                                class="fas fa-arrow-circle-left"></i> Back to Post</a>
                         <div class="table-responsive">
                             <table class="table table-striped table-md table-bordered">
                                 <thead>
@@ -51,12 +50,12 @@
                                                 </div>
                                             </td>
                                             <td align="center" style="vertical-align: middle">
-                                                <form action="{{ route('post.destroy', $hasil->id) }}" method="POST">
-                                                    <a href="{{ route('post.edit', $hasil->id) }}"
-                                                        class="btn btn-warning"><i class="fas fa-edit"></i></a>
+                                                <form action="{{ route('post.deletepermanently', $hasil->id) }}" method="POST">
+                                                    <a href="{{ route('post.restore', $hasil->id) }}" class="btn btn-warning" title="Restore"><i class="fas fa-trash-restore"></i></a>
                                                     @csrf
                                                     @method('delete')
-                                                    <button type="submit" class="btn btn-danger" onclick="return confirm('Yaknin menghapus data ini?')"><i class="fas fa-trash"></i></button>
+                                                    <input type="hidden" name="gambar" value="{{ $hasil->gambar }}">
+                                                    <button type="submit" class="btn btn-danger" title="Delete" onclick="return confirm('Yakin menghapus data ini?. Data akan terhapus selamanya.')"><i class="fas fa-trash"></i></button>
                                                 </form>
                                             </td>
                                         </tr>

@@ -26,4 +26,7 @@ Route::get('/home', function () {
 
 Route::resource('/category', CategoryController::class);
 Route::resource('/tag', TagController::class);
+Route::get('/post/recyclebin', [PostController::class, 'recyclebin'])->name('post.recyclebin');
+Route::get('/post/restore/{id}', [PostController::class, 'restore'])->name('post.restore');
+Route::delete('/post/deletepermanently/{id}', [PostController::class, 'deletePermanently'])->name('post.deletepermanently');
 Route::resource('/post', PostController::class);
