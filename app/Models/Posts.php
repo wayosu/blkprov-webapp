@@ -12,7 +12,7 @@ class Posts extends Model
 
     use SoftDeletes;
 
-    protected $fillable = ['judul', 'category_id', 'konten', 'gambar', 'slug'];
+    protected $fillable = ['judul', 'category_id', 'konten', 'gambar', 'slug', 'user_id'];
 
     public function category()
     {
@@ -22,5 +22,10 @@ class Posts extends Model
     public function tags()
     {
         return $this->belongsToMany(Tags::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

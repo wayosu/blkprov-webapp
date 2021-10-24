@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ $title }}</title>
+    <title>{{ $title }} - Administration Area</title>
 
     <link rel="shortcut icon" href="{{ asset('assets/img/logo-kemenaker-small.png') }}" type="image/x-icon">
 

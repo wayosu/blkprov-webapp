@@ -45,7 +45,7 @@
                                             <td align="center" style="vertical-align: middle">
                                                 <div class="image-link">
                                                     <a href="{{ asset($hasil->gambar) }}" class="btn btn-secondary" target="_blank">
-                                                        <i class="fas fa-eye"></i>
+                                                        <i class="fas fa-image"></i>
                                                     </a>
                                                 </div>
                                             </td>

@@ -7,6 +7,7 @@ use App\Models\Posts;
 use App\Models\Tags;
 use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 class PostController extends Controller
@@ -57,7 +58,8 @@ class PostController extends Controller
             'category_id' => $request->category_id,
             'konten' => $request->konten,
             'gambar' => 'uploads/posts/'.$new_gambar,
-            'slug' => Str::slug($request->judul)
+            'slug' => Str::slug($request->judul),
+            'user_id' => Auth::id()
         ]);
 
         $post->tags()->attach($request->tags);

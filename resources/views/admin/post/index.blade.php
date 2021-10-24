@@ -26,6 +26,7 @@
                                         <th>Judul</th>
                                         <th>Kategori</th>
                                         <th>Tags</th>
+                                        <th>Kreator</th>
                                         <th>Thumbnail</th>
                                         <th>Action</th>
                                     </tr>
@@ -36,17 +37,16 @@
                                             <td align="center" style="vertical-align: middle">{{ $result + $post->firstitem() }}</td>
                                             <td style="vertical-align: middle">{{ $hasil->judul }}</td>
                                             <td style="vertical-align: middle">{{ $hasil->category->name }}</td>
-                                            <td>
-                                                <ul>
-                                                    @foreach ($hasil->tags as $tag)
-                                                        <li>{{ $tag->name }}</li>
-                                                    @endforeach
-                                                </ul>
+                                            <td align="center" style="vertical-align: middle">
+                                                @foreach ($hasil->tags as $tag)
+                                                    <h6><span class="badge badge-sm badge-primary">{{ $tag->name }}</span></h6>
+                                                @endforeach
                                             </td>
+                                            <td align="center" style="vertical-align: middle">{{ $hasil->user->name }}</td>
                                             <td align="center" style="vertical-align: middle">
                                                 <div class="image-link">
                                                     <a href="{{ asset($hasil->gambar) }}" class="btn btn-secondary" target="_blank">
-                                                        <i class="fas fa-eye"></i>
+                                                        <i class="fas fa-image"></i>
                                                     </a>
                                                 </div>
                                             </td>

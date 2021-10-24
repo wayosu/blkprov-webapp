@@ -1,4 +1,4 @@
-@extends('layouts.app', ['title' => 'BLK Gorontalo - Administration Area'])
+@extends('layouts.app', ['title' => 'BLK Gorontalo'])
 
 @section('content')
     <div class="container mt-5">
