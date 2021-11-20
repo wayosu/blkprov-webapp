@@ -1,4 +1,4 @@
-@extends('layouts.app', ['title' => 'Create User'])
+@extends('layouts.admin.app', ['title' => 'Create User'])
 
 @section('content')
     <div class="section-header">

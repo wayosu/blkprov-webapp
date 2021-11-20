@@ -34,8 +34,8 @@
         @if (Auth::check())
             <div class="main-wrapper">
                 <div class="navbar-bg"></div>
-                @include('layouts.navbar')
-                @include('layouts.sidebar')
+                @include('layouts.admin.navbar')
+                @include('layouts.admin.sidebar')
 
                 <!-- Main Content -->
                 <div class="main-content">

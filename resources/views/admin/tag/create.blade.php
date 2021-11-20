@@ -1,4 +1,4 @@
-@extends('layouts.app', ['title' => 'Create Tag'])
+@extends('layouts.admin.app', ['title' => 'Create Tag'])
 
 @section('content')
     <div class="section-header">

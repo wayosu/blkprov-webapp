@@ -1,4 +1,4 @@
-@extends('layouts.app', ['title' => 'Recycle Bin'])
+@extends('layouts.admin.app', ['title' => 'Recycle Bin'])
 
 @section('content')
     <div class="section-header">
