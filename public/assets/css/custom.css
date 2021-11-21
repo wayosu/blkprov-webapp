@@ -7,9 +7,9 @@
 
 /*# sourceMappingURL=custom.css.map */
 :root {
-    --color1: #284a61;
-    --color2: #4c7088;
-    --color3: #768b99;
+    --color2: #7014cc;
+    --color1: #631db0;
+    --color3: #883bd5;
 }
 
 .blk-bg {
@@ -29,12 +29,22 @@
 }
 
 .blk-btn, .blk-btn.disabled {
-    box-shadow: 0 2px 6px var(--color3);
+    box-shadow: 0px 8px 0px 0px var(--color1);
     background-color: var(--color2);
-    border-color: var(--color2); }
-    .blk-btn:focus, .blk-btn.disabled:focus {
-      background-color: var(--color1) !important; }
-      .blk-btn:focus:active, .blk-btn.disabled:focus:active {
-        background-color: var(--color1) !important; }
-    .blk-btn:active, .blk-btn:hover, .blk-btn.disabled:active, .blk-btn.disabled:hover {
-      background-color: var(--color1) !important; }
+    border-color: var(--color2); 
+}
+
+.blk-btn:focus, .blk-btn.disabled:focus {
+    box-shadow: 0px 8px 0px 0px var(--color1) !important;
+    background-color: var(--color1) !important; 
+}
+
+.blk-btn:focus:active, .blk-btn.disabled:focus:active {
+    box-shadow: 0px 8px 0px 0px var(--color1) !important;
+    background-color: var(--color1) !important; 
+}
+
+.blk-btn:active, .blk-btn:hover, .blk-btn.disabled:active, .blk-btn.disabled:hover {
+    box-shadow: 0px 8px 0px 0px var(--color1) !important;
+    background-color: var(--color2) !important; 
+}

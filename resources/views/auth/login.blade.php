@@ -1,12 +1,12 @@
-@extends('layouts.app', ['title' => 'BLK Gorontalo'])
+@extends('layouts.admin.app', ['title' => 'BLK Gorontalo'])
 
 @section('content')
     <div class="container mt-5">
         <div class="row">
-            <div class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
+            <div class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-6 offset-xl-3">
                 <div class="login-brand">
-                    <img src="{{ asset('assets/img/logo-kemenaker-small.png') }}" alt="logo" width="100">
-                    <h3 class="blk-text mt-4">BLK Gorontalo</h3>
+                    <img src="{{ asset('assets/img/logo-pemprov.png') }}" alt="logo" width="60">
+                    <h5 class="blk-text mt-4">BLK Provinsi Gorontalo</h5>
                 </div>
 
                 <div class="card blk-card">
@@ -58,22 +58,11 @@
                                 </button>
                             </div>
                         </form>
-                        {{-- <div class="text-center mt-4 mb-3">
-                            <div class="text-job text-muted">Login With Social</div>
+                        <div class="text-center mt-4 mb-3">
+                            <div class="text-job text-muted">
+                                <a href="./" class="blk-text">Kembali ke beranda</a>
+                            </div>
                         </div>
-                        <div class="row sm-gutters">
-                            <div class="col-6">
-                                <a class="btn btn-block btn-social btn-facebook">
-                                    <span class="fab fa-facebook"></span> Facebook
-                                </a>
-                            </div>
-                            <div class="col-6">
-                                <a class="btn btn-block btn-social btn-twitter">
-                                    <span class="fab fa-twitter"></span> Twitter
-                                </a>
-                            </div>
-                        </div> --}}
-
                     </div>
                 </div>
                 {{-- <div class="mt-5 text-muted text-center">

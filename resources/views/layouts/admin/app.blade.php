@@ -10,7 +10,7 @@
 
     <title>{{ $title }} - Administration Area</title>
 
-    <link rel="shortcut icon" href="{{ asset('assets/img/logo-kemenaker-small.png') }}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ asset('assets/img/logo-pemprov.png') }}" type="image/x-icon">
 
     <!-- General CSS Files -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
