@@ -1,8 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
+use App\Models\Posts;
 
 class HomeController extends Controller
 {
@@ -11,8 +11,9 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Posts $posts)
     {
-        return view('home');
+        $data = $posts->orderBy('created_at', 'desc')->get();
+        return view('home', compact('data'));
     }
 }

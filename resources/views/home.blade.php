@@ -131,7 +131,7 @@
                     </div>
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <img src="assets/images/5.jpg" class="d-block" alt="...">
+                            <img src="{{ asset('assets/front/images/5.jpg') }}" class="d-block" alt="...">
                             <div class="carousel-caption">
                                 <h3>Time to Get Your House Clean and in Order</h3>
                                 <p class="">Some representative placeholder content for the first slide.</p>
@@ -139,7 +139,7 @@
                             </div>
                         </div>
                         <div class="carousel-item">
-                            <img src="assets/images/2.jpg" class="d-block" alt="...">
+                            <img src="{{ asset('assets/front/images/2.jpg') }}" class="d-block" alt="...">
                             <div class="carousel-caption">
                                 <h3>Time to Get Your House Clean and in Order</h3>
                                 <p>Some representative placeholder content for the first slide.</p>
@@ -147,7 +147,7 @@
                             </div>
                         </div>
                         <div class="carousel-item">
-                            <img src="assets/images/3.jpg" class="d-block" alt="...">
+                            <img src="{{ asset('assets/front/images/3.jpg') }}" class="d-block" alt="...">
                             <div class="carousel-caption">
                                 <h3>Time to Get Your House Clean and in Order</h3>
                                 <p>Some representative placeholder content for the first slide.</p>
@@ -180,7 +180,7 @@
                                 <div class="card border-0 my-bg-primary my-rounded shadow">
                                     <div class="card-body text-center">
                                         <div class="my-img-content-card">
-                                            <img src="assets/images/bullhorn.png" class="my-img-card">
+                                            <img src="{{ asset('assets/front/images/bullhorn.png') }}" class="my-img-card">
                                         </div>
                                         <div class="my-text-content-card">
                                             <div class="my-icon rounded-circle my-bg-white d-inline-block mt-2 mb-3">
@@ -200,7 +200,7 @@
                                 <div class="card border-0 my-bg-primary my-rounded shadow">
                                     <div class="card-body text-center">
                                         <div class="my-img-content-card">
-                                            <img src="assets/images/bullhorn.png" class="my-img-card">
+                                            <img src="{{ asset('assets/front/images/bullhorn.png') }}" class="my-img-card">
                                         </div>
                                         <div class="my-text-content-card">
                                             <div class="my-icon rounded-circle my-bg-white d-inline-block mt-2 mb-3">
@@ -220,7 +220,7 @@
                                 <div class="card border-0 my-bg-primary my-rounded shadow">
                                     <div class="card-body text-center">
                                         <div class="my-img-content-card">
-                                            <img src="assets/images/bullhorn.png" class="my-img-card">
+                                            <img src="{{ asset('assets/front/images/bullhorn.png') }}" class="my-img-card">
                                         </div>
                                         <div class="my-text-content-card">
                                             <div class="my-icon rounded-circle my-bg-white d-inline-block mt-2 mb-3">
@@ -254,40 +254,25 @@
                         <div class="my-border-bottom-primary"></div>
                     </div>
                     <div class="row gy-4">
-                        <div class="col-md-12 col-lg-6">
-                            <div class="card border-0">
-                                <div class="figure">
-                                    <img class="card-img-top rounded-3 my-img-zoom" src="assets/images/5.jpg"
-                                        alt="Card image cap">
-                                </div>
-                                <div class="card-body pb-0 px-0">
-                                    <h4 class="card-title my-card-title">Time to Get Your House Clean and in Order</h4>
-                                    <p class="mb-2 fw-bold small"><small>Admin <span
-                                                class="fw-light text-muted">- 23
-                                                Januari 2021</span></small></p>
-                                    <p class="card-text fw-light">Some quick example text to build on the card title and
-                                        make up the bulk of the card's content.</p>
-                                    <a href="#" class="btn my-btn-outline-primary"><small>Baca Selengkapnya</small></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-12 col-lg-6">
-                            <div class="card border-0">
-                                <div class="figure">
-                                    <img class="card-img-top rounded-3 my-img-zoom" src="assets/images/2.jpg"
-                                        alt="Card image cap">
-                                </div>
-                                <div class="card-body pb-0 px-0">
-                                    <h4 class="card-title my-card-title">Time to Get Your House Clean and in Order</h4>
-                                    <p class="mb-2 fw-bold small"><small>Admin <span
-                                                class="fw-light text-muted">- 23
-                                                Januari 2021</span></small></p>
-                                    <p class="card-text fw-light">Some quick example text to build on the card title and
-                                        make up the bulk of the card's content.</p>
-                                    <a href="#" class="btn my-btn-outline-primary"><small>Baca Selengkapnya</small></a>
+                        @foreach($data as $post_terbaru)
+                            <div class="col-md-12 col-lg-6">
+                                <div class="card border-0">
+                                    <div class="figure">
+                                        <img class="card-img-top rounded-3 my-img-zoom" src="{{ asset('assets/front/images/5.jpg') }}"
+                                            alt="Card image cap">
+                                    </div>
+                                    <div class="card-body pb-0 px-0">
+                                        <h4 class="card-title my-card-title">Time to Get Your House Clean and in Order</h4>
+                                        <p class="mb-2 fw-bold small"><small>Admin <span
+                                                    class="fw-light text-muted">- 23
+                                                    Januari 2021</span></small></p>
+                                        <p class="card-text fw-light">Some quick example text to build on the card title and
+                                            make up the bulk of the card's content.</p>
+                                        <a href="#" class="btn my-btn-outline-primary"><small>Baca Selengkapnya</small></a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
                 <div class="col-md-12 col-xl-3">
@@ -356,7 +341,7 @@
                         <div class="col-md-12 col-lg-6 col-xl-3">
                             <div class="card border-0">
                                 <div class="figure">
-                                    <img class="card-img-top rounded-3 my-img-zoom" src="assets/images/2.jpg"
+                                    <img class="card-img-top rounded-3 my-img-zoom" src="{{ asset('assets/front/images/2.jpg') }}"
                                         alt="Card image cap">
                                 </div>
                                 <div class="card-body px-0">
@@ -372,7 +357,7 @@
                         <div class="col-md-12 col-lg-6 col-xl-3">
                             <div class="card border-0">
                                 <div class="figure">
-                                    <img class="card-img-top rounded-3 my-img-zoom" src="assets/images/3.jpg"
+                                    <img class="card-img-top rounded-3 my-img-zoom" src="{{ asset('assets/front/images/3.jpg') }}"
                                         alt="Card image cap">
                                 </div>
                                 <div class="card-body px-0">
@@ -388,7 +373,7 @@
                         <div class="col-md-12 col-lg-6 col-xl-3">
                             <div class="card border-0">
                                 <div class="figure">
-                                    <img class="card-img-top rounded-3 my-img-zoom" src="assets/images/5.jpg"
+                                    <img class="card-img-top rounded-3 my-img-zoom" src="{{ asset('assets/front/images/5.jpg') }}"
                                         alt="Card image cap">
                                 </div>
                                 <div class="card-body px-0">
@@ -404,7 +389,7 @@
                         <div class="col-md-12 col-lg-6 col-xl-3">
                             <div class="card border-0">
                                 <div class="figure">
-                                    <img class="card-img-top rounded-3 my-img-zoom" src="assets/images/2.jpg"
+                                    <img class="card-img-top rounded-3 my-img-zoom" src="{{ asset('assets/front/images/2.jpg') }}"
                                         alt="Card image cap">
                                 </div>
                                 <div class="card-body px-0">
@@ -430,12 +415,13 @@
                     <div class="row">
                         <div class="col-lg-4 col-sm-6">
                             <div class="d-flex align-items-center">
-                                <img src="assets/images/logo-pemprov.png" alt="logo" width="40">
+                                <img src="{{ asset('assets/front/images/logo-pemprov.png') }}" alt="logo" width="40">
                                 <h3 class="ms-2 fw-bold text-uppercase text-white">Balai Latihan Kerja Provinsi Gorontalo</h3>
                             </div>
                             
-                            <p>Alamat : Jalan Guntur Raya No.1, Kelurahan Kayuringin Jaya, Bekasi Selatan, Kota Bekasi,
-                                Jawa Barat 17144</p>
+                            <p>
+                                Alamat : Jalan Beringin, Kelurahan Tomulabutao Selatan, Kecamatan Dungingi, Kota Gorontalo, Gorontalo 96138
+                            </p>
                             <p>Telp : (021) 884 1147</p>
                         </div>
                         <div class="col-lg-2 col-sm-6">
@@ -482,7 +468,7 @@
         <div class="copyright pt-3 mb-5 mb-md-0">
             <div class="container">
                 <div class="d-flex justify-content-center">
-                    <p>Copyright 2021 BLK Gorontalo. All Rights Reserved.</p>
+                    <p>Copyright &copy; 2021 BLK Provinsi Gorontalo. All Rights Reserved.</p>
                 </div>
             </div>
         </div>
