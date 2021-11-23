@@ -122,38 +122,22 @@
             <div class="col-md-12">
                 <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-indicators">
-                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
-                            class="active" aria-current="true" aria-label="Slide 1"></button>
-                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
-                            aria-label="Slide 2"></button>
-                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
-                            aria-label="Slide 3"></button>
+                        @foreach ($data as $post_terbaru)
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ $loop->index }}"
+                                class="{{ $loop->first ? 'active' : '' }}" aria-current="true"></button>
+                        @endforeach
                     </div>
                     <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img src="{{ asset('assets/front/images/5.jpg') }}" class="d-block" alt="...">
-                            <div class="carousel-caption">
-                                <h3>Time to Get Your House Clean and in Order</h3>
-                                <p class="">Some representative placeholder content for the first slide.</p>
-                                <a href="#" class="btn my-btn-slider-primary">Baca Selengkapnya</a>
+                        @foreach ($data as $post_terbaru)
+                            <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
+                                <img src="{{ asset($post_terbaru->gambar) }}" class="d-block" alt="...">
+                                <div class="carousel-caption">
+                                    <h3>{{ $post_terbaru->judul }}</h3>
+                                    <p class="">{{ $post_terbaru->konten }}</p>
+                                    <a href="#" class="btn my-btn-slider-primary">Baca Selengkapnya</a>
+                                </div>
                             </div>
-                        </div>
-                        <div class="carousel-item">
-                            <img src="{{ asset('assets/front/images/2.jpg') }}" class="d-block" alt="...">
-                            <div class="carousel-caption">
-                                <h3>Time to Get Your House Clean and in Order</h3>
-                                <p>Some representative placeholder content for the first slide.</p>
-                                <a href="#" class="btn my-btn-slider-primary">Baca Selengkapnya</a>
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-                            <img src="{{ asset('assets/front/images/3.jpg') }}" class="d-block" alt="...">
-                            <div class="carousel-caption">
-                                <h3>Time to Get Your House Clean and in Order</h3>
-                                <p>Some representative placeholder content for the first slide.</p>
-                                <a href="#" class="btn my-btn-slider-primary">Baca Selengkapnya</a>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                     <!-- <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
                         data-bs-slide="prev">
@@ -256,21 +240,32 @@
                     <div class="row gy-4">
                         @foreach($data as $post_terbaru)
                             <div class="col-md-12 col-lg-6">
-                                <div class="card border-0">
-                                    <div class="figure">
-                                        <img class="card-img-top rounded-3 my-img-zoom" src="{{ asset('assets/front/images/5.jpg') }}"
-                                            alt="Card image cap">
+                                <a href="#" class="text-decoration-none text-black">
+                                    <div class="card border-0">
+                                        <div class="figure">
+                                            <img class="card-img-top rounded-3 my-img-zoom" src="{{ asset($post_terbaru->gambar) }}"
+                                                alt="Card image cap">
+                                        </div>
+                                        <div class="card-body pb-0 px-0">
+                                            <h4 class="card-title my-card-title">{{ $post_terbaru->judul }}</h4>
+                                            <p class="mb-2 fw-bold small">
+                                                <small>
+                                                    @if ($post_terbaru->user_id == 1)
+                                                        Admin
+                                                    @else
+                                                        {{ $post_terbaru->user->name }}
+                                                    @endif
+                                                    <span class="fw-light text-muted">- 
+                                                        {{ $post_terbaru->created_at->format('d F Y') }}
+                                                    </span>
+                                                </small>
+                                            </p>
+                                            <p class="card-text fw-light">
+                                                {{ $post_terbaru->konten }}
+                                            </p>
+                                        </div>
                                     </div>
-                                    <div class="card-body pb-0 px-0">
-                                        <h4 class="card-title my-card-title">Time to Get Your House Clean and in Order</h4>
-                                        <p class="mb-2 fw-bold small"><small>Admin <span
-                                                    class="fw-light text-muted">- 23
-                                                    Januari 2021</span></small></p>
-                                        <p class="card-text fw-light">Some quick example text to build on the card title and
-                                            make up the bulk of the card's content.</p>
-                                        <a href="#" class="btn my-btn-outline-primary"><small>Baca Selengkapnya</small></a>
-                                    </div>
-                                </div>
+                                </a>
                             </div>
                         @endforeach
                     </div>

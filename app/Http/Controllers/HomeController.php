@@ -13,7 +13,7 @@ class HomeController extends Controller
      */
     public function index(Posts $posts)
     {
-        $data = $posts->orderBy('created_at', 'desc')->get();
+        $data = $posts->orderBy('created_at', 'desc')->limit(2)->get();
         return view('home', compact('data'));
     }
 }
