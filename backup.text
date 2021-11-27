@@ -1,0 +1,184 @@
+{{-- <!-- Navbar Mobile -->
+    <section class="d-md-none d-lg-none d-xl-none my-border-top-primary">
+        <div class="container">
+            <div class="row">
+                <a class="py-3 text-decoration-none" href="#">
+                    <div class="d-flex align-items-center justify-content-center">
+                        <img src="{{ asset('assets/front/images/logo-pemprov.png') }}" alt="" height="35">
+                        <h6 class="fs-5 small fw-bolder ms-2 text-dark"><small>BLK PROVINSI GORONTALO</small></h6>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <nav class="navbar navbar-dark my-bg-primary py-2 navbar-expand d-md-none d-lg-none d-xl-none fixed-bottom">
+        <ul class="navbar-nav nav-justified w-100">
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="fas fa-home"></i>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="fas fa-newspaper"></i>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="fas fa-images"></i>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="fas fa-bullhorn"></i>
+                </a>
+            </li>
+            <li class="nav-item dropup">
+                <a href="#" class="nav-link" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                    id="navbarScrollingDropup" role="button">
+                    <i class="fas fa-building"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end my-dropdown-navb mb-2 rounded-top rounded-0"
+                    aria-labelledby="navbarScrollingDropdown">
+                    <li><a class="dropdown-item small" href="profile.html">Profile</a></li>
+                    <li><a class="dropdown-item small" href="visimisi.html">Visi & Misi</a></li>
+                    <li><a class="dropdown-item small" href="sambutan.html">Sambutan Kepala</a></li>
+                    <li><a class="dropdown-item small" href="struktur.html">Struktur Organisasi</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav> --}}
+
+<section id="slider" class="mb-5">
+        <div class="row">
+            <div class="col-md-12">
+                <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-indicators">
+                        @foreach ($data as $post_terbaru)
+                            <button type="button" data-bs-target="#carouselExampleIndicators"
+                                data-bs-slide-to="{{ $loop->index }}" class="{{ $loop->first ? 'active' : '' }}"
+                                aria-current="true"></button>
+                        @endforeach
+                    </div>
+                    <div class="carousel-inner">
+                        @foreach ($data as $post_terbaru)
+                            <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
+                                <img src="{{ asset($post_terbaru->gambar) }}" class="d-block" alt="...">
+                                <div class="carousel-caption">
+                                    <small><span class="badge my-bg-primary">Pendidikan</span></small>
+                                    <h3 class="mt-2">{{ $post_terbaru->judul }}</h3>
+                                    <p class="fw-light">
+                                        <small>
+                                            @if ($post_terbaru->user_id == 1)
+                                                <span class="fw-bold">Admin</span>
+                                            @else
+                                                <span class="fw-bold">{{ $post_terbaru->user->name }}</span>
+                                            @endif
+                                            - {{ $post_terbaru->created_at->format('d F Y') }}
+                                        </small>
+                                    </p>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                    <!-- <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button> -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+.my-img-content-card {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.my-img-content-card .my-img-card {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    opacity: 0.15;
+    -webkit-transition: .2s ease-in-out;
+	transition: .2s ease-in-out;
+    filter: sepia(100%);
+    transform: scale(1.2);
+}
+
+.my-link-card:hover .my-img-card {
+    opacity: 0.5;
+    transform: scale(1);
+}
+
+/* my-icon */
+.my-icon {
+    width: 60px;
+    height: 60px;
+}
+
+.my-icon-card {
+    font-size: 1.5rem;
+    padding: 5px;
+}
+
+
+#slider {
+    overflow-x: hidden;
+}
+
+.carousel-item img {
+    object-fit: cover;
+    object-position: center;
+    width: 100%;
+    height: 600px;
+}
+
+.carousel-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    width: 100%;
+    height: 100%;
+}
+
+.carousel-caption {
+    position: absolute;
+    left: 110px;
+    bottom: 150px;
+    width: 600px;
+    height: 20vh;
+    text-align: left;
+}
+
+.carousel-caption h3 {
+    font-size: 2rem;
+}
+
+.carousel-caption p {
+    font-size: 1rem;
+    font-weight: lighter;
+}
+
+.carousel-indicators button {
+    width: 10px !important;
+    height: 10px !important;
+}

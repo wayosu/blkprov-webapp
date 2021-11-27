@@ -34,11 +34,6 @@ body {
     color: var(--white);
 }
 
-.my-text-content-card {
-    position: relative;
-    z-index: 1;
-}
-
 /* my-bg */
 .my-bg-primary {
     background: var(--primary);
@@ -67,8 +62,7 @@ body {
 }
 
 .my-btn-link:hover {
-    text-decoration: underline;
-    color: var(--primary);
+    color: var(--primary) !important;
 }
 
 .my-btn-slider-primary {
@@ -138,44 +132,32 @@ body {
     margin-bottom: .125rem;
 }
 
-/* my-img */
-.my-img-content-card {
+/* Hero Content */
+#hero {
+    margin-top: 100px;
+}
+
+.my-content-card {
     position: absolute;
-    top: 0;
+    bottom: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    border-radius: 8px;
-    overflow: hidden;
+    margin: 20px;
+    color: var(--white);
 }
 
-.my-img-content-card .my-img-card {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    opacity: 0.15;
-    -webkit-transition: .2s ease-in-out;
-	transition: .2s ease-in-out;
-    filter: sepia(100%);
-    transform: scale(1.2);
+.my-content-card .my-badge {
+    background: var(--black);
+    transition: .3s ease-in-out;
 }
 
-.my-link-card:hover .my-img-card {
-    opacity: 0.5;
-    transform: scale(1);
+.card:hover .my-content-card .my-badge {
+    background: var(--primary);
 }
 
-/* my-icon */
-.my-icon {
-    width: 60px;
-    height: 60px;
-}
-
-.my-icon-card {
-    font-size: 1.5rem;
-    padding: 5px;
+.my-content-card h4,
+.my-content-card h6,
+.my-content-card p {
+    text-shadow: 1px 1px 1px var(--black);
 }
 
 /* my-footer */
@@ -187,50 +169,6 @@ body {
 /* End My Custom */
 
 /* Custom Bootstrap */
-#slider {
-    overflow-x: hidden;
-}
-
-.carousel-item img {
-    object-fit: cover;
-    object-position: center;
-    width: 100%;
-    height: 600px;
-}
-
-.carousel-item::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    background-color: rgba(0, 0, 0, 0.3);
-    width: 100%;
-    height: 100%;
-}
-
-.carousel-caption {
-    position: absolute;
-    left: 110px;
-    bottom: 150px;
-    width: 600px;
-    height: 20vh;
-    text-align: left;
-}
-
-.carousel-caption h3 {
-    font-size: 3rem;
-}
-
-.carousel-caption p {
-    font-size: 1rem;
-    font-weight: lighter;
-}
-
-.carousel-indicators button {
-    width: 10px !important;
-    height: 10px !important;
-}
-
 .card .figure {
     overflow: hidden;
     border-radius: 8px;
@@ -392,16 +330,18 @@ footer li{
 
 @media (max-width: 768px) {
     .carousel-caption {
-        text-align: center;
-        left: 0;
-        width: 100%;
-        margin: 0 auto;
+        left: 35px;
+        bottom: 100px;
+        width: 90% !important;
+        margin: 0;
     }
 
-    .carousel-caption h3 {
-        display: inline-block;
-        width: 50%;
+    .carousel-caption h3 {  
         font-size: 2rem;
+    }
+
+    .carousel-caption a {
+        font-size: 0.8rem;
     }
         
     footer .round-btn {
@@ -410,8 +350,8 @@ footer li{
 }
 
 @media (max-width: 576px) {
-    .my-btn-slider-primary {
-        font-size: 0.8rem;
+    .carousel-caption a {
+        font-size: 0.7rem;
     }
 
     .carousel-item img {
@@ -419,8 +359,8 @@ footer li{
     }
 
     .carousel-caption {
-        bottom: 50px;
-        padding: 0 10px;
+        left: 10px;
+        bottom: 40px;
     }
 
     .carousel-caption h3 {
@@ -437,8 +377,8 @@ footer li{
     }
 }
 
-@media (min-width: 992px){
+/* @media (min-width: 992px){
     .container{
       max-width:90%;
     }
-}
+} */
