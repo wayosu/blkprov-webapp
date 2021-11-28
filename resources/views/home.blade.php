@@ -18,6 +18,9 @@
 </head>
 
 <body>
+    <button type="button" id="backToTop" class="btn my-btn-transparent text-white"><i
+            class="fas fa-chevron-up"></i></button>
+
     <!-- Navbar Tablet & Laptop -->
     <nav class="navbar navbar-expand-lg bg-light navbar-light shadow-sm fixed-top">
         <div class="container">
@@ -40,7 +43,7 @@
             <div class="collapse navbar-collapse" id="navbarScroll">
                 <ul class="navbar-nav gap-lg-3 ms-auto my-2 navbar-nav-scroll" style="--bs-scroll-height: 300px;">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                        <a class="nav-link active" aria-current="page" href="/">Home</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button"
@@ -71,322 +74,379 @@
         </div>
     </nav>
 
-    <section id="hero" class="mb-5">
-        <div class="container">
-            <div class="row align-items-stretch g-1">
-                @foreach ($data_heroLeft as $post_heroLeft)
-                    <div class="col-12 col-lg-6">
-                        <a href="#" class="text-decoration-none text-black">
-                            <div class="card border-0" style="max-height: 364px;">
-                                <div class="figure">
-                                    <img class="card-img-top rounded-3 my-img-zoom"
-                                        src="{{ asset($post_heroLeft->gambar) }}" alt="Card image cap" height="400"
-                                        style="object-fit: cover;">
-                                </div>
-                                <div class="card-body my-content-card pb-0 px-0">
-                                    <small>
-                                        <span class="badge my-badge">{{ $post_heroLeft->category->name }}</span>
-                                    </small>
-                                    <h4 class="card-title mt-2">
-                                        {{ $post_heroLeft->judul }}
-                                    </h4>
-                                    <p class="mb-0 fw-bold small">
-                                        <small>
-                                            @if ($post_heroLeft->user_id == 1)
-                                                Admin
-                                            @else
-                                                {{ $post_heroLeft->user->name }}
-                                            @endif
-                                            <span class="fw-light">
-                                                - {{ $post_heroLeft->created_at->format('d F Y') }}
-                                            </span>
-                                        </small>
-                                    </p>
-                                </div>
-                            </div>
-                        </a>
+    <div class="my-content">
+
+        <section id="pengumuman" class="mb-4">
+            <div class="container">
+                <div class="d-flex flex-wrap flex-md-nowrap justify-content-center">
+                    <div class="bg-danger mb-2 h-100">
+                        <h6 class="m-0 px-2 py-1 text-white small">PENGUMUMAN</h6>
                     </div>
-                @endforeach
-                <div class="col-12 col-lg-6">
-                    <div class="row g-1">
-                        @foreach ($data_heroRight as $post_heroRight)
-                            <div class="col-md-6">
-                                <a href="#" class="text-decoration-none text-black">
-                                    <div class="card border-0" style="max-height: 180px;">
-                                        <div class="figure">
-                                            <img class="card-img-top rounded-3 my-img-zoom"
-                                                src="{{ asset($post_heroRight->gambar) }}" alt="Card image cap"
-                                                height="200" style="object-fit: cover;">
-                                        </div>
-                                        <div class="card-body my-content-card pb-0 px-0">
-                                            <small>
-                                                <span
-                                                    class="badge my-badge">{{ $post_heroRight->category->name }}</span>
-                                            </small>
-                                            <h6 class="card-title mt-2">
-                                                {{ $post_heroRight->judul }}
-                                            </h6>
+                    <div id="mySlidePengumuman" class="carousel slide carousel-fade w-100" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            @foreach ($data_populer as $post_populer)
+                                <div class="carousel-item {{ $loop->first ? 'active' : '' }}" data-bs-interval="4000">
+                                    <div class="container">
+                                        <div class="carousel-caption text-start">
+                                            <h1 class="m-0">{{ $post_populer->judul }}</h1>
                                         </div>
                                     </div>
-                                </a>
-                            </div>
-                        @endforeach
+                                </div>
+                            @endforeach
+                        </div>
+                        <div class="my-btn-nxpv">
+                            <button class="carousel-control-prev" type="button"
+                                data-bs-target="#mySlidePengumuman" data-bs-slide="prev">
+                                <h2 class="m-0 p-0"><span class="fas fa-angle-left"
+                                        aria-hidden="true"></span></h2>
+                            </button>
+                            <button class="carousel-control-next" type="button"
+                                data-bs-target="#mySlidePengumuman" data-bs-slide="next">
+                                <h2 class="m-0 p-0"><span class="fas fa-angle-right"
+                                        aria-hidden="true"></span></h2>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="berita" class="mb-5">
-        <div class="container">
-            <div class="row gy-5">
-                <div class="col-md-12 col-xl-8">
-
-                    <div class="row gy-5">
-                        <div class="col-12">
-                            <div class="mb-2">
-                                <div class="d-flex align-items-center justify-content-between">
-                                    <h6 class="my-0">BERITA TERBARU</h6>
-                                    <a href="#" class="my-btn-link small text-muted"><small>All</small></a>
-                                </div>
-                                <div class="my-border-bottom-primary"></div>
-                            </div>
-                            <div class="row gy-4">
-                                @foreach ($data_terbaru as $post_terbaru)
-                                    <div class="col-md-12 col-lg-6">
-                                        <a href="#" class="text-decoration-none text-black">
-                                            <div class="card border-0">
-                                                <div class="figure">
-                                                    <img class="card-img-top rounded-3 my-img-zoom"
-                                                        src="{{ asset($post_terbaru->gambar) }}" alt="Card image cap"
-                                                        style="height: 25vh;object-fit: cover;">
-                                                </div>
-                                                <div class="my-badge-card small">
-                                                    <span
-                                                        class="badge my-badge">{{ $post_terbaru->category->name }}</span>
-                                                </div>
-                                                <div class="card-body pb-0 px-0">
-                                                    <h4 class="card-title mb-1 my-card-title fw-normal">
-                                                        {{ $post_terbaru->judul }}
-                                                    </h4>
-                                                    <p class="fw-bold small mt-0 mb-1">
-                                                        <small>
-                                                            @if ($post_terbaru->user_id == 1)
-                                                                <small>Admin</small>
-                                                            @else
-                                                                <small>{{ $post_terbaru->user->name }}</small>
-                                                            @endif
-                                                            <small>
-                                                                <span class="fw-light text-muted">-
-                                                                    {{ $post_terbaru->created_at->format('d F Y') }}
-                                                                </span>
-                                                            </small>
-                                                        </small>
-                                                    </p>
-                                                    <p class="m-0 text-secondary small">
-                                                        {{ \Illuminate\Support\Str::limit(strip_tags($post_terbaru->konten), 150, '...') }}
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </a>
+        <section id="hero" class="mb-5">
+            <div class="container">
+                <div class="row align-items-stretch g-1">
+                    @foreach ($data_heroLeft as $post_heroLeft)
+                        <div class="col-12 col-lg-6">
+                            <a href="#" class="text-decoration-none text-black">
+                                <div class="card border-0" style="max-height: 22.79em;">
+                                    <div class="figure">
+                                        <img class="card-img-top rounded-3 my-img-zoom"
+                                            src="{{ asset($post_heroLeft->gambar) }}" alt="Card image cap"
+                                            height="400" style="object-fit: cover;">
                                     </div>
-                                @endforeach
-                            </div>
-                        </div>
-
-                        <div class="col-12">
-                            <div class="mb-2">
-                                <div class="d-flex align-items-center justify-content-between">
-                                    <h6 class="my-0">GALERI</h6>
-                                    <a href="#" class="my-btn-link small text-muted"><small>All</small></a>
+                                    <div class="card-body my-content-card pb-0 px-0">
+                                        <small>
+                                            <span class="badge my-badge">{{ $post_heroLeft->category->name }}</span>
+                                        </small>
+                                        <h4 class="card-title mt-2">
+                                            {{ $post_heroLeft->judul }}
+                                        </h4>
+                                        <p class="mb-0 fw-bold small">
+                                            <small>
+                                                @if ($post_heroLeft->user_id == 1)
+                                                    Admin
+                                                @else
+                                                    {{ $post_heroLeft->user->name }}
+                                                @endif
+                                                <span class="fw-light">
+                                                    - {{ $post_heroLeft->created_at->format('d F Y') }}
+                                                </span>
+                                            </small>
+                                        </p>
+                                    </div>
                                 </div>
-                                <div class="my-border-bottom-primary"></div>
-                            </div>
-                            <div class="row g-0">
-                                <div class="col-12">
-                                    <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
-                                        <div class="carousel-inner">
-                                            @foreach ($data_populer as $post_populer)
-                                            <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
-                                                <img src="{{ asset($post_populer->gambar) }}" alt="" srcset="" style="height: 40vh;width: 100%;object-fit: cover;">
+                            </a>
+                        </div>
+                    @endforeach
+                    <div class="col-12 col-lg-6">
+                        <div class="row my-card-scroll g-1">
+                            @foreach ($data_heroRight as $post_heroRight)
+                                <div class="col-10 col-md-6">
+                                    <a href="#" class="text-decoration-none text-black">
+                                        <div class="card border-0" style="max-height: 180px;">
+                                            <div class="figure">
+                                                <img class="card-img-top rounded-3 my-img-zoom"
+                                                    src="{{ asset($post_heroRight->gambar) }}" alt="Card image cap"
+                                                    height="200" style="object-fit: cover;">
+                                            </div>
+                                            <div class="card-body my-content-card pb-0 px-0">
+                                                <small>
+                                                    <span
+                                                        class="badge my-badge">{{ $post_heroRight->category->name }}</span>
+                                                </small>
+                                                <h6 class="card-title mt-2">
+                                                    {{ $post_heroRight->judul }}
+                                                </h6>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-                                                <div class="container">
-                                                    <div class="carousel-caption text-start">
-                                                        <div class="my-0">
+        <section id="berita" class="mb-5">
+            <div class="container">
+                <div class="row gy-5">
+                    <div class="col-md-12 col-xl-8">
+
+                        <div class="row gy-5">
+                            <div class="col-12">
+                                <div class="mb-2">
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <h6 class="my-0">BERITA TERBARU</h6>
+                                        <a href="#" class="my-btn-link small text-muted"><small>All</small></a>
+                                    </div>
+                                    <div class="my-border-bottom-primary"></div>
+                                </div>
+                                <div class="row gy-4">
+                                    @foreach ($data_terbaru as $post_terbaru)
+                                        <div class="col-md-12 col-lg-6">
+                                            <a href="#" class="text-decoration-none text-black">
+                                                <div class="card border-0">
+                                                    <div class="figure">
+                                                        <img class="card-img-top rounded-3 my-img-zoom"
+                                                            src="{{ asset($post_terbaru->gambar) }}"
+                                                            alt="Card image cap"
+                                                            style="height: 25vh;object-fit: cover;">
+                                                    </div>
+                                                    <div class="my-badge-card small">
+                                                        <span
+                                                            class="badge my-badge">{{ $post_terbaru->category->name }}</span>
+                                                    </div>
+                                                    <div class="card-body pb-0 px-0">
+                                                        <h4 class="card-title mb-1 my-card-title fw-normal">
+                                                            {{ $post_terbaru->judul }}
+                                                        </h4>
+                                                        <p class="fw-bold small mt-0 mb-1">
                                                             <small>
-                                                                <span class="badge my-badge">FOTO</span>
-                                                            </small>
-                                                        </div>
-                                                        <h4 class="my-2 fw-normal">{{ $post_populer->judul }}</h4>
-                                                        <p class="my-0 fw-bold small">
-                                                            <small>
-                                                                @if ($post_populer->user_id == 1)
+                                                                @if ($post_terbaru->user_id == 1)
                                                                     <small>Admin</small>
                                                                 @else
-                                                                    <small>{{ $post_populer->user->name }}</small>
+                                                                    <small>{{ $post_terbaru->user->name }}</small>
                                                                 @endif
                                                                 <small>
-                                                                    <span class="fw-light">
-                                                                        - {{ $post_populer->created_at->format('d F Y') }}
+                                                                    <span class="fw-light text-muted">-
+                                                                        {{ $post_terbaru->created_at->format('d F Y') }}
                                                                     </span>
                                                                 </small>
                                                             </small>
                                                         </p>
+                                                        <p class="m-0 text-secondary small">
+                                                            {{ \Illuminate\Support\Str::limit(strip_tags($post_terbaru->konten), 150, '...') }}
+                                                        </p>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            @endforeach
+                                            </a>
                                         </div>
-                                        <button class="carousel-control-prev" type="button"
-                                            data-bs-target="#myCarousel" data-bs-slide="prev">
-                                            <h2 class="m-0 p-0"><span class="fas fa-angle-left" aria-hidden="true"></span></h2>
-                                        </button>
-                                        <button class="carousel-control-next" type="button"
-                                            data-bs-target="#myCarousel" data-bs-slide="next">
-                                            <h2 class="m-0 p-0"><span class="fas fa-angle-right" aria-hidden="true"></span></h2>
-                                        </button>
+                                    @endforeach
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="mb-2">
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <h6 class="my-0">GALERI</h6>
+                                        <a href="#" class="my-btn-link small text-muted"><small>All</small></a>
+                                    </div>
+                                    <div class="my-border-bottom-primary"></div>
+                                </div>
+                                <div class="row g-0">
+                                    <div class="col-12">
+                                        <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+                                            <div class="carousel-inner">
+                                                @foreach ($data_populer as $post_populer)
+                                                    <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
+                                                        <img src="{{ asset($post_populer->gambar) }}" alt="foto"
+                                                            class="rounded-3"
+                                                            style="height: 40vh;width: 100%;object-fit: cover;">
+
+                                                        <div class="container">
+                                                            <div class="carousel-caption text-start">
+                                                                <div class="my-0">
+                                                                    <small>
+                                                                        <span class="badge my-badge">FOTO</span>
+                                                                    </small>
+                                                                </div>
+                                                                <h4 class="my-2 fw-normal">
+                                                                    {{ $post_populer->judul }}
+                                                                </h4>
+                                                                <p class="my-0 fw-bold small">
+                                                                    <small>
+                                                                        @if ($post_populer->user_id == 1)
+                                                                            <small>Admin</small>
+                                                                        @else
+                                                                            <small>{{ $post_populer->user->name }}</small>
+                                                                        @endif
+                                                                        <small>
+                                                                            <span class="fw-light">
+                                                                                -
+                                                                                {{ $post_populer->created_at->format('d F Y') }}
+                                                                            </span>
+                                                                        </small>
+                                                                    </small>
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                @endforeach
+                                            </div>
+                                            <button class="carousel-control-prev" type="button"
+                                                data-bs-target="#myCarousel" data-bs-slide="prev">
+                                                <h2 class="m-0 p-0"><span class="fas fa-angle-left"
+                                                        aria-hidden="true"></span></h2>
+                                            </button>
+                                            <button class="carousel-control-next" type="button"
+                                                data-bs-target="#myCarousel" data-bs-slide="next">
+                                                <h2 class="m-0 p-0"><span class="fas fa-angle-right"
+                                                        aria-hidden="true"></span></h2>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="mb-2">
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <h6 class="my-0">VIDEO PROFIL</h6>
+                                    </div>
+                                    <div class="my-border-bottom-primary"></div>
+                                </div>
+                                <div class="row g-0">
+                                    <div class="col-12">
+                                        <iframe style="height: 40vh;width: 100%;object-fit: cover;"
+                                            class="rounded-3" src="https://www.youtube.com/embed/cHwFtCIgZnI"
+                                            title="YouTube video player" frameborder="0"
+                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                            allowfullscreen></iframe>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div class="col-md-12 col-xl-4">
 
-                        <div class="col-12">
-                            <div class="mb-2">
-                                <div class="d-flex align-items-center justify-content-between">
-                                    <h6 class="my-0">VIDEO PROFIL</h6>
-                                </div>
-                                <div class="my-border-bottom-primary"></div>
-                            </div>
-                            <div class="row g-0">
+                        <div class="sidebar-sticky">
+                            <div class="row gy-5">
                                 <div class="col-12">
-                                    
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-12 col-xl-4">
-
-                    <div class="row gy-5">
-                        <div class="col-12">
-                            <div class="mb-2">
-                                <div class="d-flex align-items-center justify-content-between">
-                                    <h6 class="my-0">BERITA POPULER</h6>
-                                    <a href="#" class="my-btn-link small text-muted"><small>All</small></a>
-                                </div>
-                                <div class="my-border-bottom-primary"></div>
-                            </div>
-                            <div class="row">
-                                @foreach ($data_populer as $post_populer)
-                                    <div class="col-12 col-md-6 col-xl-12">
-                                        <a href="#" class="text-decoration-none text-black">
-                                            <div class="card border-0">
-                                                <div class="row g-0 align-items-center">
-                                                    <div class="col-3 col-md-4 col-lg-3">
-                                                        <div class="figure">
-                                                            <img class="img-fluid rounded-3 my-img-zoom"
-                                                                src="{{ asset($post_populer->gambar) }}"
-                                                                alt="Card image cap"
-                                                                style="height: 10vh;width: 100%;object-fit: cover;">
-                                                        </div>
-                                                        {{-- <img src="{{ asset($post_populer->gambar) }}" class="img-fluid rounded-3"
-                                                            style="height: 100px;width: 100%;object-fit: cover;"> --}}
-                                                    </div>
-                                                    <div class="col-9 col-md-8 col-lg-9">
-                                                        <div class="card-body">
-                                                            <h6 class="card-title my-card-title mt-0 mb-1 small">
-                                                                {{ $post_populer->judul }}</h6>
-                                                            <div class="small fw-bold my-badge-card-small">
-                                                                <small>
-                                                                    <span class="badge my-badge">
-                                                                        {{ $post_populer->category->name }}
-                                                                    </span>
-                                                                    <span class="fw-light m-0 mt-0 small text-muted">
-                                                                        {{ $post_populer->created_at->format('d F Y') }}
-                                                                    </span>
-                                                                </small>
+                                    <div class="mb-2">
+                                        <div class="d-flex align-items-center justify-content-between">
+                                            <h6 class="my-0">BERITA POPULER</h6>
+                                            <a href="#" class="my-btn-link small text-muted"><small>All</small></a>
+                                        </div>
+                                        <div class="my-border-bottom-primary"></div>
+                                    </div>
+                                    <div class="row">
+                                        @foreach ($data_populer as $post_populer)
+                                            <div class="col-12 col-md-6 col-xl-12">
+                                                <a href="#" class="text-decoration-none text-black">
+                                                    <div class="card border-0">
+                                                        <div class="row g-0 align-items-center">
+                                                            <div class="col-3 col-md-4 col-lg-3">
+                                                                <div class="figure">
+                                                                    <img class="img-fluid rounded-3 my-img-zoom"
+                                                                        src="{{ asset($post_populer->gambar) }}"
+                                                                        alt="Card image cap"
+                                                                        style="height: 10vh;width: 100%;object-fit: cover;">
+                                                                </div>
+                                                                {{-- <img src="{{ asset($post_populer->gambar) }}" class="img-fluid rounded-3"
+                                                                style="height: 100px;width: 100%;object-fit: cover;"> --}}
+                                                            </div>
+                                                            <div class="col-9 col-md-8 col-lg-9">
+                                                                <div class="card-body">
+                                                                    <h6
+                                                                        class="card-title my-card-title mt-0 mb-1 small">
+                                                                        {{ $post_populer->judul }}</h6>
+                                                                    <div class="small fw-bold my-badge-card-small">
+                                                                        <small>
+                                                                            <span class="badge my-badge">
+                                                                                {{ $post_populer->category->name }}
+                                                                            </span>
+                                                                            <span
+                                                                                class="fw-light m-0 mt-0 small text-muted">
+                                                                                {{ $post_populer->created_at->format('d F Y') }}
+                                                                            </span>
+                                                                        </small>
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </a>
                                             </div>
-                                        </a>
+                                        @endforeach
                                     </div>
-                                @endforeach
-                            </div>
-                        </div>
-
-                        <div class="col-12">
-                            <div class="mb-2">
-                                <div class="d-flex align-items-center justify-content-between">
-                                    <h6 class="my-0">PENGUMUMAN</h6>
-                                    <a href="#" class="my-btn-link small text-muted"><small>All</small></a>
                                 </div>
-                                <div class="my-border-bottom-primary"></div>
-                            </div>
-                            <div class="row">
-                                @foreach ($data_populer as $post_populer)
-                                    <div class="col-12 col-md-6 col-xl-12">
-                                        <a href="#" class="text-decoration-none text-black">
-                                            <div class="card border-0">
-                                                <div class="row g-0 align-items-center">
-                                                    <div class="col-3 col-lg-2 col-xl-3">
-                                                        <div class="figure">
-                                                            <img class="img-fluid rounded-3 my-img-zoom"
-                                                                src="{{ asset('assets/front/images/announcement.png') }}"
-                                                                alt="Card image cap"
-                                                                style="height: 8vh;width: 100%;object-fit: cover;">
-                                                        </div>
-                                                        {{-- <img src="{{ asset($post_populer->gambar) }}" class="img-fluid rounded-3"
-                                                            style="height: 100px;width: 100%;object-fit: cover;"> --}}
-                                                    </div>
-                                                    <div class="col-9 col-lg-10 col-xl-9">
-                                                        <div class="card-body">
-                                                            <h6 class="card-title my-card-title mt-0 mb-1 small">
-                                                                {{ $post_populer->judul }}</h6>
-                                                            <div class="small fw-bold my-badge-card-small">
-                                                                <small>
-                                                                    <span class="fw-light m-0 mt-0 small text-muted">
-                                                                        {{ $post_populer->created_at->format('d F Y') }}
-                                                                    </span>
-                                                                </small>
+
+                                <div class="col-12">
+                                    <div class="mb-2">
+                                        <div class="d-flex align-items-center justify-content-between">
+                                            <h6 class="my-0">PENGUMUMAN</h6>
+                                            <a href="#" class="my-btn-link small text-muted"><small>All</small></a>
+                                        </div>
+                                        <div class="my-border-bottom-primary"></div>
+                                    </div>
+                                    <div class="row">
+                                        @foreach ($data_populer as $post_populer)
+                                            <div class="col-12 col-md-6 col-xl-12">
+                                                <a href="#" class="text-decoration-none text-black">
+                                                    <div class="card border-0">
+                                                        <div class="row g-0 align-items-center">
+                                                            <div class="col-3 col-lg-2 col-xl-3">
+                                                                <div class="figure">
+                                                                    <img class="img-fluid rounded-3 my-img-zoom"
+                                                                        src="{{ asset('assets/front/images/announcement.png') }}"
+                                                                        alt="Card image cap"
+                                                                        style="height: 8vh;width: 100%;object-fit: cover;">
+                                                                </div>
+                                                                {{-- <img src="{{ asset($post_populer->gambar) }}" class="img-fluid rounded-3"
+                                                                style="height: 100px;width: 100%;object-fit: cover;"> --}}
+                                                            </div>
+                                                            <div class="col-9 col-lg-10 col-xl-9">
+                                                                <div class="card-body">
+                                                                    <h6
+                                                                        class="card-title my-card-title mt-0 mb-1 small">
+                                                                        {{ $post_populer->judul }}</h6>
+                                                                    <div class="small fw-bold my-badge-card-small">
+                                                                        <small>
+                                                                            <span
+                                                                                class="fw-light m-0 mt-0 small text-muted">
+                                                                                {{ $post_populer->created_at->format('d F Y') }}
+                                                                            </span>
+                                                                        </small>
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </a>
                                             </div>
+                                        @endforeach
+                                    </div>
+                                </div>
+
+                                <div class="col-12">
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <h6 class="my-0">SOSIAL MEDIA</h6>
+                                    </div>
+                                    <div class="my-border-bottom-primary"></div>
+                                    <div class="d-flex mt-2 justify-content-center">
+                                        <a href="#" class="text-decoration-none my-btn-sosmed">
+                                            <i class="fab fa-twitter"></i>
+                                        </a>
+                                        <a href="#" class="text-decoration-none my-btn-sosmed">
+                                            <i class="fab fa-facebook-f"></i>
+                                        </a>
+                                        <a href="#" class="text-decoration-none my-btn-sosmed">
+                                            <i class="fab fa-instagram"></i>
+                                        </a>
+                                        <a href="#" class="text-decoration-none my-btn-sosmed">
+                                            <i class="fab fa-youtube"></i>
                                         </a>
                                     </div>
-                                @endforeach
+                                </div>
                             </div>
                         </div>
 
-                        <div class="col-12">
-                            <div class="d-flex align-items-center justify-content-between">
-                                <h6 class="my-0">SOSIAL MEDIA</h6>
-                            </div>
-                            <div class="my-border-bottom-primary"></div>
-                            <div class="d-flex mt-2 justify-content-center">
-                                <a href="#" class="text-decoration-none my-btn-sosmed">
-                                    <i class="fab fa-twitter"></i>
-                                </a>
-                                <a href="#" class="text-decoration-none my-btn-sosmed">
-                                    <i class="fab fa-facebook-f"></i>
-                                </a>
-                                <a href="#" class="text-decoration-none my-btn-sosmed">
-                                    <i class="fab fa-instagram"></i>
-                                </a>
-                                <a href="#" class="text-decoration-none my-btn-sosmed">
-                                    <i class="fab fa-youtube"></i>
-                                </a>
-                            </div>
-                        </div>
                     </div>
-
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+
+    </div>
 
     <footer>
         <div class="container">
@@ -456,10 +516,31 @@
         </div>
     </footer>
 
+    <!-- Jquery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <!-- Bootstrap JS -->
     <script src="{{ asset('assets/front/js/bootstrap/bootstrap.bundle.min.js') }}"></script>
     <!-- Custom JS -->
     <script src="{{ asset('assets/front/js/custom.js') }}"></script>
+    <script>
+        var myBackToTop = $('#backToTop');
+
+        $(window).scroll(function() {
+            if ($(window).scrollTop() > 300) {
+                myBackToTop.addClass('my-btn-show');
+            } else {
+                myBackToTop.removeClass('my-btn-show');
+            }
+        });
+
+        myBackToTop.click(function(e) {
+            e.preventDefault();
+            $('html, body').animate({
+                scrollTop: 0
+            }, 0);
+        });
+    </script>
 </body>
 
 </html>

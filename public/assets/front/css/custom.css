@@ -1,3 +1,7 @@
+* {
+    scroll-behavior: smooth;
+}
+
 body {
     overflow-x: hidden;
 }
@@ -133,9 +137,6 @@ body {
 }
 
 /* Hero Content */
-#hero {
-    margin-top: 100px;
-}
 
 .my-content-card {
     position: absolute;
@@ -229,17 +230,85 @@ body {
     box-shadow: 0 5px 10px 2px rgba(0, 0, 0, .2)
 }
 
-/* .my-btn-sosmed:hover .my-img-sosmed {
-    box-shadow: 0 5px 10px 2px rgba(0, 0, 0, .15);
-} */
-
 /* my-footer */
 .my-footer {
     height: 10vh;
     background: var(--primary);
 }
 
-/* End My Custom */
+/* my-content */
+.my-content {
+    margin-top: 98px;
+}
+
+/* Custom Sidebar */
+.sidebar-sticky {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 50px;
+}
+
+/* Custom slider pengumuman */
+#mySlidePengumuman .carousel {
+    margin-top: 50px;
+}
+
+#mySlidePengumuman .carousel-inner {
+    height: 24px;
+    /* height: 100px; */
+    /* background: black; */
+}
+#mySlidePengumuman .carousel-caption{
+    color: #000;
+    top: 0;
+    left: 10px;
+    padding: 0;
+    margin: 4px;
+    width: 100%;
+    text-align: center;
+}
+
+#mySlidePengumuman .carousel-caption h1 {
+    font-size: 14px;
+    font-weight: normal;
+}
+
+#mySlidePengumuman .carousel-control-next,
+#mySlidePengumuman .carousel-control-prev {
+    display: none;
+}
+
+/* Custom back to top button */
+#backToTop {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    transition: backkground .3s, opacity .3s, visibility .3s;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 1000;
+}
+
+.my-btn-transparent {
+    background: rgba(48, 48, 48, 0.4);
+    outline: none;
+    border: none;
+}
+
+.my-btn-transparent:hover {
+    background: rgb(0, 150, 136);
+    box-shadow:   0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+    0 12.5px 10px rgba(0, 0, 0, 0.06),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+    0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+    0 100px 80px rgba(0, 0, 0, 0.12);
+}
+
+#backToTop.my-btn-show {
+    opacity: 1;
+    visibility: visible;
+}
 
 /* Custom Card Bootstrap */
 .card .figure {
@@ -263,7 +332,8 @@ body {
 
 /* Custom Carousel Caption Bootstrap */
 .carousel-caption {
-    left: 2%;
+    left: 20px;
+    padding-bottom: 0;
 }
 
 .carousel-caption h4,
@@ -411,33 +481,50 @@ footer li{
 
 @media (max-width: 1200px) {
     .carousel-caption {
-        left: 75px;
-        bottom: 180px;
+        left: 20px;
+        padding-bottom: 0;
     }
 }
 
 @media (max-width: 992px) {
     .carousel-caption {
-        left: 155px;
-    }
-
-    .carousel-caption h3 {
-        font-size: 2.5rem;
-    }
-    
-    .carousel-caption p {
-        font-size: 1rem;
-        font-weight: lighter;
+        left: 20px;
+        padding-bottom: 0;
     }
 }
 
 @media (max-width: 768px) {
+    .my-card-scroll {
+        flex-direction: row;
+        flex-wrap: nowrap;
+        overflow-x: scroll;
+    }
+
+    .my-card-scroll::-webkit-scrollbar {
+        width: 0;
+        display: none;
+    }
+
     footer .round-btn {
         margin: 15px 4px;
     }
 }
 
 @media (max-width: 576px) {
+    .my-content {
+        margin-top: 80px;
+    }
+
+    #mySlidePengumuman .carousel-caption{
+        width: 100%;
+        margin: 0 auto;
+        padding: 10px;
+    }
+
+    .card .figure .my-img-zoom {
+        height: 300px;
+    }
+
     .my-btn-sosmed {
         margin: 0 8px;
     }
