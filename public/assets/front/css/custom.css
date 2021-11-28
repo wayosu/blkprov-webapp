@@ -160,6 +160,79 @@ body {
     text-shadow: 1px 1px 1px var(--black);
 }
 
+/* Custom badge on card */
+.my-badge-card {
+    position: absolute;
+    display: inline-block;
+    top: 0;
+    left: 0;
+}
+
+.my-badge-card .my-badge {
+    position: absolute;
+    display: inline-block;
+    top: 0;
+    left: 0;
+    background: var(--black);
+    transition: .3s ease-in-out;
+}
+
+.card:hover .my-badge-card  .my-badge {
+    background: var(--primary);
+}
+
+.my-badge-card-small .my-badge {
+    background: var(--black);
+    transition: .3s ease-in-out;
+}
+
+.card:hover .my-badge-card-small  .my-badge {
+    background: var(--primary);
+}
+
+/* Sosial Media */
+.my-btn-sosmed {
+    font-size: 1.5rem;
+    width: 60px;
+    height: 60px;
+    color: #fff;
+    margin: 0 20px;
+    border-radius: 100%;
+    border: none;
+    outline: none;
+    transition: .3s ease-in-out;
+}
+
+.my-btn-sosmed:nth-child(1) {
+    padding: 14px 18px;
+    background: #1da1f2;
+}
+
+.my-btn-sosmed:nth-child(2) {
+    padding: 14px 22px;
+    background: #1877f2;
+}
+
+.my-btn-sosmed:nth-child(3) {
+    padding: 14px 20px;
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+    background: -webkit-radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+}
+
+.my-btn-sosmed:nth-child(4) {
+    padding: 14px 17px;
+    background: #ff0000;
+}
+
+.my-btn-sosmed:hover {
+    color: var(--white);
+    box-shadow: 0 5px 10px 2px rgba(0, 0, 0, .2)
+}
+
+/* .my-btn-sosmed:hover .my-img-sosmed {
+    box-shadow: 0 5px 10px 2px rgba(0, 0, 0, .15);
+} */
+
 /* my-footer */
 .my-footer {
     height: 10vh;
@@ -168,7 +241,7 @@ body {
 
 /* End My Custom */
 
-/* Custom Bootstrap */
+/* Custom Card Bootstrap */
 .card .figure {
     overflow: hidden;
     border-radius: 8px;
@@ -186,6 +259,36 @@ body {
 
 .card:hover .my-card-title {
     color: var(--primary);
+}
+
+/* Custom Carousel Caption Bootstrap */
+.carousel-caption {
+    left: 2%;
+}
+
+.carousel-caption h4,
+.carousel-caption p {
+    text-shadow: 1px 1px 1px var(--black);
+}
+
+.carousel .my-badge {
+    background: var(--black);
+    transition: .3s ease-in-out;
+}
+
+.carousel:hover .my-badge {
+    background: var(--primary);
+}
+
+.carousel-control-next,
+.carousel-control-prev {
+    width: 6%;
+    opacity: 0;
+}
+
+.carousel:hover .carousel-control-next,
+.carousel:hover .carousel-control-prev {
+    opacity: 1;
 }
 
 /* Custom Template Footer */
@@ -253,7 +356,7 @@ body {
     font-size: 0.8rem;
     color: #ccc;
     text-align: center;
-    background: var(--dark);
+    background: var(--black);
 }
 
 footer .second_class{
@@ -329,49 +432,16 @@ footer li{
 }
 
 @media (max-width: 768px) {
-    .carousel-caption {
-        left: 35px;
-        bottom: 100px;
-        width: 90% !important;
-        margin: 0;
-    }
-
-    .carousel-caption h3 {  
-        font-size: 2rem;
-    }
-
-    .carousel-caption a {
-        font-size: 0.8rem;
-    }
-        
     footer .round-btn {
         margin: 15px 4px;
     }
 }
 
 @media (max-width: 576px) {
-    .carousel-caption a {
-        font-size: 0.7rem;
+    .my-btn-sosmed {
+        margin: 0 8px;
     }
 
-    .carousel-item img {
-        height: 300px;
-    }
-
-    .carousel-caption {
-        left: 10px;
-        bottom: 40px;
-    }
-
-    .carousel-caption h3 {
-        width: 100%;
-        font-size: 1.2rem;
-    }
-
-    .carousel-caption p {
-        font-size: 0.8rem;
-        font-weight: lighter;
-    }
     .footer-wrap {
         padding-top: 20px;
     }
