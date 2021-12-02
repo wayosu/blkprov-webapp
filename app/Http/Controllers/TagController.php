@@ -48,7 +48,7 @@ class TagController extends Controller
 
         session()->flash('success', 'Tag created successfully');
 
-        return redirect('tag');
+        return redirect('admin/tag');
     }
 
     /**
@@ -96,7 +96,7 @@ class TagController extends Controller
 
         session()->flash('success', 'Tag successfully updated');
 
-        return redirect('tag');
+        return redirect('admin/tag');
     }
 
     /**
@@ -111,6 +111,6 @@ class TagController extends Controller
 
         session()->flash('success', 'Tag successfully deleted');
 
-        return redirect('tag');
+        return redirect('admin/tag');
     }
 }

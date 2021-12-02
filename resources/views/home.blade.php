@@ -64,7 +64,7 @@
                         <a class="nav-link" aria-current="page" href="pengumuman.html">Pengumuman</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="gallery.html">Galleri</a>
+                        <a class="nav-link" aria-current="page" href="gallery.html">Galeri</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="kejuruan.html">Kejuruan</a>
@@ -76,7 +76,7 @@
 
     <div class="my-content">
 
-        <section id="pengumuman" class="mb-4">
+        <section id="pengumuman" class="mb-3">
             <div class="container">
                 <div class="d-flex flex-wrap flex-md-nowrap justify-content-center">
                     <div class="bg-danger mb-2 h-100">
@@ -84,11 +84,11 @@
                     </div>
                     <div id="mySlidePengumuman" class="carousel slide carousel-fade w-100" data-bs-ride="carousel">
                         <div class="carousel-inner">
-                            @foreach ($data_populer as $post_populer)
+                            @foreach ($data_pengumuman as $pengumuman_terbaru)
                                 <div class="carousel-item {{ $loop->first ? 'active' : '' }}" data-bs-interval="4000">
                                     <div class="container">
                                         <div class="carousel-caption text-start">
-                                            <h1 class="m-0">{{ $post_populer->judul }}</h1>
+                                            <h1 class="m-0">{{ $pengumuman_terbaru->judul }}</h1>
                                         </div>
                                     </div>
                                 </div>
@@ -247,9 +247,9 @@
                                     <div class="col-12">
                                         <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
                                             <div class="carousel-inner">
-                                                @foreach ($data_populer as $post_populer)
+                                                @foreach ($data_galeri as $geleri_terbaru)
                                                     <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
-                                                        <img src="{{ asset($post_populer->gambar) }}" alt="foto"
+                                                        <img src="{{ asset($geleri_terbaru->cover) }}" alt="foto"
                                                             class="rounded-3"
                                                             style="height: 40vh;width: 100%;object-fit: cover;">
 
@@ -261,19 +261,19 @@
                                                                     </small>
                                                                 </div>
                                                                 <h4 class="my-2 fw-normal">
-                                                                    {{ $post_populer->judul }}
+                                                                    {{ $geleri_terbaru->title }}
                                                                 </h4>
                                                                 <p class="my-0 fw-bold small">
                                                                     <small>
-                                                                        @if ($post_populer->user_id == 1)
+                                                                        @if ($geleri_terbaru->user_id == 1)
                                                                             <small>Admin</small>
                                                                         @else
-                                                                            <small>{{ $post_populer->user->name }}</small>
+                                                                            <small>{{ $geleri_terbaru->user->name }}</small>
                                                                         @endif
                                                                         <small>
                                                                             <span class="fw-light">
                                                                                 -
-                                                                                {{ $post_populer->created_at->format('d F Y') }}
+                                                                                {{ $geleri_terbaru->created_at->format('d F Y') }}
                                                                             </span>
                                                                         </small>
                                                                     </small>
@@ -380,7 +380,7 @@
                                         <div class="my-border-bottom-primary"></div>
                                     </div>
                                     <div class="row">
-                                        @foreach ($data_populer as $post_populer)
+                                        @foreach ($data_pengumuman as $pengumuman_terbaru)
                                             <div class="col-12 col-md-6 col-xl-12">
                                                 <a href="#" class="text-decoration-none text-black">
                                                     <div class="card border-0">
@@ -399,12 +399,12 @@
                                                                 <div class="card-body">
                                                                     <h6
                                                                         class="card-title my-card-title mt-0 mb-1 small">
-                                                                        {{ $post_populer->judul }}</h6>
+                                                                        {{ $pengumuman_terbaru->judul }}</h6>
                                                                     <div class="small fw-bold my-badge-card-small">
                                                                         <small>
                                                                             <span
                                                                                 class="fw-light m-0 mt-0 small text-muted">
-                                                                                {{ $post_populer->created_at->format('d F Y') }}
+                                                                                {{ $pengumuman_terbaru->created_at->format('d F Y') }}
                                                                             </span>
                                                                         </small>
                                                                     </div>
@@ -475,7 +475,7 @@
                                 </li>
                                 <li><a href="#"><i class="fas fa-chevron-right"></i> Pengumuman</a>
                                 </li>
-                                <li><a href="#"><i class="fas fa-chevron-right"></i> Gallery</a>
+                                <li><a href="#"><i class="fas fa-chevron-right"></i> Galeri</a>
                                 </li>
                                 <li><a href="#"><i class="fas fa-chevron-right"></i> Kejuruan</a>
                                 </li>

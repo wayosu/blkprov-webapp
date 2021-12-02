@@ -8,7 +8,7 @@
         </div>
         <ul class="sidebar-menu">
             <li class="menu-header">Menu</li>
-            <li><a class="nav-link" href="{{ route('post.index') }}">
+            <li><a class="nav-link" href="{{ route('admin.home') }}">
                 <i class="fas fa-chart-line"></i>
                 <span>Dashboard</span></a>
             </li>
@@ -19,6 +19,14 @@
                     <li><a class="nav-link" href="{{ route('category.index') }}">Category</a></li>
                     <li><a class="nav-link" href="{{ route('tag.index') }}">Tag</a></li>
                 </ul>
+            </li>
+            <li><a class="nav-link" href="{{ route('pengumuman.index') }}">
+                <i class="fas fa-bullhorn"></i>
+                <span>Pengumuman</span></a>
+            </li>
+            <li><a class="nav-link" href="{{ route('gallery.index') }}">
+                <i class="fas fa-image"></i>
+                <span>Gallery</span></a>
             </li>
             <li><a class="nav-link" href="{{ route('user.index') }}">
                 <i class="fas fa-user"></i>

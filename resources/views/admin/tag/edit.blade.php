@@ -4,7 +4,7 @@
     <div class="section-header">
         <h1>Edit Tag</h1>
         <div class="section-header-breadcrumb">
-            <div class="breadcrumb-item"><a href="/tag">Tag</a></div>
+            <div class="breadcrumb-item"><a href="{{ route('tag.index') }}">Tag</a></div>
             <div class="breadcrumb-item">Edit Tag</div>
         </div>
     </div>

@@ -1,10 +1,10 @@
-@extends('layouts.admin.app', ['title' => 'Post'])
+@extends('layouts.admin.app', ['title' => 'Gallery'])
 
 @section('content')
     <div class="section-header">
-        <h1>Post</h1>
+        <h1>Gallery</h1>
         <div class="section-header-breadcrumb">
-            <div class="breadcrumb-item">Post</div>
+            <div class="breadcrumb-item">Gallery</div>
         </div>
     </div>
 
@@ -14,45 +14,37 @@
             <div class="col">
                 <div class="card">
                     <div class="card-body">
-                        <a href="{{ route('post.create') }}" class="btn btn-primary mb-4"><i
-                                class="fas fa-plus-circle"></i> Create Post</a>
-                        <a href="{{ route('post.recyclebin') }}" class="btn btn-primary mb-4"><i
-                                class="fas fa-trash"></i> Recycle Bin</a>
+                        <a href="{{ route('gallery.create') }}" class="btn btn-primary mb-4"><i
+                                class="fas fa-plus-circle"></i> Create Gallery</a>
                         <div class="table-responsive">
                             <table class="table table-striped table-md table-bordered">
                                 <thead>
                                     <tr align="center">
                                         <th>#</th>
                                         <th>Judul</th>
-                                        <th>Kategori</th>
-                                        <th>Tags</th>
-                                        <th>Thumbnail</th>
+                                        <th>Isi</th>
+                                        <th>Cover</th>
                                         <th>Penulis</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($post as $result => $hasil)
+                                    @foreach ($gallery as $result => $hasil)
                                         <tr>
-                                            <td align="center" style="vertical-align: middle">{{ $result + $post->firstitem() }}</td>
-                                            <td style="vertical-align: middle">{{ $hasil->judul }}</td>
-                                            <td style="vertical-align: middle">{{ $hasil->category->name }}</td>
-                                            <td align="center" style="vertical-align: middle">
-                                                @foreach ($hasil->tags as $tag)
-                                                    <h6><span class="badge badge-sm badge-primary">{{ $tag->name }}</span></h6>
-                                                @endforeach
-                                            </td>
+                                            <td align="center" style="vertical-align: middle">{{ $result + $gallery->firstitem() }}</td>
+                                            <td style="vertical-align: middle">{{ $hasil->title }}</td>
+                                            <td style="vertical-align: middle">{{ \Illuminate\Support\Str::limit(strip_tags($hasil->body), 150, '...') }}</td>
                                             <td align="center" style="vertical-align: middle">
                                                 <div class="image-link">
-                                                    <a href="{{ asset($hasil->gambar) }}" class="btn btn-secondary" target="_blank">
+                                                    <a href="{{ asset($hasil->cover) }}" class="btn btn-secondary" target="_blank">
                                                         <i class="fas fa-image"></i>
                                                     </a>
                                                 </div>
                                             </td>
                                             <td align="center" style="vertical-align: middle">{{ $hasil->user->name }}</td>
                                             <td align="center" style="vertical-align: middle">
-                                                <form action="{{ route('post.destroy', $hasil->id) }}" method="POST">
-                                                    <a href="{{ route('post.edit', $hasil->id) }}"
+                                                <form action="{{ route('gallery.destroy', $hasil->id) }}" method="POST">
+                                                    <a href="{{ route('gallery.edit', $hasil->id) }}"
                                                         class="btn btn-warning"><i class="fas fa-edit"></i></a>
                                                     @csrf
                                                     @method('delete')
@@ -64,7 +56,6 @@
                                 </tbody>
                             </table>
                         </div>
-                        {{ $post->links() }}
                     </div>
                 </div>
             </div>

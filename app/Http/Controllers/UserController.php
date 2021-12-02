@@ -57,7 +57,7 @@ class UserController extends Controller
         
         session()->flash('success', 'User created successfully');
 
-        return redirect('user');
+        return redirect('admin/user');
     }
 
     /**
@@ -115,7 +115,7 @@ class UserController extends Controller
 
         session()->flash('success', 'User updated successfully');
 
-        return redirect('user');
+        return redirect('admin/user');
     }
 
     /**
@@ -131,6 +131,6 @@ class UserController extends Controller
 
         session()->flash('success', 'User deleted successfully');
 
-        return redirect('user');
+        return redirect('admin/user');
     }
 }

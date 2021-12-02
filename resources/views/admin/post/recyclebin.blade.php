@@ -4,7 +4,7 @@
     <div class="section-header">
         <h1>Recycle Bin</h1>
         <div class="section-header-breadcrumb">
-            <div class="breadcrumb-item"><a href="/post">Post</a></div>
+            <div class="breadcrumb-item"><a href="{{ route('post.index') }}">Post</a></div>
             <div class="breadcrumb-item">Recycle Bin</div>
         </div>
     </div>
@@ -26,6 +26,7 @@
                                         <th>Kategori</th>
                                         <th>Tags</th>
                                         <th>Thumbnail</th>
+                                        <th>Penulis</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -49,6 +50,7 @@
                                                     </a>
                                                 </div>
                                             </td>
+                                            <td align="center" style="vertical-align: middle">{{ $hasil->user->name }}</td>
                                             <td align="center" style="vertical-align: middle">
                                                 <form action="{{ route('post.deletepermanently', $hasil->id) }}" method="POST">
                                                     <a href="{{ route('post.restore', $hasil->id) }}" class="btn btn-warning" title="Restore"><i class="fas fa-trash-restore"></i></a>

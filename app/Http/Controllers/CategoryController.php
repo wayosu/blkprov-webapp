@@ -48,7 +48,7 @@ class CategoryController extends Controller
 
         session()->flash('success', 'Category created successfully');
 
-        return redirect('category');
+        return redirect('admin/category');
     }
 
     /**
@@ -96,7 +96,7 @@ class CategoryController extends Controller
 
         session()->flash('success', 'Category successfully updated');
 
-        return redirect('category');
+        return redirect('admin/category');
     }
 
     /**
@@ -111,6 +111,6 @@ class CategoryController extends Controller
 
         session()->flash('success', 'Category successfully deleted');
 
-        return redirect('category');
+        return redirect('admin/category');
     }
 }

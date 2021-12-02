@@ -68,7 +68,7 @@ class PostController extends Controller
 
         session()->flash('success', 'Post created successfully.');
 
-        return redirect('post');
+        return redirect('admin/post');
     }
 
     /**
@@ -144,7 +144,7 @@ class PostController extends Controller
 
         session()->flash('success', 'Post updated successfully.');
 
-        return redirect('post');
+        return redirect('admin/post');
     }
 
     /**
@@ -160,7 +160,7 @@ class PostController extends Controller
 
         session()->flash('success', 'Post deleted successfully. Check recycle bin.');
 
-        return redirect('post');
+        return redirect('admin/post');
     }
 
     public function recyclebin()
@@ -176,7 +176,7 @@ class PostController extends Controller
 
         session()->flash('success', 'Post restored successfully. Check post page.');
 
-        return redirect('post/recyclebin');
+        return redirect('admin/post/recyclebin');
     }
 
     public function deletePermanently(Request $request, $id)
@@ -190,7 +190,7 @@ class PostController extends Controller
 
         session()->flash('success', 'Post has been successfully deleted permanently.');
 
-        return redirect('post/recyclebin');
+        return redirect('admin/post/recyclebin');
     }
 
 }

@@ -4,7 +4,7 @@
     <div class="section-header">
         <h1>Edit Category</h1>
         <div class="section-header-breadcrumb">
-            <div class="breadcrumb-item"><a href="/category">Category</a></div>
+            <div class="breadcrumb-item"><a href="{{ route('category.index') }}">Category</a></div>
             <div class="breadcrumb-item">Edit Category</div>
         </div>
     </div>

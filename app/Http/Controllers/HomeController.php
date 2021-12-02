@@ -1,6 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\Gallery;
+use App\Models\Pengumuman;
 use Illuminate\Http\Request;
 use App\Models\Posts;
 
@@ -19,7 +22,10 @@ class HomeController extends Controller
         
         $data_terbaru = Posts::orderBy('created_at', 'DESC')->take(2)->get();
         $data_populer = Posts::orderBy('created_at', 'DESC')->take(4)->get();
+
+        $data_pengumuman = Pengumuman::orderBy('created_at', 'DESC')->take(4)->get();
+        $data_galeri = Gallery::orderBy('created_at', 'DESC')->take(4)->get();
         
-        return view('home', compact('data_heroLeft', 'data_heroRight', 'data_terbaru', 'data_populer'));
+        return view('home', compact('data_heroLeft', 'data_heroRight', 'data_terbaru', 'data_populer', 'data_pengumuman', 'data_galeri'));
     }
 }
