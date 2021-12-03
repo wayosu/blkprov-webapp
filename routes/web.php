@@ -25,6 +25,13 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/', [HomeController::class, 'index']);
+Route::get('/profil', [HomeController::class, 'indexProfil']);
+Route::get('/visimisi', [HomeController::class, 'indexVisimisi']);
+Route::get('/sambutankepala', [HomeController::class, 'indexSambutan']);
+Route::get('/strukturorganisasi', [HomeController::class, 'indexStruktur']);
+Route::get('/pengumuman', [HomeController::class, 'indexPengumuman']);
+Route::get('/galeri', [HomeController::class, 'indexGaleri']);
+Route::get('/kejuruan', [HomeController::class, 'indexKejuruan']);
 
 Route::group(['middleware' => 'is_admin'], function() {
     Route::get('/admin/home', [App\Http\Controllers\AdminHomeController::class, 'index'])->name('admin.home');
