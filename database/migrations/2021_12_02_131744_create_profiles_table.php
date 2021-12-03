@@ -23,6 +23,9 @@ class CreateProfilesTable extends Migration
             $table->string('facebook');
             $table->string('instagram');
             $table->string('youtube');
+            $table->text('alamat');
+            $table->string('telepon');
+            $table->text('map');
             $table->timestamps();
         });
     }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Profile;
+use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
 
 class ProfileController extends Controller
@@ -14,7 +15,8 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        //
+        $profile = Profile::findorfail(1);
+        return view('admin.profile.index', compact('profile'));
     }
 
     /**
@@ -55,9 +57,10 @@ class ProfileController extends Controller
      * @param  \App\Models\Profile  $profile
      * @return \Illuminate\Http\Response
      */
-    public function edit(Profile $profile)
+    public function edit($id)
     {
-        //
+        $profile = Profile::findorfail($id);
+        return view('admin.profile.edit', compact('profile'));
     }
 
     /**
@@ -67,9 +70,59 @@ class ProfileController extends Controller
      * @param  \App\Models\Profile  $profile
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Profile $profile)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'profile' => ['required'],
+            'visimisi' => ['required'],
+            'sambutan' => ['required']
+        ]);
+
+        $profile = Profile::findorfail($id);
+
+        if ($request->has('struktur')) {
+            $destination = $request->struktur_lama;
+            if (File::exists($destination)) {
+                File::delete($destination);
+            }
+
+            $struktur = $request->struktur;
+            $new_struktur = time().$struktur->getClientOriginalName();
+            $struktur->move('uploads/other/', $new_struktur);
+            
+            $profile_data = [
+                'profile' => $request->profile,
+                'visimisi' => $request->visimisi,
+                'sambutan' => $request->sambutan,
+                'struktur' => 'uploads/other/'.$new_struktur,
+                'twitter' => $request->twitter,
+                'facebook' => $request->facebook,
+                'instagram' => $request->instagram,
+                'youtube' => $request->youtube,
+                'alamat' => $request->alamat,
+                'telepon' => $request->telepon,
+                'map' => $request->map
+            ];
+        } else {
+            $profile_data = [
+                'profile' => $request->profile,
+                'visimisi' => $request->visimisi,
+                'sambutan' => $request->sambutan,
+                'twitter' => $request->twitter,
+                'facebook' => $request->facebook,
+                'instagram' => $request->instagram,
+                'youtube' => $request->youtube,
+                'alamat' => $request->alamat,
+                'telepon' => $request->telepon,
+                'map' => $request->map
+            ];
+        }
+
+        $profile->update($profile_data);
+
+        session()->flash('success', 'Profile updated successfully.');
+
+        return redirect('admin/profile');
     }
 
     /**

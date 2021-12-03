@@ -5,6 +5,7 @@ use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PengumumanController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
@@ -42,9 +43,10 @@ Route::group(['middleware' => 'is_admin'], function() {
     Route::delete('/admin/pengumuman/deletepermanently/{id}', [PengumumanController::class, 'deletePermanently'])->name('pengumuman.deletepermanently');
     Route::resource('/admin/pengumuman', PengumumanController::class);
 
-    
     Route::delete('/admin/gallery/deleteimage/{id}', [GalleryController::class, 'deleteImage'])->name('gallery.deleteimage');
     Route::resource('/admin/gallery', GalleryController::class);
     
     Route::resource('/admin/user', UserController::class);
+
+    Route::resource('/admin/profile', ProfileController::class);
 });

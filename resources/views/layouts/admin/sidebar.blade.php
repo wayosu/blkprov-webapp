@@ -32,6 +32,10 @@
                 <i class="fas fa-user"></i>
                 <span>Users</span></a>
             </li>
+            <li><a class="nav-link" href="{{ route('profile.index') }}">
+                <i class="fas fa-cog"></i>
+                <span>Setting Profile</span></a>
+            </li>
         </ul>
     </aside>
 </div>

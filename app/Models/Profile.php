@@ -17,6 +17,9 @@ class Profile extends Model
         'twitter',
         'facebook',
         'instagram',
-        'youtube'
+        'youtube',
+        'alamat',
+        'telepon',
+        'map'
     ];
 }
