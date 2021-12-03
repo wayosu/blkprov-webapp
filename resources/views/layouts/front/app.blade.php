@@ -48,28 +48,28 @@
                         <div class="col-lg-2 col-sm-6">
                             <h3 class="my-text-white">Quick Links</h3>
                             <ul class="footer-links">
-                                <li><a href="#"><i class="fas fa-chevron-right"></i> Home</a>
+                                <li><a href="/home"><i class="fas fa-chevron-right"></i> Home</a>
                                 </li>
-                                <li><a href="#"><i class="fas fa-chevron-right"></i> Berita</a>
+                                <li><a href="/berita"><i class="fas fa-chevron-right"></i> Berita</a>
                                 </li>
-                                <li><a href="#"><i class="fas fa-chevron-right"></i> Pengumuman</a>
+                                <li><a href="/pengumuman"><i class="fas fa-chevron-right"></i> Pengumuman</a>
                                 </li>
-                                <li><a href="#"><i class="fas fa-chevron-right"></i> Galeri</a>
+                                <li><a href="/galeri"><i class="fas fa-chevron-right"></i> Galeri</a>
                                 </li>
-                                <li><a href="#"><i class="fas fa-chevron-right"></i> Kejuruan</a>
+                                <li><a href="/kejuruan"><i class="fas fa-chevron-right"></i> Kejuruan</a>
                                 </li>
                             </ul>
                         </div>
                         <div class="col-lg-2 col-sm-6">
                             <h3 class="my-text-white">Profile BLK</h3>
                             <ul class="footer-category">
-                                <li><a href="#"><i class="fas fa-chevron-right"></i> Profile</a>
+                                <li><a href="/profile"><i class="fas fa-chevron-right"></i> Profile</a>
                                 </li>
-                                <li><a href="#"><i class="fas fa-chevron-right"></i> Visi & Misi</a>
+                                <li><a href="/visimisi"><i class="fas fa-chevron-right"></i> Visi & Misi</a>
                                 </li>
-                                <li><a href="#"><i class="fas fa-chevron-right"></i> Sambutan Kepala</a>
+                                <li><a href="/sambutankepala"><i class="fas fa-chevron-right"></i> Sambutan Kepala</a>
                                 </li>
-                                <li><a href="#"><i class="fas fa-chevron-right"></i> Struktur Organisasi</a>
+                                <li><a href="/strukturorganisasi"><i class="fas fa-chevron-right"></i> Struktur Organisasi</a>
                                 </li>
                             </ul>
                             <div class="clearfix"></div>

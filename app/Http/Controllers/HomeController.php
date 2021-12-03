@@ -35,24 +35,49 @@ class HomeController extends Controller
     {
         $data_pengumuman = Pengumuman::orderBy('created_at', 'DESC')->take(4)->get();
         $data_profile = Profile::findorfail(1);
-        return view('profil', compact('data_pengumuman', 'data_profile'));
+        $data_populer = Posts::orderBy('created_at', 'DESC')->take(4)->get();
+        $data_galeri = Gallery::orderBy('created_at', 'DESC')->take(4)->get();
+        
+        return view('profil', compact('data_pengumuman', 'data_profile', 'data_populer', 'data_galeri'));
     }
 
     public function indexVisimisi()
     {
+        $data_pengumuman = Pengumuman::orderBy('created_at', 'DESC')->take(4)->get();
         $data_profile = Profile::findorfail(1);
-        return view('visimisi', compact('data_profile'));
+        $data_populer = Posts::orderBy('created_at', 'DESC')->take(4)->get();
+        $data_galeri = Gallery::orderBy('created_at', 'DESC')->take(4)->get();
+        
+        return view('visimisi', compact('data_pengumuman', 'data_profile', 'data_populer', 'data_galeri'));
     }
 
     public function indexSambutan()
     {
+        $data_pengumuman = Pengumuman::orderBy('created_at', 'DESC')->take(4)->get();
         $data_profile = Profile::findorfail(1);
-        return view('sambutan', compact('data_profile'));
+        $data_populer = Posts::orderBy('created_at', 'DESC')->take(4)->get();
+        $data_galeri = Gallery::orderBy('created_at', 'DESC')->take(4)->get();
+
+        return view('sambutan', compact('data_pengumuman', 'data_profile', 'data_populer', 'data_galeri'));
     }
 
     public function indexStruktur()
     {
+        $data_pengumuman = Pengumuman::orderBy('created_at', 'DESC')->take(4)->get();
         $data_profile = Profile::findorfail(1);
-        return view('struktur', compact('data_profile'));
+        $data_populer = Posts::orderBy('created_at', 'DESC')->take(4)->get();
+        $data_galeri = Gallery::orderBy('created_at', 'DESC')->take(4)->get();
+
+        return view('struktur', compact('data_pengumuman', 'data_profile', 'data_populer', 'data_galeri'));
+    }
+
+    public function indexBerita()
+    {
+        $data_pengumuman = Pengumuman::orderBy('created_at', 'DESC')->take(4)->get();
+        $data_profile = Profile::findorfail(1);
+        $data_berita = Posts::orderBy('created_at', 'DESC')->Paginate(5);
+        $data_galeri = Gallery::orderBy('created_at', 'DESC')->take(4)->get();
+
+        return view('berita', compact('data_berita', 'data_profile', 'data_pengumuman', 'data_galeri'));
     }
 }
