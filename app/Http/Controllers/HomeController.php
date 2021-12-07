@@ -75,9 +75,29 @@ class HomeController extends Controller
     {
         $data_pengumuman = Pengumuman::orderBy('created_at', 'DESC')->take(4)->get();
         $data_profile = Profile::findorfail(1);
-        $data_berita = Posts::orderBy('created_at', 'DESC')->Paginate(5);
+        $data_berita = Posts::orderBy('created_at', 'DESC')->Paginate(6);
         $data_galeri = Gallery::orderBy('created_at', 'DESC')->take(4)->get();
 
         return view('berita', compact('data_berita', 'data_profile', 'data_pengumuman', 'data_galeri'));
+    }
+
+    public function indexPengumuman()
+    {
+        $data_pengumuman = Pengumuman::orderBy('created_at', 'DESC')->paginate(6);
+        $data_profile = Profile::findorfail(1);
+        $data_berita = Posts::orderBy('created_at', 'DESC')->take(4)->get();
+        $data_galeri = Gallery::orderBy('created_at', 'DESC')->take(4)->get();
+
+        return view('pengumuman', compact('data_berita', 'data_profile', 'data_pengumuman', 'data_galeri'));
+    }
+
+    public function indexGaleri()
+    {
+        $data_pengumuman = Pengumuman::orderBy('created_at', 'DESC')->take(4)->get();
+        $data_profile = Profile::findorfail(1);
+        $data_berita = Posts::orderBy('created_at', 'DESC')->take(4)->get();
+        $data_galeri = Gallery::orderBy('created_at', 'DESC')->paginate(6);
+
+        return view('galeri', compact('data_berita', 'data_profile', 'data_pengumuman', 'data_galeri'));
     }
 }
