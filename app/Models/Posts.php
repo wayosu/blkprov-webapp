@@ -14,6 +14,14 @@ class Posts extends Model
 
     protected $fillable = ['judul', 'category_id', 'konten', 'gambar', 'slug', 'user_id'];
 
+    public function scopeFilter($query, array $filters)
+    {
+        $query->when($filters['search'] ?? false, function($query, $search) {
+            return $query->where('judul', 'like', '%' . $search . '%')
+                            ->orWhere('konten', 'like', '%' . $search . '%');
+        });
+    }
+    
     public function category()
     {
         return $this->belongsTo(Category::class);

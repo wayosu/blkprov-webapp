@@ -1,4 +1,4 @@
-<div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+<div id="myCarousel2" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
         @foreach ($data_galeri as $geleri_terbaru)
             <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
@@ -25,7 +25,7 @@
                                 <small>
                                     <span class="fw-light">
                                         -
-                                        {{ $geleri_terbaru->created_at->format('d F Y') }}
+                                        {{ $geleri_terbaru->created_at->diffForHumans() }}
                                     </span>
                                 </small>
                             </small>
@@ -35,11 +35,11 @@
             </div>
         @endforeach
     </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel"
+    <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel2"
         data-bs-slide="prev">
         <h2 class="m-0 p-0"><span class="fas fa-angle-left" aria-hidden="true"></span></h2>
     </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#myCarousel"
+    <button class="carousel-control-next" type="button" data-bs-target="#myCarousel2"
         data-bs-slide="next">
         <h2 class="m-0 p-0"><span class="fas fa-angle-right" aria-hidden="true"></span></h2>
     </button>

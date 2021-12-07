@@ -3,7 +3,7 @@
         <div class="mb-2">
             <div class="d-flex align-items-center justify-content-between">
                 <h6 class="my-0">BERITA POPULER</h6>
-                <a href="#" class="my-btn-link small text-muted"><small>All</small></a>
+                <a href="/berita" class="my-btn-link small text-muted"><small>All</small></a>
             </div>
             <div class="my-border-bottom-primary"></div>
         </div>
@@ -35,7 +35,7 @@
                                                 </span>
                                                 <span
                                                     class="fw-light m-0 mt-0 small text-muted">
-                                                    {{ $post_populer->created_at->format('d F Y') }}
+                                                    {{ $post_populer->created_at->diffForHumans() }}
                                                 </span>
                                             </small>
                                         </div>
@@ -53,7 +53,7 @@
         <div class="mb-2">
             <div class="d-flex align-items-center justify-content-between">
                 <h6 class="my-0">PENGUMUMAN</h6>
-                <a href="#" class="my-btn-link small text-muted"><small>All</small></a>
+                <a href="/pengumuman" class="my-btn-link small text-muted"><small>All</small></a>
             </div>
             <div class="my-border-bottom-primary"></div>
         </div>
@@ -82,7 +82,7 @@
                                             <small>
                                                 <span
                                                     class="fw-light m-0 mt-0 small text-muted">
-                                                    {{ $pengumuman_terbaru->created_at->format('d F Y') }}
+                                                    {{ $pengumuman_terbaru->created_at->diffForHumans() }}
                                                 </span>
                                             </small>
                                         </div>

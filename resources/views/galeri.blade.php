@@ -38,7 +38,7 @@
                                                     @endif
                                                     <small>
                                                         <span class="fw-light text-muted">-
-                                                            {{ $galeri->created_at->format('d F Y') }}
+                                                            {{ $galeri->created_at->diffForHumans() }}
                                                         </span>
                                                     </small>
                                                 </small>

@@ -16,7 +16,7 @@
                         <div class="mb-2">
                             <div class="d-flex align-items-center justify-content-between">
                                 <h6 class="my-0">BERITA TERBARU</h6>
-                                <a href="#" class="my-btn-link small text-muted"><small>All</small></a>
+                                <a href="/berita" class="my-btn-link small text-muted"><small>All</small></a>
                             </div>
                             <div class="my-border-bottom-primary"></div>
                         </div>
@@ -47,7 +47,7 @@
                                                         @endif
                                                         <small>
                                                             <span class="fw-light text-muted">-
-                                                                {{ $post_terbaru->created_at->format('d F Y') }}
+                                                                {{ $post_terbaru->created_at->diffForHumans() }}
                                                             </span>
                                                         </small>
                                                     </small>
@@ -67,7 +67,7 @@
                         <div class="mb-2">
                             <div class="d-flex align-items-center justify-content-between">
                                 <h6 class="my-0">GALERI</h6>
-                                <a href="#" class="my-btn-link small text-muted"><small>All</small></a>
+                                <a href="/galeri" class="my-btn-link small text-muted"><small>All</small></a>
                             </div>
                             <div class="my-border-bottom-primary"></div>
                         </div>
@@ -101,7 +101,7 @@
                                                                 <small>
                                                                     <span class="fw-light">
                                                                         -
-                                                                        {{ $geleri_terbaru->created_at->format('d F Y') }}
+                                                                        {{ $geleri_terbaru->created_at->diffForHumans() }}
                                                                     </span>
                                                                 </small>
                                                             </small>

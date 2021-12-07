@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Gallery;
 use App\Models\Pengumuman;
 use Illuminate\Http\Request;
@@ -75,10 +76,31 @@ class HomeController extends Controller
     {
         $data_pengumuman = Pengumuman::orderBy('created_at', 'DESC')->take(4)->get();
         $data_profile = Profile::findorfail(1);
-        $data_berita = Posts::orderBy('created_at', 'DESC')->Paginate(6);
         $data_galeri = Gallery::orderBy('created_at', 'DESC')->take(4)->get();
 
-        return view('berita', compact('data_berita', 'data_profile', 'data_pengumuman', 'data_galeri'));
+        return view('berita', [
+            "data_berita" => Posts::latest()->filter(request(['search']))->get(),
+            "data_profile" => $data_profile
+        ]);
+    }
+
+    public function showBerita(Posts $post)
+    {
+        return view('berita_isi', [
+            "title" => $post->judul,
+            "data_berita" => $post,
+            "data_profile" => Profile::findorfail(1)
+        ]);
+    }
+
+    public function showKategori(Category $category)
+    {
+        return view('kategori', [
+            "title" => $category->name,
+            "data_berita" => $category->posts,
+            "kategori" => $category->name,
+            "data_profile" => Profile::findorfail(1)
+        ]);
     }
 
     public function indexPengumuman()

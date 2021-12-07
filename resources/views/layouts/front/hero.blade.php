@@ -25,7 +25,7 @@
                                             {{ $post_heroLeft->user->name }}
                                         @endif
                                         <span class="fw-light">
-                                            - {{ $post_heroLeft->created_at->format('d F Y') }}
+                                            - {{ $post_heroLeft->created_at->diffForHumans() }}
                                         </span>
                                     </small>
                                 </p>

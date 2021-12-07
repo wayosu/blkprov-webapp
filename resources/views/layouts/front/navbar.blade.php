@@ -20,10 +20,10 @@
         <div class="collapse navbar-collapse" id="navbarScroll">
             <ul class="navbar-nav gap-lg-3 ms-auto my-2 navbar-nav-scroll" style="--bs-scroll-height: 300px;">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/">Home</a>
+                    <a class="nav-link {{ Request::is('/') ? 'active' : '' }}" aria-current="page" href="/">Home</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button"
+                    <a class="nav-link {{ Request::is('profil') || Request::is('visimisi') || Request::is('sambutankepala') || Request::is('strukturorganisasi') ? 'active' : '' }} dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button"
                         data-bs-toggle="dropdown" aria-expanded="false">
                         Profile
                     </a>
@@ -35,16 +35,16 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="/berita">Berita</a>
+                    <a class="nav-link {{ Request::is('berita') ? 'active' : '' }}" aria-current="page" href="/berita">Berita</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="/pengumuman">Pengumuman</a>
+                    <a class="nav-link {{ Request::is('pengumuman') ? 'active' : '' }}" aria-current="page" href="/pengumuman">Pengumuman</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="/galeri">Galeri</a>
+                    <a class="nav-link {{ Request::is('galeri') ? 'active' : '' }}" aria-current="page" href="/galeri">Galeri</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="/kejuruan">Kejuruan</a>
+                    <a class="nav-link {{ Request::is('kejuruan') ? 'active' : '' }}" aria-current="page" href="/kejuruan">Kejuruan</a>
                 </li>
             </ul>
         </div>

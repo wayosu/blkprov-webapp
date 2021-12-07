@@ -9,7 +9,7 @@
                     <div class="carousel-caption text-start">
                         <div class="my-0">
                             <small>
-                                <span class="badge my-badge">FOTO</span>
+                                <span class="badge my-badge">{{ $berita_terbaru->category->name }}</span>
                             </small>
                         </div>
                         <h4 class="my-2 fw-normal">
@@ -25,7 +25,7 @@
                                 <small>
                                     <span class="fw-light">
                                         -
-                                        {{ $berita_terbaru->created_at->format('d F Y') }}
+                                        {{ $berita_terbaru->created_at->diffForHumans() }}
                                     </span>
                                 </small>
                             </small>
