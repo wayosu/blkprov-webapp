@@ -8,11 +8,37 @@ body {
 
 /* Color Root */
 :root {
-    --primary: #7014cc;
-    --secondary: #883bd5;
-    --dark: #631db0;
+    --primary: #150A33;
+    --secondary: #5E35B1;
+    --dark: #492792;
+    --success: #00CEAB;
+    --danger: #F7345E;
+    --info: #22C8E5;
     --black: #000000;
     --white: #fff;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 13px;
+	background-color: #fff;
+}
+  
+/* Track */
+::-webkit-scrollbar-track {
+    background-color: #fff;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    border: 3px solid #fff;
+    border-radius: 12px;
+	background-color: #808080;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #9c9c9c;
 }
 
 /* My Custom */
@@ -30,12 +56,42 @@ body {
     color: var(--dark);
 }
 
+.my-text-success {
+    color: var(--success);
+}
+
+.my-text-danger {
+    color: var(--danger);
+}
+
+.my-text-info {
+    color: var(--info);
+}
+
 .my-text-black {
     color: var(--black);
 }
 
 .my-text-white {
     color: var(--white);
+}
+
+.my-text-link-danger {
+    color: var(--danger);
+    transition: .2s ease-in-out;
+}
+
+.my-text-link-danger:hover {
+    color: var(--info);
+}
+
+.my-text-link-muted {
+    color: #6C757D;
+    transition: .2s ease-in-out;
+}
+
+.my-text-link-muted:hover {
+    color: var(--danger);
 }
 
 /* my-bg */
@@ -51,12 +107,52 @@ body {
     background: var(--dark);
 }
 
+.my-bg-success {
+    background: var(--success);
+}
+
+.my-bg-danger {
+    background: var(--danger);
+}
+
+.my-bg-info {
+    background: var(--info);
+}
+
 .my-bg-black {
     background: var(--black);
 }
 
 .my-bg-white {
     background: var(--white);
+}
+
+.my-btn-login-success {
+    background: var(--success);
+    color: var(--white);
+    text-decoration: none;
+    transition: .3s ease-in-out;
+}
+
+.my-btn-login-success:hover {
+    background: var(--info);
+    color: var(--white);
+}
+
+.my-btn-backto-danger {
+    background: var(--danger);
+    color: var(--white);
+    text-decoration: none;
+    transition: .3s ease-in-out;
+}
+
+.my-btn-backto-danger:hover {
+    background: var(--info);
+    color: var(--white);
+}
+
+.my-bg-gradient {
+    background: linear-gradient(to right,#82009f 0%,#5d34af 50%,#00ceab 100%);
 }
 
 /* my-btn */
@@ -162,24 +258,14 @@ body {
 }
 
 /* Custom badge on card */
-.my-badge-card {
-    position: absolute;
-    display: inline-block;
-    top: 0;
-    left: 0;
-}
-
-.my-badge-card .my-badge {
-    position: absolute;
-    display: inline-block;
-    top: 0;
-    left: 0;
-    background: var(--black);
+.my-badge {
+    background: var(--primary); 
+    box-shadow: 2px 2px 1px 1px var(--black);
     transition: .3s ease-in-out;
 }
 
-.card:hover .my-badge-card  .my-badge {
-    background: var(--primary);
+.card:hover .my-badge {
+    background: var(--danger);
 }
 
 .my-badge-card-small .my-badge {
@@ -238,14 +324,7 @@ body {
 
 /* my-content */
 .my-content {
-    margin-top: 98px;
-}
-
-/* Custom Sidebar */
-.sidebar-sticky {
-    position: -webkit-sticky;
-    position: sticky;
-    top: 50px;
+    margin-top: 25px;
 }
 
 /* Custom slider pengumuman */
@@ -296,7 +375,7 @@ body {
 }
 
 .my-btn-transparent:hover {
-    background: rgb(0, 150, 136);
+    background: var(--dark);
     box-shadow:   0 2.8px 2.2px rgba(0, 0, 0, 0.034),
     0 6.7px 5.3px rgba(0, 0, 0, 0.048),
     0 12.5px 10px rgba(0, 0, 0, 0.06),
@@ -326,8 +405,13 @@ body {
 	transform: scale(1.15);
 }
 
-.card:hover .my-card-title {
+.my-card-title {
     color: var(--primary);
+    transition: .3s ease-in-out;
+}
+
+.card:hover .my-card-title {
+    color: var(--danger);
 }
 
 /* Custom Carousel Caption Bootstrap */
@@ -363,7 +447,7 @@ body {
 
 /* Custom Template Footer */
 .footer-wrap {
-    padding-top: 43px;
+    padding: 50px 0;
     background-size: cover;
 }
 
@@ -426,49 +510,21 @@ body {
     font-size: 0.8rem;
     color: #ccc;
     text-align: center;
-    background: var(--black);
+    background: var(--secondary);
 }
 
-footer .second_class{
-    padding-bottom: 25px;
-}
-footer .first_class {
-    padding-bottom: 21px;
-    border-bottom: 1px solid #444;
-}
 footer .first_class p, footer .first_class h3{
     margin: 0 0;
     
 }
 footer{
-    background: var(--dark);
+    /* background: var(--dark); */
+    background-color: #150a33;
 }
 
 footer .second_class_bdr{
     padding-top: 25px;
     border-top:1px solid #222;
-}
-
-footer .btn-facebook a {
-    padding: 6px 14px !important;
-}
-
-footer .btn-envelop a {
-    color: #D6403A;
-    font-size: 15px;
-    padding: 12px 12px;
-}
-
-footer .round-btn a {
-    padding: 6px 12px;
-}
-
-footer .round-btn {
-    box-shadow: 2px 2px 5px 0px #222 !important;
-}
-
-footer .round-btn {
-    margin: 15px 4px;
 }
   
 footer dl, ol, ul {
@@ -532,10 +588,6 @@ footer li{
 }
 
 @media (max-width: 576px) {
-    .my-content {
-        margin-top: 80px;
-    }
-
     #mySlidePengumuman .carousel-caption{
         width: 100%;
         margin: 0 auto;

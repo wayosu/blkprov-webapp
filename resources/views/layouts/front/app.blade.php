@@ -21,6 +21,15 @@
     <button type="button" id="backToTop" class="btn my-btn-transparent text-white"><i
             class="fas fa-chevron-up"></i></button>
 
+    <div class="py-1 my-bg-gradient">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center py-1">
+                <p class="m-0 small text-white">Balai Latihan Kerja Provinsi Gorontalo</p>
+                <a href="/login" class="my-btn-login-success px-4 py-1 small" style="border-radius: 12px">Login</a>
+            </div>
+        </div>
+    </div>
+
     @include('layouts.front.navbar')
 
     <div class="my-content">
@@ -86,7 +95,7 @@
 
         </div>
         {{-- <div class="my-border-bottom-primary"></div> --}}
-        <div class="copyright pt-3 mb-md-0">
+        <div class="copyright pt-3 mt-5">
             <div class="container">
                 <div class="d-flex justify-content-center">
                     <p>Copyright &copy; 2021 BLK Provinsi Gorontalo. All Rights Reserved.</p>

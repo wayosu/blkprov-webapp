@@ -32,6 +32,7 @@ Route::get('/strukturorganisasi', [HomeController::class, 'indexStruktur']);
 
 Route::get('/berita', [HomeController::class, 'indexBerita']);
 Route::get('/berita/{post:slug}', [HomeController::class, 'showBerita']);
+Route::get('/kategori', [HomeController::class, 'indexKategori']);
 Route::get('/kategori/{category:slug}', [HomeController::class, 'showKategori']);
 
 Route::get('/pengumuman', [HomeController::class, 'indexPengumuman']);

@@ -1,5 +1,5 @@
 <!-- Navbar Tablet & Laptop -->
-<nav class="navbar navbar-expand-lg bg-light navbar-light shadow-sm fixed-top">
+<nav class="navbar navbar-expand-lg bg-light navbar-light shadow-sm">
     <div class="container">
         <a class="navbar-brand d-none d-md-block" href="/">
             <div class="d-flex align-items-center">

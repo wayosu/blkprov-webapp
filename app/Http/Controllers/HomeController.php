@@ -8,6 +8,7 @@ use App\Models\Pengumuman;
 use Illuminate\Http\Request;
 use App\Models\Posts;
 use App\Models\Profile;
+use App\Models\User;
 
 class HomeController extends Controller
 {
@@ -18,18 +19,16 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $data_pengumuman = Pengumuman::latest()->take(4)->get();
         $data_hero = Posts::orderBy('created_at', 'DESC')->take(5)->get();
         $data_heroLeft = $data_hero->splice(0, 1);
         $data_heroRight = $data_hero->splice(0, 4);
         
-        $data_terbaru = Posts::orderBy('created_at', 'DESC')->take(2)->get();
-        $data_populer = Posts::orderBy('created_at', 'DESC')->take(4)->get();
-
-        $data_pengumuman = Pengumuman::orderBy('created_at', 'DESC')->take(4)->get();
-        $data_galeri = Gallery::orderBy('created_at', 'DESC')->take(4)->get();
+        $data_terbaru = Posts::latest()->take(3)->get();
+        $data_galeri = Gallery::latest()->take(3)->get();
         $data_profile = Profile::findorfail(1);
         
-        return view('home', compact('data_heroLeft', 'data_heroRight', 'data_terbaru', 'data_populer', 'data_pengumuman', 'data_galeri', 'data_profile'));
+        return view('home', compact('data_heroLeft', 'data_heroRight', 'data_terbaru', 'data_pengumuman', 'data_galeri', 'data_profile'));
     }
 
     public function indexProfil()
@@ -79,7 +78,9 @@ class HomeController extends Controller
         $data_galeri = Gallery::orderBy('created_at', 'DESC')->take(4)->get();
 
         return view('berita', [
-            "data_berita" => Posts::latest()->filter(request(['search']))->get(),
+            "title" => "Berita",
+            "data_berita" => Posts::with(['user', 'category'])->latest()->filter(request(['search']))->get(),
+            "data_kategori" => Category::latest()->take(4)->get(),
             "data_profile" => $data_profile
         ]);
     }
@@ -93,12 +94,20 @@ class HomeController extends Controller
         ]);
     }
 
-    public function showKategori(Category $category)
+    public function indexKategori()
     {
         return view('kategori', [
-            "title" => $category->name,
-            "data_berita" => $category->posts,
-            "kategori" => $category->name,
+            "title" => "Kategori",
+            "data_kategori" => Category::all(),
+            "data_profile" => Profile::findorfail(1)
+        ]);
+    }
+
+    public function showKategori(Category $category)
+    {
+        return view('berita', [
+            "title" => "Kategori : $category->name",
+            "data_berita" => $category->posts->load('user', 'category'),
             "data_profile" => Profile::findorfail(1)
         ]);
     }

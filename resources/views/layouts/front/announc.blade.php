@@ -1,7 +1,7 @@
 <section id="pengumuman" class="mb-3">
     <div class="container">
         <div class="d-flex flex-wrap flex-md-nowrap justify-content-center">
-            <div class="bg-danger mb-2 h-100">
+            <div class="my-bg-danger mb-2 h-100">
                 <h6 class="m-0 px-2 py-1 text-white small">PENGUMUMAN</h6>
             </div>
             <div id="mySlidePengumuman" class="carousel slide carousel-fade w-100" data-bs-ride="carousel">
