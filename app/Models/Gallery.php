@@ -16,6 +16,9 @@ class Gallery extends Model
         'user_id',
     ];
 
+    protected $with = ['user'];
+
+
     public function images() {
         return $this->hasMany(Image::class);
     }

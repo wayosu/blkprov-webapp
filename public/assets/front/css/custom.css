@@ -127,6 +127,15 @@ body {
     background: var(--white);
 }
 
+.my-fillbg-kate {
+    background: rgb(21, 10, 51, .8);
+    transition: .3s ease-in-out;
+}
+
+.my-kate:hover .my-fillbg-kate {
+    background: var(--secondary);
+}
+
 .my-btn-login-success {
     background: var(--success);
     color: var(--white);
@@ -140,8 +149,10 @@ body {
 }
 
 .my-btn-backto-danger {
+    padding: 8px 16px;
     background: var(--danger);
     color: var(--white);
+    box-shadow: 2px 2px 1px 1px var(--black);
     text-decoration: none;
     transition: .3s ease-in-out;
 }
@@ -603,7 +614,7 @@ footer li{
     }
 
     .footer-wrap {
-        padding-top: 20px;
+        padding-top: 50px;
     }
 }
 

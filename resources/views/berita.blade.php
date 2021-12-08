@@ -5,12 +5,15 @@
 
     <section class="mb-5">
         <div class="container">
-            <div class="row mb-3">
+            <div class="row mb-4">
                 <div class="col-md-12">
                     <div class="mb-3">
                         <div class="d-flex flex-column flex-md-row align-items-center justify-content-between">
                             <h3 class="my-0 mb-2 mb-md-0">{{ $title }}</h3>
                             <form action="/berita">
+                                @if (request('kategori'))
+                                    <input type="hidden" name="kategori" value="{{ request('kategori') }}">
+                                @endif
                                 <div class="input-group">
                                     <input type="text" class="form-control form-control-sm" placeholder="Search..."
                                         name="search" value="{{ request('search') }}">
@@ -31,7 +34,7 @@
                                             <img class="card-img-top my-img-zoom" src="{{ asset($berita->gambar) }}"
                                                 alt="Card image cap" style="height: 25vh;object-fit: cover;">
                                         </div>
-                                        <a href="/kategori/{{ $berita->category->name }}"
+                                        <a href="/berita?kategori={{ $berita->category->slug }}"
                                             class="position-absolute px-3 my-badge py-2 small">
                                             <span class="badge rounded-0">{{ $berita->category->name }}</span>
                                         </a>
@@ -65,32 +68,95 @@
                             <p class="mt-5 text-center fs-6">Berita tidak ditemukan.</p>
                         @endif
                     </div>
-                    {{-- {{ $data_berita->links() }} --}}
+                    {{ $data_berita->links() }}
                 </div>
             </div>
 
-            <div class="row">
-                <div class="col-md-12">
+            <div class="row gy-5 mb-5">
+                <div class="col-12 col-md-6">
                     <div class="mb-3">
-                        <div class="d-flex flex-column flex-md-row align-items-center justify-content-between">
-                            <h3 class="my-0 mb-2 mb-md-0">Kategori Terbaru</h3>
-                            <a href="/kategori" class="text-decoration-none my-text-link-muted small">All</a>
+                        <div class="d-flex flex-row align-items-center justify-content-between">
+                            <h5 class="my-0 mb-2 mb-md-0">Kategori Terbaru</h5>
+                            <a href="/kategori" class="text-decoration-none my-text-link-muted small"><small>All</small></a>
                         </div>
                         <div class="dropdown-divider"></div>
                     </div>
                     <div class="row gy-3">
                         @foreach ($data_kategori as $kategori)
-                            <div class="col-12 col-md-6 col-lg-3">
-                                <a href="/kategori/{{ $kategori->slug }}">
+                            <div class="col-12 col-md-6">
+                                <a href="/berita?kategori={{ $kategori->slug }}" class="my-kate">
                                     <div class="card rounded-3 text-white">
                                         <img src="https://source.unsplash.com/500x500?{{ $kategori->name }}" alt="cover"
-                                            class="card-img" style="height: 100px;object-fit: cover;object-position: center;">
+                                            class="card-img"
+                                            style="height: 140px;object-fit: cover;object-position: center;">
                                         <div class="card-img-overlay d-flex align-items-center p-0">
-                                            <h5 class="card-title text-center flex-fill p-3 m-0" style="background: rgba(0, 0, 0, .8);">
-                                                {{ $kategori->name }}</h5>
+                                            <h6 class="card-title text-center flex-fill p-3 m-0 my-fillbg-kate">
+                                                {{ $kategori->name }}</h6>
                                         </div>
                                     </div>
                                 </a>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-6">
+                    <div class="mb-3">
+                        <div class="d-flex flex-row align-items-center justify-content-between">
+                            <h5 class="my-0 mb-2 mb-md-0">Galeri Terbaru</h5>
+                            <a href="/kategori" class="text-decoration-none my-text-link-muted small"><small>All</small></a>
+                        </div>
+                        <div class="dropdown-divider"></div>
+                    </div>
+                    <div class="row gy-3">
+                        <div class="col-12">
+                            @include('layouts.front.widget_galeri')
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row gy-5">
+                <div class="col-12">
+                    <div class="mb-3">
+                        <div class="d-flex flex-row align-items-center justify-content-between">
+                            <h5 class="my-0 mb-2 mb-md-0">Pengumuman Terbaru</h5>
+                            <a href="/pengumuman" class="text-decoration-none my-text-link-muted small"><small>All</small></a>
+                        </div>
+                        <div class="dropdown-divider"></div>
+                    </div>
+                    <div class="row gy-3">
+                        @foreach ($data_pengumuman as $galeri)
+                            <div class="col-12 col-md-6 col-lg-3">
+                                <div class="card border-0 rounded-3 shadow-sm overflow-hidden">
+                                    <div class="card-body py-3">
+                                        <div class="row g-0 align-items-center">
+                                            <div class="col-3 col-lg-2 col-xl-3">
+                                                <div class="figure">
+                                                    <img class="img-fluid rounded-3"
+                                                        src="{{ asset('assets/front/images/announcement.png') }}"
+                                                        alt="Card image cap"
+                                                        style="height: 6vh;width: 100%;object-fit: cover;">
+                                                </div>
+                                            </div>
+                                            <div class="col-9 col-lg-10 col-xl-9">
+                                                <div class="card-body">
+                                                    <a href="/pengumuman/{{ $galeri->slug }}"
+                                                        class="card-title h6 my-card-title mt-0 mb-1 small text-decoration-none">
+                                                        {{ $galeri->judul }}</a>
+                                                    <div class="small fw-bold my-badge-card-small">
+                                                        <small>
+                                                            <span class="fw-light m-0 mt-0 small text-muted">
+                                                                {{ $galeri->created_at->diffForHumans() }}
+                                                            </span>
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
                         @endforeach
                     </div>

@@ -8,41 +8,42 @@
     <div class="container">
         <div class="row gy-3">
             @foreach ($data_pengumuman as $galeri)
-                <div class="col-12 col-md-6 col-lg-3">
-                    <div class="card border-0 rounded-3 shadow-sm overflow-hidden">
-
-                        {{-- <div class="position-absolute px-3 my-badge py-1 small">
-                            <span class="badge rounded-0">Foto</span>
-                        </div> --}}
-                        <div class="card-body py-3">
-                            <div class="row g-0 align-items-center">
-                                <div class="col-3 col-lg-2 col-xl-3">
-                                    <div class="figure">
-                                        <img class="img-fluid rounded-3"
-                                            src="{{ asset('assets/front/images/announcement.png') }}" alt="Card image cap"
-                                            style="height: 6vh;width: 100%;object-fit: cover;">
+                <div class="col-12 col-md-6 col-xl-3">
+                    <a href="/pengumuman/{{ $galeri->slug }}" class="text-decoration-none">
+                        <div class="card border-0 rounded-3 shadow-sm overflow-hidden">
+    
+                            {{-- <div class="position-absolute px-3 my-badge py-1 small">
+                                <span class="badge rounded-0">Foto</span>
+                            </div> --}}
+                            <div class="card-body py-3">
+                                <div class="row g-0 align-items-center">
+                                    <div class="col-3 col-lg-2 col-xl-3">
+                                        <div class="figure">
+                                            <img class="img-fluid rounded-3"
+                                                src="{{ asset('assets/front/images/announcement.png') }}" alt="Card image cap"
+                                                style="height: 6vh;width: 100%;object-fit: cover;">
+                                        </div>
+                                        {{-- <img src="{{ asset($post_populer->gambar) }}" class="img-fluid rounded-3"
+                                        style="height: 100px;width: 100%;object-fit: cover;"> --}}
                                     </div>
-                                    {{-- <img src="{{ asset($post_populer->gambar) }}" class="img-fluid rounded-3"
-                                    style="height: 100px;width: 100%;object-fit: cover;"> --}}
-                                </div>
-                                <div class="col-9 col-lg-10 col-xl-9">
-                                    <div class="card-body">
-                                        <a href="/pengumuman/{{ $galeri->slug }}"
-                                            class="card-title h6 my-card-title mt-0 mb-1 small text-decoration-none">
-                                            {{ $galeri->judul }}</a>
-                                        <div class="small fw-bold my-badge-card-small">
-                                            <small>
-                                                <span class="fw-light m-0 mt-0 small text-muted">
-                                                    {{ $galeri->created_at->diffForHumans() }}
-                                                </span>
-                                            </small>
+                                    <div class="col-9 col-lg-10 col-xl-9">
+                                        <div class="card-body">
+                                            <h6 href="/pengumuman/{{ $galeri->slug }}"
+                                                class="card-title h6 my-card-title mt-0 mb-1 small text-decoration-none">
+                                                {{ $galeri->judul }}</h6>
+                                            <div class="small fw-bold my-badge-card-small">
+                                                <small>
+                                                    <span class="fw-light m-0 small text-muted">
+                                                        {{ $galeri->created_at->diffForHumans() }}
+                                                    </span>
+                                                </small>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-
+                    </a>
                 </div>
             @endforeach
         </div>

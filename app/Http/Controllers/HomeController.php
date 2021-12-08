@@ -35,10 +35,10 @@ class HomeController extends Controller
     {
         $data_pengumuman = Pengumuman::orderBy('created_at', 'DESC')->take(4)->get();
         $data_profile = Profile::findorfail(1);
-        $data_populer = Posts::orderBy('created_at', 'DESC')->take(4)->get();
-        $data_galeri = Gallery::orderBy('created_at', 'DESC')->take(4)->get();
+        $data_berita= Posts::with(['user', 'category'])->latest()->take(4)->get();
+        $data_galeri = Gallery::latest()->take(4)->get();
         
-        return view('profil', compact('data_pengumuman', 'data_profile', 'data_populer', 'data_galeri'));
+        return view('profil', compact('data_pengumuman', 'data_profile', 'data_berita', 'data_galeri'));
     }
 
     public function indexVisimisi()
@@ -73,14 +73,19 @@ class HomeController extends Controller
 
     public function indexBerita()
     {
-        $data_pengumuman = Pengumuman::orderBy('created_at', 'DESC')->take(4)->get();
-        $data_profile = Profile::findorfail(1);
-        $data_galeri = Gallery::orderBy('created_at', 'DESC')->take(4)->get();
+        $data_profile = Profile::findorfail(1); 
 
+        $title = '';
+        if (request('kategori')) {
+            $category = Category::firstWhere('slug', request('kategori'));
+            $title = 'in '. $category->name;
+        }
         return view('berita', [
-            "title" => "Berita",
-            "data_berita" => Posts::with(['user', 'category'])->latest()->filter(request(['search']))->get(),
+            "title" => "Berita " . $title,
+            "data_berita" => Posts::with(['user', 'category'])->latest()->filter(request(['search', 'kategori']))->paginate(6)->withQueryString(),
             "data_kategori" => Category::latest()->take(4)->get(),
+            "data_galeri" => Gallery::with(['user'])->latest()->take(4)->get(),
+            "data_pengumuman" => Pengumuman::latest()->take(4)->get(),
             "data_profile" => $data_profile
         ]);
     }
@@ -90,6 +95,7 @@ class HomeController extends Controller
         return view('berita_isi', [
             "title" => $post->judul,
             "data_berita" => $post,
+            "berita_lainnya" => Posts::where('id', '!=', $post->id)->latest()->take(3)->get(),
             "data_profile" => Profile::findorfail(1)
         ]);
     }
@@ -98,7 +104,7 @@ class HomeController extends Controller
     {
         return view('kategori', [
             "title" => "Kategori",
-            "data_kategori" => Category::all(),
+            "data_kategori" => Category::latest()->get(),
             "data_profile" => Profile::findorfail(1)
         ]);
     }
@@ -108,6 +114,7 @@ class HomeController extends Controller
         return view('berita', [
             "title" => "Kategori : $category->name",
             "data_berita" => $category->posts->load('user', 'category'),
+            "data_kategori" => Category::latest()->take(4)->get(),
             "data_profile" => Profile::findorfail(1)
         ]);
     }

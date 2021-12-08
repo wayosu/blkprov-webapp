@@ -3,7 +3,7 @@
         @foreach ($data_galeri as $geleri_terbaru)
             <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
                 <img src="{{ asset($geleri_terbaru->cover) }}" alt="foto" class="rounded-3"
-                    style="height: 40vh;width: 100%;object-fit: cover;">
+                    style="height: 300px;width: 100%;object-fit: cover;">
 
                 <div class="container">
                     <div class="carousel-caption text-start">

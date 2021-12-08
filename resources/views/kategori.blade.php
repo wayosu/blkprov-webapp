@@ -18,12 +18,12 @@
                     <div class="row gy-3">
                         @foreach ($data_kategori as $kategori)
                             <div class="col-12 col-md-4 col-lg-3">
-                                <a href="/kategori/{{ $kategori->slug }}">
+                                <a href="/berita?kategori={{ $kategori->slug }}" class="my-kate">
                                     <div class="card rounded-3 text-white">
                                         <img src="https://source.unsplash.com/500x500?{{ $kategori->name }}" alt="cover"
                                             class="card-img" style="height: 300px;object-fit: cover;object-position: center;">
                                         <div class="card-img-overlay d-flex align-items-center p-0">
-                                            <h5 class="card-title text-center flex-fill p-4" style="background: rgba(0, 0, 0, .8);">
+                                            <h5 class="card-title text-center flex-fill p-4 my-fillbg-kate">
                                                 {{ $kategori->name }}</h5>
                                         </div>
                                     </div>

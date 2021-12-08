@@ -24,8 +24,11 @@
     <div class="py-1 my-bg-gradient">
         <div class="container">
             <div class="d-flex justify-content-between align-items-center py-1">
-                <p class="m-0 small text-white">Balai Latihan Kerja Provinsi Gorontalo</p>
-                <a href="/login" class="my-btn-login-success px-4 py-1 small" style="border-radius: 12px">Login</a>
+                <p class="m-0 small text-white">
+                    {{ \Carbon\Carbon::now()->isoFormat('dddd, D MMMM Y') }}
+                </p>
+                <p class="d-none d-md-block m-0 small text-white text-uppercase">Balai Latihan Kerja Provinsi Gorontalo</p>
+                <a href="/login" class="my-btn-login-success px-4 py-1 small shadow-sm rounded-3">Login</a>
             </div>
         </div>
     </div>

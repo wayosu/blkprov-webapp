@@ -13,12 +13,19 @@ class Posts extends Model
     use SoftDeletes;
 
     protected $fillable = ['judul', 'category_id', 'konten', 'gambar', 'slug', 'user_id'];
-
+    protected $with = ['category', 'user'];
+    
     public function scopeFilter($query, array $filters)
     {
         $query->when($filters['search'] ?? false, function($query, $search) {
             return $query->where('judul', 'like', '%' . $search . '%')
                             ->orWhere('konten', 'like', '%' . $search . '%');
+        });
+
+        $query->when($filters['kategori'] ?? false, function($query, $category) {
+            return $query->whereHas('category', function($query) use ($category) {
+                $query->where('slug', $category);
+            });
         });
     }
     
