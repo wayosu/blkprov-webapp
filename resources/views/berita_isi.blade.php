@@ -42,7 +42,7 @@
                                         <img class="card-img-top my-img-zoom" src="{{ asset($bl->gambar) }}"
                                             alt="Card image cap" style="height: 25vh;object-fit: cover;">
                                     </div>
-                                    <a href="/bl?kategori={{ $bl->category->slug }}"
+                                    <a href="/berita?kategori={{ $bl->category->slug }}"
                                         class="position-absolute px-3 my-badge py-2 small">
                                         <span class="badge rounded-0">{{ $bl->category->name }}</span>
                                     </a>

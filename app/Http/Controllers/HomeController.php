@@ -36,7 +36,7 @@ class HomeController extends Controller
         $data_pengumuman = Pengumuman::orderBy('created_at', 'DESC')->take(4)->get();
         $data_profile = Profile::findorfail(1);
         $data_berita= Posts::with(['user', 'category'])->latest()->take(4)->get();
-        $data_galeri = Gallery::latest()->take(4)->get();
+        $data_galeri = Gallery::with(['user'])->latest()->take(4)->get();
         
         return view('profil', compact('data_pengumuman', 'data_profile', 'data_berita', 'data_galeri'));
     }
@@ -45,30 +45,30 @@ class HomeController extends Controller
     {
         $data_pengumuman = Pengumuman::orderBy('created_at', 'DESC')->take(4)->get();
         $data_profile = Profile::findorfail(1);
-        $data_populer = Posts::orderBy('created_at', 'DESC')->take(4)->get();
-        $data_galeri = Gallery::orderBy('created_at', 'DESC')->take(4)->get();
+        $data_berita= Posts::with(['user', 'category'])->latest()->take(4)->get();
+        $data_galeri = Gallery::with(['user'])->latest()->take(4)->get();
         
-        return view('visimisi', compact('data_pengumuman', 'data_profile', 'data_populer', 'data_galeri'));
+        return view('visimisi', compact('data_pengumuman', 'data_profile', 'data_berita', 'data_galeri'));
     }
 
     public function indexSambutan()
     {
         $data_pengumuman = Pengumuman::orderBy('created_at', 'DESC')->take(4)->get();
         $data_profile = Profile::findorfail(1);
-        $data_populer = Posts::orderBy('created_at', 'DESC')->take(4)->get();
-        $data_galeri = Gallery::orderBy('created_at', 'DESC')->take(4)->get();
+        $data_berita= Posts::with(['user', 'category'])->latest()->take(4)->get();
+        $data_galeri = Gallery::with(['user'])->latest()->take(4)->get();
 
-        return view('sambutan', compact('data_pengumuman', 'data_profile', 'data_populer', 'data_galeri'));
+        return view('sambutan', compact('data_pengumuman', 'data_profile', 'data_berita', 'data_galeri'));
     }
 
     public function indexStruktur()
     {
         $data_pengumuman = Pengumuman::orderBy('created_at', 'DESC')->take(4)->get();
         $data_profile = Profile::findorfail(1);
-        $data_populer = Posts::orderBy('created_at', 'DESC')->take(4)->get();
-        $data_galeri = Gallery::orderBy('created_at', 'DESC')->take(4)->get();
+        $data_berita= Posts::with(['user', 'category'])->latest()->take(4)->get();
+        $data_galeri = Gallery::with(['user'])->latest()->take(4)->get();
 
-        return view('struktur', compact('data_pengumuman', 'data_profile', 'data_populer', 'data_galeri'));
+        return view('struktur', compact('data_pengumuman', 'data_profile', 'data_berita', 'data_galeri'));
     }
 
     public function indexBerita()
@@ -121,12 +121,22 @@ class HomeController extends Controller
 
     public function indexPengumuman()
     {
-        $data_pengumuman = Pengumuman::orderBy('created_at', 'DESC')->paginate(6);
+        $data_pengumuman = Pengumuman::with(['user'])->latest()->filter(request(['search']))->paginate(6)->withQueryString();
         $data_profile = Profile::findorfail(1);
-        $data_berita = Posts::orderBy('created_at', 'DESC')->take(4)->get();
-        $data_galeri = Gallery::orderBy('created_at', 'DESC')->take(4)->get();
+        $data_berita= Posts::with(['user', 'category'])->latest()->take(4)->get();
+        $data_galeri = Gallery::with(['user'])->latest()->take(4)->get();
 
-        return view('pengumuman', compact('data_berita', 'data_profile', 'data_pengumuman', 'data_galeri'));
+        return view('pengumuman', compact('data_pengumuman', 'data_profile', 'data_berita', 'data_galeri'));
+    }
+
+    public function showPengumuman(Pengumuman $pengumuman)
+    {
+        return view('pengumuman_isi', [
+            "title" => $pengumuman->judul,
+            "data_pengumuman" => $pengumuman,
+            "pengumuman_lainnya" => Pengumuman::where('id', '!=', $pengumuman->id)->latest()->take(3)->get(),
+            "data_profile" => Profile::findorfail(1)
+        ]);
     }
 
     public function indexGaleri()

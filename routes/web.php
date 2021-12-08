@@ -36,7 +36,11 @@ Route::get('/kategori', [HomeController::class, 'indexKategori']);
 Route::get('/kategori/{category:slug}', [HomeController::class, 'showKategori']);
 
 Route::get('/pengumuman', [HomeController::class, 'indexPengumuman']);
+Route::get('/pengumuman/{pengumuman:slug}', [HomeController::class, 'showPengumuman']);
+
 Route::get('/galeri', [HomeController::class, 'indexGaleri']);
+Route::get('/galeri/{gallery:slug}', [HomeController::class, 'showGaleri']);
+
 Route::get('/kejuruan', [HomeController::class, 'indexKejuruan']);
 
 Route::group(['middleware' => 'is_admin'], function() {

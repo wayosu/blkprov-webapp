@@ -23,12 +23,18 @@
 
     <div class="py-1 my-bg-gradient">
         <div class="container">
-            <div class="d-flex justify-content-between align-items-center py-1">
+            <div class="d-flex justify-content-between align-items-center py-1 small">
                 <p class="m-0 small text-white">
                     {{ \Carbon\Carbon::now()->isoFormat('dddd, D MMMM Y') }}
                 </p>
                 <p class="d-none d-md-block m-0 small text-white text-uppercase">Balai Latihan Kerja Provinsi Gorontalo</p>
-                <a href="/login" class="my-btn-login-success px-4 py-1 small shadow-sm rounded-3">Login</a>
+                @if (Route::has('login'))
+                    @auth
+                        <a href="/admin/home" class="my-btn-login-success px-4 py-1 small shadow-sm rounded-3">{{ Auth::user()->name }}</a>
+                    @else
+                        <a href="/login" class="my-btn-login-success px-4 py-1 small shadow-sm rounded-3">Login</a>
+                    @endauth
+                @endif
             </div>
         </div>
     </div>

@@ -11,7 +11,7 @@
                         </div>
                         <div class="dropdown-divider"></div>
                     </div>
-                    <p class="small" style="text-align: justify">{{ $data_profile->profile }}</p>
+                    <article class="small" style="text-align: justify">{!! $data_profile->profile !!}</article>
                 </div>
             </div>
 

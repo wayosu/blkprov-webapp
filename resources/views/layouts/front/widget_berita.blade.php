@@ -9,12 +9,16 @@
                     <div class="carousel-caption text-start">
                         <div class="my-0">
                             <small>
-                                <span class="badge my-badge">{{ $berita_terbaru->category->name }}</span>
+                                <a href="/berita?kategori={{ $berita_terbaru->category->slug }}" class="text-decoration-none">
+                                    <span class="badge my-badge">{{ $berita_terbaru->category->name }}</span>
+                                </a>
                             </small>
                         </div>
-                        <h4 class="my-2 fw-normal">
-                            {{ $berita_terbaru->judul }}
-                        </h4>
+                        <a href="/berita/{{ $berita_terbaru->slug }}" class="text-decoration-none text-white my-link-carousel">
+                            <h4 class="my-2 fw-normal ">
+                                {{ $berita_terbaru->judul }}
+                            </h4>
+                        </a>
                         <p class="my-0 fw-bold small">
                             <small>
                                 @if ($berita_terbaru->user_id == 1)

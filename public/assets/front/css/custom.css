@@ -431,18 +431,18 @@ body {
     padding-bottom: 0;
 }
 
-.carousel-caption h4,
+.carousel-caption .my-link-carousel,
 .carousel-caption p {
     text-shadow: 1px 1px 1px var(--black);
 }
 
 .carousel .my-badge {
-    background: var(--black);
+    background: var(--primary);
     transition: .3s ease-in-out;
 }
 
 .carousel:hover .my-badge {
-    background: var(--primary);
+    background: var(--danger);
 }
 
 .carousel-control-next,

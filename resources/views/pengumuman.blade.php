@@ -3,27 +3,36 @@
 @section('content')
     <section class="mb-5">
         <div class="container">
-            <div class="row mb-3">
+            <div class="row mb-5">
                 <div class="col-md-12">
-                    <div class="mb-2">
-                        <div class="d-flex align-items-center justify-content-between">
-                            <h3 class="my-0">Pengumuman</h3>
+                    <div class="mb-3">
+                        <div class="d-flex flex-column flex-md-row align-items-center justify-content-between">
+                            <h3 class="my-0 mb-2 mb-md-0">Pengumuman</h3>
+                            <form action="/pengumuman">
+                                <div class="input-group">
+                                    <input type="text" class="form-control form-control-sm" placeholder="Search..."
+                                        name="search" value="{{ request('search') }}">
+                                    <button type="submit" class="btn my-bg-primary text-white"><i
+                                            class="fas fa-search"></i></button>
+                                </div>
+                            </form>
                         </div>
+                        <div class="dropdown-divider"></div>
                     </div>
-                    <div class="row g-4 mb-4">
+                    <div class="row gy-4 mb-4">
                         @foreach ($data_pengumuman as $pengumuman)
-                            <div class="col-md-12 col-lg-3">
-                                <a href="#" class="text-decoration-none text-black">
-                                    <div class="card border-0">
-                                        <div class="figure text-center">
+                            <div class="col-12 col-md-6 col-lg-4">
+                                <a href="/pengumuman/{{ $pengumuman->slug }}" class="text-decoration-none text-black">
+                                    <div class="card border-0 rounded-3 shadow-sm overflow-hidden">
+                                        <div class="figure text-center rounded-0">
                                             <img class="card-img-top rounded-3 my-img-zoom"
                                                 src="{{ asset('assets/front/images/announcement.png') }}" alt="Card image cap"
-                                                style="width: 200px; height: 200px; object-fit: cover;">
+                                                style="width: 100px; height:100px; object-fit: cover;transform: scale(0.6);">
                                         </div>
-                                        <div class="card-body pb-0 px-0">
-                                            <h4 class="card-title mb-1 my-card-title fw-normal">
+                                        <div class="card-body py-3">
+                                            <h5 class="card-title mb-1 my-card-title fw-normal">
                                                 {{ $pengumuman->judul }}
-                                            </h4>
+                                            </h5>
                                             <p class="fw-bold small mt-0 mb-1">
                                                 <small>
                                                     @if ($pengumuman->user_id == 1)
@@ -51,14 +60,32 @@
                 </div>
             </div>
 
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="dropdown-divider"></div>
-                    <div class="row g-4 mb-4">
-                        <div class="col-12 col-md-6">
+            <div class="row gy-5 mb-5">
+                <div class="col-12 col-md-6">
+                    <div class="mb-3">
+                        <div class="d-flex flex-row align-items-center justify-content-between">
+                            <h5 class="my-0 mb-2 mb-md-0">Berita Terbaru</h5>
+                            <a href="/berita" class="text-decoration-none my-text-link-muted small"><small>All</small></a>
+                        </div>
+                        <div class="dropdown-divider"></div>
+                    </div>
+                    <div class="row gy-3">
+                        <div class="col-12">
                             @include('layouts.front.widget_berita')
                         </div>
-                        <div class="col-12 col-md-6">
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-6">
+                    <div class="mb-3">
+                        <div class="d-flex flex-row align-items-center justify-content-between">
+                            <h5 class="my-0 mb-2 mb-md-0">Galeri Terbaru</h5>
+                            <a href="/galeri" class="text-decoration-none my-text-link-muted small"><small>All</small></a>
+                        </div>
+                        <div class="dropdown-divider"></div>
+                    </div>
+                    <div class="row gy-3">
+                        <div class="col-12">
                             @include('layouts.front.widget_galeri')
                         </div>
                     </div>
