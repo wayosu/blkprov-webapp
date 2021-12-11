@@ -43,8 +43,8 @@ Route::get('/galeri/{gallery:slug}', [HomeController::class, 'showGaleri']);
 
 Route::get('/kejuruan', [HomeController::class, 'indexKejuruan']);
 
-Route::group(['middleware' => 'is_admin'], function() {
-    Route::get('/admin/home', [App\Http\Controllers\AdminHomeController::class, 'index'])->name('admin.home');
+Route::group(['middleware' => ['is_admin', 'auth']], function() {
+    Route::get('/admin', [App\Http\Controllers\AdminHomeController::class, 'index'])->name('admin.home');
     
     Route::resource('/admin/category', CategoryController::class);
     
@@ -66,4 +66,23 @@ Route::group(['middleware' => 'is_admin'], function() {
     Route::resource('/admin/user', UserController::class);
 
     Route::resource('/admin/profile', ProfileController::class);
+});
+
+Route::group(['middleware' => ['is_author', 'auth']], function () {
+    Route::get('/penulis', [App\Http\Controllers\PenulisHomeController::class, 'index'])->name('penulis.home');
+    
+    Route::get('/penulis/post/recyclebin', [PostController::class, 'recyclebin'])->name('penulis.post.recyclebin');
+    Route::get('/penulis/post/restore/{id}', [PostController::class, 'restore'])->name('penulis.post.restore');
+    Route::delete('/penulis/post/deletepermanently/{id}', [PostController::class, 'deletePermanently'])->name('penulis.post.deletepermanently');
+    Route::get('/penulis/post', [PostController::class, 'index'])->name('penulis.post.index');
+    Route::get('/penulis/post/create', [PostController::class, 'create'])->name('penulis.post.create');
+    Route::post('/penulis/post/store', [PostController::class, 'store'])->name('penulis.post.store');
+    Route::get('/penulis/post/edit/{id}', [PostController::class, 'edit'])->name('penulis.post.edit');
+    Route::put('/penulis/post/update/{id}', [PostController::class, 'update'])->name('penulis.post.update');
+    Route::delete('/penulis/post/destroy/{id}', [PostController::class, 'destroy'])->name('penulis.post.destroy');
+    
+    // Route::resource('/penulis/pengumuman', PengumumanController::class);
+    Route::get('/penulis/pengumuman', [PengumumanController::class, 'index'])->name('penulis.pengumuman.index');
+    // Route::resource('/penulis/gallery', GalleryController::class);
+    Route::get('/penulis/gallery', [GalleryController::class, 'index'])->name('penulis.gallery.index');
 });

@@ -10,10 +10,10 @@
                 <div class="d-sm-none d-lg-inline-block">Hi, {{ Auth::user()->name }}</div>
             </a>
             <div class="dropdown-menu dropdown-menu-right">
-                {{-- <a href="features-profile.html" class="dropdown-item has-icon">
-                    <i class="far fa-user"></i> Profile
+                <a href="/" class="dropdown-item has-icon">
+                    <i class="fas fa-home"></i> Go to Home Page
                 </a>
-                <div class="dropdown-divider"></div> --}}
+                <div class="dropdown-divider"></div>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST">
                     @csrf
                     <button type="submit" class="dropdown-item text-danger">

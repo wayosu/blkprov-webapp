@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="{{ asset('assets/front/css/bootstrap/bootstrap.min.css') }}">
     <!-- Font Awesome CSS -->
     <link rel="stylesheet" href="{{ asset('assets/front/css/font-awesome/all.css') }}">
+    {{-- Plugin CSS--}}
+    <link rel="stylesheet" href="{{ asset('assets/css/magnific-popup.css') }}">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ asset('assets/front/css/custom.css') }}">
 </head>
@@ -30,7 +32,7 @@
                 <p class="d-none d-md-block m-0 small text-white text-uppercase">Balai Latihan Kerja Provinsi Gorontalo</p>
                 @if (Route::has('login'))
                     @auth
-                        <a href="/admin/home" class="my-btn-login-success px-4 py-1 small shadow-sm rounded-3">{{ Auth::user()->name }}</a>
+                        <a href="{{ (Auth::user()->roles == 1) ? route('admin.home') : route('penulis.home') }}" class="my-btn-login-success px-4 py-1 small shadow-sm rounded-3">{{ Auth::user()->name }}</a>
                     @else
                         <a href="/login" class="my-btn-login-success px-4 py-1 small shadow-sm rounded-3">Login</a>
                     @endauth
@@ -66,7 +68,7 @@
                         <div class="col-lg-2 col-sm-6">
                             <h3 class="my-text-white">Quick Links</h3>
                             <ul class="footer-links">
-                                <li><a href="/home"><i class="fas fa-chevron-right"></i> Home</a>
+                                <li><a href="/"><i class="fas fa-chevron-right"></i> Home</a>
                                 </li>
                                 <li><a href="/berita"><i class="fas fa-chevron-right"></i> Berita</a>
                                 </li>
@@ -107,7 +109,7 @@
         <div class="copyright pt-3 mt-5">
             <div class="container">
                 <div class="d-flex justify-content-center">
-                    <p>Copyright &copy; 2021 BLK Provinsi Gorontalo. All Rights Reserved.</p>
+                    <p>Copyright &copy; {{ \Carbon\Carbon::now()->isoFormat('Y') }} BLK Provinsi Gorontalo. All Rights Reserved.</p>
                 </div>
             </div>
         </div>
@@ -118,6 +120,8 @@
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <!-- Bootstrap JS -->
     <script src="{{ asset('assets/front/js/bootstrap/bootstrap.bundle.min.js') }}"></script>
+    {{-- Plugin JS --}}
+    <script src="{{ asset('assets/js/jquery.magnific-popup.min.js') }}"></script>
     <!-- Custom JS -->
     <script src="{{ asset('assets/front/js/custom.js') }}"></script>
     <script>
@@ -136,6 +140,13 @@
             $('html, body').animate({
                 scrollTop: 0
             }, 0);
+        });
+
+        $(document).ready(function() {
+            $('.img-link-popup').magnificPopup({
+                delegate: 'a',
+                type: 'image',
+            });
         });
     </script>
 </body>

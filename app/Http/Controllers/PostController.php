@@ -19,8 +19,13 @@ class PostController extends Controller
      */
     public function index()
     {
-        $post = Posts::latest()->paginate(10);
-        return view('admin.post.index', compact('post'));
+        if (Auth::user()->roles == 1) {
+            $post = Posts::latest()->get();
+            return view('admin.post.index', compact('post'));
+        } else {
+            $post = Posts::where('user_id', Auth::user()->id)->latest()->get();
+            return view('penulis.post.index', compact('post'));
+        }
     }
 
     /**
@@ -32,7 +37,12 @@ class PostController extends Controller
     {
         $category = Category::all();
         $tags = Tags::all();
-        return view('admin.post.create', compact('category','tags'));
+
+        if (Auth::user()->roles == 1) {
+            return view('admin.post.create', compact('category','tags'));
+        } else {
+            return view('penulis.post.create', compact('category','tags'));
+        }
     }
 
     /**
@@ -68,7 +78,11 @@ class PostController extends Controller
 
         session()->flash('success', 'Post created successfully.');
 
-        return redirect('admin/post');
+        if (Auth::user()->roles == 1) {
+            return redirect()->route('post.index');
+        } else {
+            return redirect()->route('penulis.post.index');
+        }
     }
 
     /**
@@ -93,7 +107,12 @@ class PostController extends Controller
         $post = Posts::findorfail($id);
         $category = Category::all();
         $tags = Tags::all();
-        return view('admin.post.edit', compact('post','category','tags'));
+
+        if (Auth::user()->roles == 1) {
+            return view('admin.post.edit', compact('post','category','tags'));
+        } else {
+            return view('penulis.post.edit', compact('post','category','tags'));
+        }
     }
 
     /**
@@ -144,7 +163,11 @@ class PostController extends Controller
 
         session()->flash('success', 'Post updated successfully.');
 
-        return redirect('admin/post');
+        if (Auth::user()->roles == 1) {
+            return redirect()->route('post.index');
+        } else {
+            return redirect()->route('penulis.post.index');
+        }
     }
 
     /**
@@ -160,13 +183,22 @@ class PostController extends Controller
 
         session()->flash('success', 'Post deleted successfully. Check recycle bin.');
 
-        return redirect('admin/post');
+        if (Auth::user()->roles == 1) {
+            return redirect()->route('post.index');
+        } else {
+            return redirect()->route('penulis.post.index');
+        }
     }
 
     public function recyclebin()
     {
-        $post = Posts::onlyTrashed()->paginate(10);
-        return view('admin.post.recyclebin', compact('post'));
+        if (Auth::user()->roles == 1) {
+            $post = Posts::onlyTrashed()->latest()->get();
+            return view('admin.post.recyclebin', compact('post'));
+        } else {
+            $post = Posts::onlyTrashed()->where('user_id', Auth::user()->id)->latest()->get();
+            return view('penulis.post.recyclebin', compact('post'));
+        }
     }
 
     public function restore($id)
@@ -176,7 +208,11 @@ class PostController extends Controller
 
         session()->flash('success', 'Post restored successfully. Check post page.');
 
-        return redirect('admin/post/recyclebin');
+        if (Auth::user()->roles == 1) {
+            return redirect()->route('post.recyclebin');
+        } else {
+            return redirect()->route('penulis.post.recyclebin');
+        }
     }
 
     public function deletePermanently(Request $request, $id)
@@ -190,7 +226,11 @@ class PostController extends Controller
 
         session()->flash('success', 'Post has been successfully deleted permanently.');
 
-        return redirect('admin/post/recyclebin');
+        if (Auth::user()->roles == 1) {
+            return redirect()->route('post.recyclebin');
+        } else {
+            return redirect()->route('penulis.post.recyclebin');
+        }
     }
 
 }

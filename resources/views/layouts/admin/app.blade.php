@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ $title }} - Administration Area</title>
+    <title>{{ $title }} - {{ (Auth::check()) ? ((Auth::user()->roles == 1) ? 'Admin' : 'Author') : 'Login'  }} Area</title>
 
     <link rel="shortcut icon" href="{{ asset('assets/img/logo-pemprov.png') }}" type="image/x-icon">
 
@@ -20,6 +20,8 @@
 
     <!-- CSS Libraries -->
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('assets/css/datatables.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/dataTables.bootstrap4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/magnific-popup.css') }}">
 
@@ -46,7 +48,7 @@
 
                 <footer class="main-footer">
                     <div class="footer-left">
-                        Copyright &copy; 2021 <div class="bullet"></div> BLK Provinsi Gorontalo
+                        Copyright &copy; {{ \Carbon\Carbon::now()->isoFormat('Y') }} <div class="bullet"></div> BLK Provinsi Gorontalo
                     </div>
                     <div class="footer-right">
                         1.0
@@ -75,6 +77,8 @@
 
     <!-- JS Libraies -->
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
+    <script src="{{ asset('assets/js/datatables.min.js') }}"></script>
+    <script src="{{ asset('assets/js/dataTables.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('assets/js/select2.full.min.js') }}"></script>
     <script src="{{ asset('assets/js/jquery.magnific-popup.min.js') }}"></script>
     <script src="{{ asset('assets/js/jquery.pwstrength.min.js') }}"></script>
@@ -98,6 +102,7 @@
                 type: 'image',
             });
         });
+        $(".data-table").dataTable();
         $(".pwstrength").pwstrength();
     </script>
 </body>

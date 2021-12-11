@@ -15,10 +15,10 @@
             <div class="col">
                 <div class="card">
                     <div class="card-body">
-                        <a href="{{ route('post.index') }}" class="btn btn-secondary mb-4"><i
+                        <a href="{{ route('penulis.post.index') }}" class="btn btn-secondary mb-4"><i
                                 class="fas fa-arrow-circle-left"></i> Back to Post</a>
                         <div class="table-responsive">
-                            <table class="table table-striped table-md table-bordered">
+                            <table class="table table-striped table-md table-bordered data-table">
                                 <thead>
                                     <tr align="center">
                                         <th>#</th>
@@ -36,13 +36,6 @@
                                             <td align="center" style="vertical-align: middle">{{ $loop->iteration }}</td>
                                             <td style="vertical-align: middle">{{ $hasil->judul }}</td>
                                             <td style="vertical-align: middle">{{ $hasil->category->name }}</td>
-                                            {{-- <td>
-                                                <ul>
-                                                    @foreach ($hasil->tags as $tag)
-                                                        <li>{{ $tag->name }}</li>
-                                                    @endforeach
-                                                </ul>
-                                            </td> --}}
                                             <td>{{ $hasil->created_at->isoFormat('LLLL') }}</td>
                                             <td align="center" style="vertical-align: middle">
                                                 <div class="image-link">
@@ -53,8 +46,8 @@
                                             </td>
                                             <td align="center" style="vertical-align: middle">{{ $hasil->user->name }}</td>
                                             <td align="center" style="vertical-align: middle">
-                                                <form action="{{ route('post.deletepermanently', $hasil->id) }}" method="POST">
-                                                    <a href="{{ route('post.restore', $hasil->id) }}" class="btn btn-warning" title="Restore"><i class="fas fa-trash-restore"></i></a>
+                                                <form action="{{ route('penulis.post.deletepermanently', $hasil->id) }}" method="POST">
+                                                    <a href="{{ route('penulis.post.restore', $hasil->id) }}" class="btn btn-warning" title="Restore"><i class="fas fa-trash-restore"></i></a>
                                                     @csrf
                                                     @method('delete')
                                                     <input type="hidden" name="gambar" value="{{ $hasil->gambar }}">

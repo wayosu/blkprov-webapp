@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class IsAdmin
+class IsAuthor
 {
     /**
      * Handle an incoming request.
@@ -17,12 +17,12 @@ class IsAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::user()->roles == 1) {
+        if (Auth::user()->roles == 0) {
             return $next($request);
-        } else if (Auth::user()->roles == 0) {
-            return redirect('/penulis');
+        } else if (Auth::user()->roles == 1) {
+            return redirect('/admin');
         }
 
-        return redirect('/')->with('error',"You don't have admin access.");
+        return redirect('/')->with('error',"You don't have author access.");
     }
 }

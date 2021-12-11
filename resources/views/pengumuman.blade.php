@@ -20,41 +20,45 @@
                         <div class="dropdown-divider"></div>
                     </div>
                     <div class="row gy-4 mb-4">
-                        @foreach ($data_pengumuman as $pengumuman)
-                            <div class="col-12 col-md-6 col-lg-4">
-                                <a href="/pengumuman/{{ $pengumuman->slug }}" class="text-decoration-none text-black">
-                                    <div class="card border-0 rounded-3 shadow-sm overflow-hidden">
-                                        <div class="figure text-center rounded-0">
-                                            <img class="card-img-top rounded-3 my-img-zoom"
-                                                src="{{ asset('assets/front/images/announcement.png') }}" alt="Card image cap"
-                                                style="width: 100px; height:100px; object-fit: cover;transform: scale(0.6);">
-                                        </div>
-                                        <div class="card-body py-3">
-                                            <h5 class="card-title mb-1 my-card-title fw-normal">
-                                                {{ $pengumuman->judul }}
-                                            </h5>
-                                            <p class="fw-bold small mt-0 mb-1">
-                                                <small>
-                                                    @if ($pengumuman->user_id == 1)
-                                                        <small>Admin</small>
-                                                    @else
-                                                        <small>{{ $pengumuman->user->name }}</small>
-                                                    @endif
+                        @if ($data_pengumuman->count())
+                            @foreach ($data_pengumuman as $pengumuman)
+                                <div class="col-12 col-md-6 col-lg-4">
+                                    <a href="/pengumuman/{{ $pengumuman->slug }}" class="text-decoration-none text-black">
+                                        <div class="card border-0 rounded-3 shadow-sm overflow-hidden">
+                                            <div class="figure text-center rounded-0">
+                                                <img class="card-img-top rounded-3 my-img-zoom"
+                                                    src="{{ asset('assets/front/images/announcement.png') }}" alt="Card image cap"
+                                                    style="width: 100px; height:100px; object-fit: cover;transform: scale(0.6);">
+                                            </div>
+                                            <div class="card-body py-3">
+                                                <h5 class="card-title mb-1 my-card-title fw-normal">
+                                                    {{ $pengumuman->judul }}
+                                                </h5>
+                                                <p class="fw-bold small mt-0 mb-1">
                                                     <small>
-                                                        <span class="fw-light text-muted">-
-                                                            {{ $pengumuman->created_at->diffForHumans() }}
-                                                        </span>
+                                                        @if ($pengumuman->user_id == 1)
+                                                            <small>Admin</small>
+                                                        @else
+                                                            <small>{{ $pengumuman->user->name }}</small>
+                                                        @endif
+                                                        <small>
+                                                            <span class="fw-light text-muted">-
+                                                                {{ $pengumuman->created_at->diffForHumans() }}
+                                                            </span>
+                                                        </small>
                                                     </small>
-                                                </small>
-                                            </p>
-                                            <p class="m-0 text-secondary small">
-                                                {{ \Illuminate\Support\Str::limit(strip_tags($pengumuman->isi), 150, '...') }}
-                                            </p>
+                                                </p>
+                                                <p class="m-0 text-secondary small">
+                                                    {{ \Illuminate\Support\Str::limit(strip_tags($pengumuman->isi), 150, '...') }}
+                                                </p>
+                                            </div>
                                         </div>
-                                    </div>
-                                </a>
-                            </div>
-                        @endforeach
+                                    </a>
+                                </div>
+                            @endforeach
+                        @else
+                            <p class="mt-5 text-center fs-6">Pengumuman tidak ditemukan.</p>
+                        @endif
                     </div>
                     {{ $data_pengumuman->links() }}
                 </div>

@@ -243,6 +243,30 @@ body {
     margin-bottom: .125rem;
 }
 
+.my-overflow-x {
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.my-overflow-x::-webkit-scrollbar {
+    height: 13px;
+}
+
+.my-overflow-x::-webkit-scrollbar-track {
+    background-color: #eee;
+    border-radius: 100px;
+}
+
+.my-overflow-x::-webkit-scrollbar-thumb {
+    border: 3px solid #eee;
+    border-radius: 12px;
+	background-color: #808080;
+}
+
+.my-overflow-x::-webkit-scrollbar-thumb:hover {
+    background: #9c9c9c;
+}
+
 /* Hero Content */
 
 .my-content-card {

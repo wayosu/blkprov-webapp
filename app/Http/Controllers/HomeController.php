@@ -19,13 +19,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $data_pengumuman = Pengumuman::latest()->take(4)->get();
+        $data_pengumuman = Pengumuman::with(['user'])->latest()->take(4)->get();
         $data_hero = Posts::orderBy('created_at', 'DESC')->take(5)->get();
         $data_heroLeft = $data_hero->splice(0, 1);
         $data_heroRight = $data_hero->splice(0, 4);
         
-        $data_terbaru = Posts::latest()->take(3)->get();
-        $data_galeri = Gallery::latest()->take(3)->get();
+        $data_terbaru = Posts::with(['user', 'category'])->latest()->take(3)->get();
+        $data_galeri = Gallery::with(['user'])->latest()->take(3)->get();
         $data_profile = Profile::findorfail(1);
         
         return view('home', compact('data_heroLeft', 'data_heroRight', 'data_terbaru', 'data_pengumuman', 'data_galeri', 'data_profile'));
@@ -141,11 +141,21 @@ class HomeController extends Controller
 
     public function indexGaleri()
     {
-        $data_pengumuman = Pengumuman::orderBy('created_at', 'DESC')->take(4)->get();
+        $data_pengumuman = Pengumuman::with(['user'])->latest()->take(4)->get();
         $data_profile = Profile::findorfail(1);
-        $data_berita = Posts::orderBy('created_at', 'DESC')->take(4)->get();
-        $data_galeri = Gallery::orderBy('created_at', 'DESC')->paginate(6);
+        $data_berita= Posts::with(['user', 'category'])->latest()->take(3)->get();
+        $data_galeri = Gallery::with(['user'])->latest()->filter(request(['search']))->paginate(6)->withQueryString();
 
         return view('galeri', compact('data_berita', 'data_profile', 'data_pengumuman', 'data_galeri'));
+    }
+
+    public function showGaleri(Gallery $gallery)
+    {
+        return view('galeri_isi', [
+            "title" => $gallery->judul,
+            "data_galeri" => $gallery,
+            "galeri_lainnya" => $gallery::where('id', '!=', $gallery->id)->latest()->take(3)->get(),
+            "data_profile" => Profile::findorfail(1)
+        ]);
     }
 }

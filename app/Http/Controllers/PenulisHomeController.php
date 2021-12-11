@@ -2,19 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Gallery;
-use App\Models\Pengumuman;
-use App\Models\Posts;
-use App\Models\User;
 use Illuminate\Http\Request;
 
-class AdminHomeController extends Controller
+class PenulisHomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
     public function __construct()
     {
         $this->middleware('auth');
@@ -26,15 +17,7 @@ class AdminHomeController extends Controller
      */
     public function index()
     {
-        return view('admin.home', [
-            "total_user" => User::count(),
-            "total_berita" => Posts::count(),
-            "total_pengumuman" => Pengumuman::count(),
-            "total_galeri" => Gallery::count(),
-            "berita_terbaru" => Posts::with(['user', 'category'])->latest()->take(5)->get(),
-            "pengumuman_terbaru" => Pengumuman::with(['user'])->latest()->take(5)->get(),
-            "galeri_tarbaru" => Gallery::with(['user'])->latest()->take(5)->get(),
-        ]);
+        return view('penulis.home');
     }
 
     /**
