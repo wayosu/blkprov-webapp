@@ -193,7 +193,7 @@
                                         @endforeach
                                     @else
                                         <tr>
-                                            <td colspan="4" align="center">Belum ada pengumuman yang terinput.</td>
+                                            <td colspan="4" align="center">Belum ada galeri yang terinput.</td>
                                         </tr>  
                                     @endif
                                 </tbody>

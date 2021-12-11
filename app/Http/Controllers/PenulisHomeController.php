@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Gallery;
+use App\Models\Pengumuman;
+use App\Models\Posts;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PenulisHomeController extends Controller
 {
@@ -17,7 +21,14 @@ class PenulisHomeController extends Controller
      */
     public function index()
     {
-        return view('penulis.home');
+        return view('penulis.home', [
+            "total_berita" => Posts::where('user_id', Auth::user()->id)->count(),
+            "total_pengumuman" => Pengumuman::where('user_id', Auth::user()->id)->count(),
+            "total_galeri" => Gallery::where('user_id', Auth::user()->id)->count(),
+            "berita_terbaru" => Posts::with(['user', 'category'])->where('user_id', Auth::user()->id)->latest()->take(5)->get(),
+            "pengumuman_terbaru" => Pengumuman::with(['user'])->where('user_id', Auth::user()->id)->latest()->take(5)->get(),
+            "galeri_tarbaru" => Gallery::with(['user'])->where('user_id', Auth::user()->id)->latest()->take(5)->get(),
+        ]);
     }
 
     /**

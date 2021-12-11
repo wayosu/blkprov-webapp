@@ -45,6 +45,12 @@
                     <span>Setting Profile</span></a>
                 </li>
             @endif
+            @if (Auth::user()->roles == 0)
+                <li><a class="nav-link" href="{{ route('penulis.account') }}">
+                    <i class="fas fa-cog"></i>
+                    <span>Setting Account</span></a>
+                </li>
+            @endif
         </ul>
     </aside>
 </div>

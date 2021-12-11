@@ -4,7 +4,7 @@
     <div class="section-header">
         <h1>Create Post</h1>
         <div class="section-header-breadcrumb">
-            <div class="breadcrumb-item"><a href="{{ route('post.index') }}">Post</a></div>
+            <div class="breadcrumb-item"><a href="{{ route('penulis.post.index') }}">Post</a></div>
             <div class="breadcrumb-item">Create Post</div>
         </div>
     </div>

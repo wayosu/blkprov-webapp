@@ -17,8 +17,13 @@ class PengumumanController extends Controller
      */
     public function index()
     {
-        $pengumuman = Pengumuman::paginate(10);
-        return view('admin.pengumuman.index', compact('pengumuman'));
+        if (Auth::user()->roles == 1) {
+            $pengumuman = Pengumuman::latest()->get();
+            return view('admin.pengumuman.index', compact('pengumuman'));
+        } else {
+            $pengumuman = Pengumuman::where('user_id', Auth::user()->id)->latest()->get();
+            return view('penulis.pengumuman.index', compact('pengumuman'));
+        }
     }
 
     /**
@@ -28,7 +33,11 @@ class PengumumanController extends Controller
      */
     public function create()
     {
-        return view('admin.pengumuman.create');
+        if (Auth::user()->roles == 1) {
+            return view('admin.pengumuman.create');
+        } else {
+            return view('penulis.pengumuman.create');
+        }
     }
 
     /**
@@ -53,7 +62,11 @@ class PengumumanController extends Controller
 
         session()->flash('success', 'Pengumuman created successfully');
 
-        return redirect('admin/pengumuman');
+        if (Auth::user()->roles == 1) {
+            return redirect()->route('pengumuman.index');
+        } else {
+            return redirect()->route('penulis.pengumuman.index');
+        }
     }
 
     /**
@@ -76,7 +89,12 @@ class PengumumanController extends Controller
     public function edit($id)
     {
         $pengumuman = Pengumuman::findorfail($id);
-        return view('admin.pengumuman.edit', compact('pengumuman'));
+
+        if (Auth::user()->roles == 1) {
+            return view('admin.pengumuman.edit', compact('pengumuman'));
+        } else {
+            return view('penulis.pengumuman.edit', compact('pengumuman'));
+        }
     }
 
     /**
@@ -103,7 +121,11 @@ class PengumumanController extends Controller
 
         session()->flash('success', 'Pengumuman successfully updated');
 
-        return redirect('admin/pengumuman');
+        if (Auth::user()->roles == 1) {
+            return redirect()->route('pengumuman.index');
+        } else {
+            return redirect()->route('penulis.pengumuman.index');
+        }
     }
 
     /**
@@ -119,13 +141,22 @@ class PengumumanController extends Controller
 
         session()->flash('success', 'Pengumuman deleted successfully. Check recycle bin.');
 
-        return redirect('admin/pengumuman');
+        if (Auth::user()->roles == 1) {
+            return redirect()->route('pengumuman.index');
+        } else {
+            return redirect()->route('penulis.pengumuman.index');
+        }
     }
 
     public function recyclebin()
     {
-        $pengumuman = Pengumuman::onlyTrashed()->paginate(10);
-        return view('admin.pengumuman.recyclebin', compact('pengumuman'));
+        if (Auth::user()->roles == 1) {
+            $pengumuman = Pengumuman::onlyTrashed()->latest()->get();
+            return view('admin.pengumuman.recyclebin', compact('pengumuman'));
+        } else {
+            $pengumuman = Pengumuman::onlyTrashed()->where('user_id', Auth::user()->id)->latest()->get();
+            return view('penulis.pengumuman.recyclebin', compact('pengumuman'));
+        }
     }
 
     public function restore($id)
@@ -135,7 +166,11 @@ class PengumumanController extends Controller
 
         session()->flash('success', 'Post restored successfully. Check pengumuman page.');
 
-        return redirect('admin/pengumuman/recyclebin');
+        if (Auth::user()->roles == 1) {
+            return redirect()->route('pengumuman.recyclebin');
+        } else {
+            return redirect()->route('penulis.pengumuman.recyclebin');
+        }
     }
 
     public function deletePermanently(Request $request, $id)
@@ -145,6 +180,10 @@ class PengumumanController extends Controller
 
         session()->flash('success', 'Pengumuman has been successfully deleted permanently.');
 
-        return redirect('admin/pengumuman/recyclebin');
+        if (Auth::user()->roles == 1) {
+            return redirect()->route('pengumuman.recyclebin');
+        } else {
+            return redirect()->route('penulis.pengumuman.recyclebin');
+        }
     }
 }

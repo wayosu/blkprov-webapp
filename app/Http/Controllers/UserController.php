@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -14,8 +15,13 @@ class UserController extends Controller
      */
     public function index()
     {
-        $user = User::paginate(10);
-        return view('admin.user.index', compact('user'));
+        if (Auth::user()->roles == 1) {
+            $user = User::paginate(10);
+            return view('admin.user.index', compact('user'));
+        } else {
+            $user = User::findorfail(Auth::user()->id);
+            return view('penulis.account', compact('user'));
+        }
     }
 
     /**
@@ -92,22 +98,39 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'name' => ['required'],
-            'roles' => ['required']
-        ]);
-
-        if ($request->input('password')) {
-            $user_data = [
-                'name' => $request->name,
-                'roles' => $request->roles,
-                'password' => bcrypt($request->password)
-            ];
+        if (Auth::user()->roles == 1) {
+            $request->validate([
+                'name' => ['required'],
+                'roles' => ['required']
+            ]);
+    
+            if ($request->input('password')) {
+                $user_data = [
+                    'name' => $request->name,
+                    'roles' => $request->roles,
+                    'password' => bcrypt($request->password)
+                ];
+            } else {
+                $user_data = [
+                    'name' => $request->name,
+                    'roles' => $request->roles
+                ];
+            }
         } else {
-            $user_data = [
-                'name' => $request->name,
-                'roles' => $request->roles
-            ];
+            $request->validate([
+                'name' => ['required']
+            ]);
+    
+            if ($request->input('password')) {
+                $user_data = [
+                    'name' => $request->name,
+                    'password' => bcrypt($request->password)
+                ];
+            } else {
+                $user_data = [
+                    'name' => $request->name
+                ];
+            }
         }
 
         $user = User::findorfail($id);
@@ -115,7 +138,11 @@ class UserController extends Controller
 
         session()->flash('success', 'User updated successfully');
 
-        return redirect('admin/user');
+        if (Auth::user()->roles == 1) {
+            return redirect()->route('user.index');
+        } else {
+            return redirect()->route('penulis.account');
+        }
     }
 
     /**

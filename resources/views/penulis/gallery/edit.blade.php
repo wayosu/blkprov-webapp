@@ -4,7 +4,7 @@
     <div class="section-header">
         <h1>Edit Gallery</h1>
         <div class="section-header-breadcrumb">
-            <div class="breadcrumb-item"><a href="{{ route('gallery.index') }}">Gallery</a></div>
+            <div class="breadcrumb-item"><a href="{{ route('penulis.gallery.index') }}">Gallery</a></div>
             <div class="breadcrumb-item">Edit Gallery</div>
         </div>
     </div>
@@ -15,10 +15,10 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-body">
-                        <a href="{{ route('gallery.index') }}" class="btn btn-secondary mb-4"><i
+                        <a href="{{ route('penulis.gallery.index') }}" class="btn btn-secondary mb-4"><i
                                 class="fas fa-arrow-circle-left"></i> Back to Gallery</a>
 
-                        <form action="{{ route('gallery.update', $gallery->id) }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('penulis.gallery.update', $gallery->id) }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('put')
                             <div class="form-group">

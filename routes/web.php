@@ -81,8 +81,23 @@ Route::group(['middleware' => ['is_author', 'auth']], function () {
     Route::put('/penulis/post/update/{id}', [PostController::class, 'update'])->name('penulis.post.update');
     Route::delete('/penulis/post/destroy/{id}', [PostController::class, 'destroy'])->name('penulis.post.destroy');
     
-    // Route::resource('/penulis/pengumuman', PengumumanController::class);
+    Route::get('/penulis/pengumuman/recyclebin', [PengumumanController::class, 'recyclebin'])->name('penulis.pengumuman.recyclebin');
+    Route::get('/penulis/pengumuman/restore/{id}', [PengumumanController::class, 'restore'])->name('penulis.pengumuman.restore');
+    Route::delete('/penulis/pengumuman/deletepermanently/{id}', [PengumumanController::class, 'deletePermanently'])->name('penulis.pengumuman.deletepermanently');
     Route::get('/penulis/pengumuman', [PengumumanController::class, 'index'])->name('penulis.pengumuman.index');
-    // Route::resource('/penulis/gallery', GalleryController::class);
+    Route::get('/penulis/pengumuman/create', [PengumumanController::class, 'create'])->name('penulis.pengumuman.create');
+    Route::post('/penulis/pengumuman/store', [PengumumanController::class, 'store'])->name('penulis.pengumuman.store');
+    Route::get('/penulis/pengumuman/edit/{id}', [PengumumanController::class, 'edit'])->name('penulis.pengumuman.edit');
+    Route::put('/penulis/pengumuman/update/{id}', [PengumumanController::class, 'update'])->name('penulis.pengumuman.update');
+    Route::delete('/penulis/pengumuman/destroy/{id}', [PengumumanController::class, 'destroy'])->name('penulis.pengumuman.destroy');
+
     Route::get('/penulis/gallery', [GalleryController::class, 'index'])->name('penulis.gallery.index');
+    Route::get('/penulis/gallery/create', [GalleryController::class, 'create'])->name('penulis.gallery.create');
+    Route::post('/penulis/gallery/store', [GalleryController::class, 'store'])->name('penulis.gallery.store');
+    Route::get('/penulis/gallery/edit/{id}', [GalleryController::class, 'edit'])->name('penulis.gallery.edit');
+    Route::put('/penulis/gallery/update/{id}', [GalleryController::class, 'update'])->name('penulis.gallery.update');
+    Route::delete('/penulis/gallery/destroy/{id}', [GalleryController::class, 'destroy'])->name('penulis.gallery.destroy');
+
+    Route::get('/penulis/account', [UserController::class, 'index'])->name('penulis.account');
+    Route::put('/penulis/account/update/{id}', [UserController::class, 'update'])->name('penulis.account.update');
 });

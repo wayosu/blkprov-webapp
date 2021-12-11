@@ -4,7 +4,7 @@
     <div class="section-header">
         <h1>Create Pengumuman</h1>
         <div class="section-header-breadcrumb">
-            <div class="breadcrumb-item"><a href="{{ route('pengumuman.index') }}">Pengumuman</a></div>
+            <div class="breadcrumb-item"><a href="{{ route('penulis.pengumuman.index') }}">Pengumuman</a></div>
             <div class="breadcrumb-item">Create Pengumuman</div>
         </div>
     </div>
@@ -14,10 +14,10 @@
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-body">
-                        <a href="{{ route('pengumuman.index') }}" class="btn btn-secondary mb-4"><i
+                        <a href="{{ route('penulis.pengumuman.index') }}" class="btn btn-secondary mb-4"><i
                                 class="fas fa-arrow-circle-left"></i> Back to Pengumuman</a>
 
-                        <form action="{{ route('pengumuman.store') }}" method="POST">
+                        <form action="{{ route('penulis.pengumuman.store') }}" method="POST">
                             @csrf
                             <div class="form-group">
                                 <label>Judul</label>

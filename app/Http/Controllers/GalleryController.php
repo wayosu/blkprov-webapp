@@ -18,8 +18,13 @@ class GalleryController extends Controller
      */
     public function index()
     {
-        $gallery = Gallery::paginate(10);
-        return view('admin.gallery.index', compact('gallery'));
+        if (Auth::user()->roles == 1) {
+            $gallery = Gallery::paginate(10);
+            return view('admin.gallery.index', compact('gallery'));
+        } else {
+            $gallery = Gallery::where('user_id', Auth::user()->id)->latest()->get();
+            return view('penulis.gallery.index', compact('gallery'));
+        }
     }
 
     /**
@@ -29,7 +34,11 @@ class GalleryController extends Controller
      */
     public function create()
     {
-        return view('admin.gallery.create');
+        if (Auth::user()->roles == 1) {
+            return view('admin.gallery.create');
+        } else {
+            return view('penulis.gallery.create');
+        }
     }
 
     /**
@@ -75,7 +84,11 @@ class GalleryController extends Controller
 
         session()->flash('success', 'Gallery created successfully.');
 
-        return redirect('admin/gallery');
+        if (Auth::user()->roles == 1) {
+            return redirect()->route('gallery.index');
+        } else {
+            return redirect()->route('penulis.gallery.index');
+        }
     }
 
     /**
@@ -99,7 +112,12 @@ class GalleryController extends Controller
     {
         $gallery = Gallery::findorfail($id);
         $image = Image::all();
-        return view('admin.gallery.edit', compact('gallery', 'image'));
+
+        if (Auth::user()->roles == 1) {
+            return view('admin.gallery.edit', compact('gallery', 'image'));
+        } else {
+            return view('penulis.gallery.edit', compact('gallery', 'image'));
+        }
     }
 
     /**
@@ -185,7 +203,11 @@ class GalleryController extends Controller
 
         session()->flash('success', 'Gallery deleted successfully.');
 
-        return redirect('admin/gallery');
+        if (Auth::user()->roles == 1) {
+            return redirect()->route('gallery.index');
+        } else {
+            return redirect()->route('penulis.gallery.index');
+        }
     }
 
     public function deleteImage($id)
