@@ -3,6 +3,7 @@
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\KejuruanController;
 use App\Http\Controllers\PengumumanController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
@@ -62,7 +63,11 @@ Route::group(['middleware' => ['is_admin', 'auth']], function() {
 
     Route::delete('/admin/gallery/deleteimage/{id}', [GalleryController::class, 'deleteImage'])->name('gallery.deleteimage');
     Route::resource('/admin/gallery', GalleryController::class);
+
+    Route::resource('/admin/kejuruan', KejuruanController::class);
     
+    Route::get('/admin/account', [UserController::class, 'account'])->name('admin.account');
+    Route::put('/admin/account/update/{id}', [UserController::class, 'accountUpdate'])->name('admin.account.update');
     Route::resource('/admin/user', UserController::class);
 
     Route::resource('/admin/profile', ProfileController::class);

@@ -18,7 +18,7 @@
                         <a href="{{ route('post.index') }}" class="btn btn-secondary mb-4"><i
                                 class="fas fa-arrow-circle-left"></i> Back to Post</a>
                         <div class="table-responsive">
-                            <table class="table table-striped table-md table-bordered">
+                            <table class="table table-striped table-md table-bordered data-table">
                                 <thead>
                                     <tr align="center">
                                         <th>#</th>

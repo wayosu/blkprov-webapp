@@ -17,7 +17,7 @@
                         <a href="{{ route('user.create') }}" class="btn btn-primary mb-4"><i
                                 class="fas fa-plus-circle"></i> Create User</a>
                         <div class="table-responsive">
-                            <table class="table table-striped table-md table-bordered">
+                            <table class="table table-striped table-md table-bordered data-table">
                                 <thead>
                                     <tr align="center">
                                         <th>#</th>
@@ -30,7 +30,7 @@
                                 <tbody>
                                     @foreach ($user as $result => $hasil)
                                         <tr>
-                                            <td align="center" style="vertical-align: middle">{{ $result + $user->firstitem() }}</td>
+                                            <td align="center" style="vertical-align: middle">{{ $loop->iteration }}</td>
                                             <td style="vertical-align: middle">{{ $hasil->name }}</td>
                                             <td style="vertical-align: middle">{{ $hasil->email }}</td>
                                             <td align="center" style="vertical-align: middle">
@@ -54,7 +54,6 @@
                                 </tbody>
                             </table>
                         </div>
-                        {{ $user->links() }}
                     </div>
                 </div>
             </div>

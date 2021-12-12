@@ -18,22 +18,22 @@
                         <a href="{{ route('pengumuman.index') }}" class="btn btn-secondary mb-4"><i
                                 class="fas fa-arrow-circle-left"></i> Back to Pengumuman</a>
                         <div class="table-responsive">
-                            <table class="table table-striped table-md table-bordered">
+                            <table class="table table-striped table-md table-bordered data-table">
                                 <thead>
                                     <tr align="center">
                                         <th width="3%">#</th>
                                         <th width="35%">Pengumuman</th>
-                                        <th width="35%">Isi</th>
-                                        <th width="15%">Penulis</th>
+                                        <th width="30%">Tanggal Buat</th>
+                                        <th width="20%">Penulis</th>
                                         <th width="12%">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($pengumuman as $result => $hasil)
                                         <tr>
-                                            <td align="center" style="vertical-align: middle">{{ $result + $pengumuman->firstitem() }}</td>
+                                            <td align="center" style="vertical-align: middle">{{ $loop->iteration }}</td>
                                             <td style="vertical-align: middle">{{ $hasil->judul }}</td>
-                                            <td style="vertical-align: middle">{{ \Illuminate\Support\Str::limit(strip_tags($hasil->isi), 150, '...') }}</td>
+                                            <td style="vertical-align: middle">{{ $hasil->created_at->isoFormat('LLLL') }}</td>  
                                             <td align="center" style="vertical-align: middle">{{ $hasil->user->name }}</td>
                                             <td align="center" style="vertical-align: middle">
                                                 <form action="{{ route('pengumuman.deletepermanently', $hasil->id) }}" method="POST">
@@ -48,7 +48,6 @@
                                 </tbody>
                             </table>
                         </div>
-                        {{ $pengumuman->links() }}
                     </div>
                 </div>
             </div>

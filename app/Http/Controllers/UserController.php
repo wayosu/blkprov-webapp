@@ -16,7 +16,7 @@ class UserController extends Controller
     public function index()
     {
         if (Auth::user()->roles == 1) {
-            $user = User::paginate(10);
+            $user = User::where('roles', '!=', Auth::user()->roles == 1)->orWhere('id', '!=', 1)->latest()->get();
             return view('admin.user.index', compact('user'));
         } else {
             $user = User::findorfail(Auth::user()->id);
@@ -159,5 +159,36 @@ class UserController extends Controller
         session()->flash('success', 'User deleted successfully');
 
         return redirect('admin/user');
+    }
+
+    public function account()
+    {
+        $user = User::findorfail(Auth::user()->id);
+        return view('admin.account', compact('user'));
+    }
+
+    public function accountUpdate(Request $request, $id)
+    {
+        $request->validate([
+            'name' => ['required']
+        ]);
+
+        if ($request->input('password')) {
+            $user_data = [
+                'name' => $request->name,
+                'password' => bcrypt($request->password)
+            ];
+        } else {
+            $user_data = [
+                'name' => $request->name
+            ];
+        }
+
+        $user = User::findorfail($id);
+        $user->update($user_data);
+
+        session()->flash('success', 'Account updated successfully');
+        
+        return redirect()->route('admin.account');
     }
 }

@@ -158,4 +158,9 @@ class HomeController extends Controller
             "data_profile" => Profile::findorfail(1)
         ]);
     }
+
+    public function indexKejuruan()
+    {
+        return view('kejuruan');
+    }
 }

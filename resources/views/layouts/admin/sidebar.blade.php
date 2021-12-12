@@ -35,14 +35,22 @@
                 <i class="fas fa-image"></i>
                 <span>Gallery</span></a>
             </li>
-            @if (Auth::user()->roles == 1)                
+            @if (Auth::user()->roles == 1)
+                <li><a class="nav-link" href="{{ route('kejuruan.index') }}">
+                    <i class="fas fa-shapes"></i>
+                    <span>Kejuruan</span></a>
+                </li>                
                 <li><a class="nav-link" href="{{ route('user.index') }}">
                     <i class="fas fa-user"></i>
                     <span>Users</span></a>
                 </li>
                 <li><a class="nav-link" href="{{ route('profile.index') }}">
+                    <i class="fas fa-building"></i>
+                    <span>Profile</span></a>
+                </li>
+                <li><a class="nav-link" href="{{ route('admin.account') }}">
                     <i class="fas fa-cog"></i>
-                    <span>Setting Profile</span></a>
+                    <span>Setting Account</span></a>
                 </li>
             @endif
             @if (Auth::user()->roles == 0)
