@@ -162,6 +162,18 @@ body {
     color: var(--white);
 }
 
+.my-btn-info {
+    background: var(--secondary);
+    color: var(--white);
+    transition: .3s ease-in-out;
+    box-shadow: 1px 1px 1px 1px var(--black);
+}
+
+.my-btn-info:hover {
+    background: var(--danger);
+    color: var(--white);
+}
+
 .my-bg-gradient {
     background: linear-gradient(to right,#82009f 0%,#5d34af 50%,#00ceab 100%);
 }

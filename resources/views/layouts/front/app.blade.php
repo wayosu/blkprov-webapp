@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ $title }} Balai Latihan Kerja Provinsi Gorontalo</title>
+    <title>{{ $title }} UPTD BLK LATRANS Provinsi Gorontalo</title>
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="{{ asset('assets/front/images/logo-pemprov.png') }}" type="image/x-icon">
@@ -29,10 +29,10 @@
                 <p class="m-0 small text-white">
                     {{ \Carbon\Carbon::now()->isoFormat('dddd, D MMMM Y') }}
                 </p>
-                <p class="d-none d-md-block m-0 small text-white text-uppercase">Balai Latihan Kerja Provinsi Gorontalo</p>
+                <p class="d-none d-md-block m-0 small text-white text-uppercase">UPTD BLK LATRANS Provinsi Gorontalo</p>
                 @if (Route::has('login'))
                     @auth
-                        <a href="{{ (Auth::user()->roles == 1) ? route('admin.home') : route('penulis.home') }}" class="my-btn-login-success px-4 py-1 small shadow-sm rounded-3">{{ Auth::user()->name }}</a>
+                        <a href="{{ (Auth::user()->roles == 1) ? route('admin.home') : route('penulis.home') }}" class="my-btn-login-success px-4 py-1 small shadow-sm rounded-3">{{ \Illuminate\Support\Str::limit(strip_tags(Auth::user()->name), 10, '..') }}</a>
                     @else
                         <a href="/login" class="my-btn-login-success px-4 py-1 small shadow-sm rounded-3">Login</a>
                     @endauth
@@ -109,7 +109,7 @@
         <div class="copyright pt-3 mt-5">
             <div class="container">
                 <div class="d-flex justify-content-center">
-                    <p>Copyright &copy; {{ \Carbon\Carbon::now()->isoFormat('Y') }} BLK Provinsi Gorontalo. All Rights Reserved.</p>
+                    <p>Copyright &copy; {{ \Carbon\Carbon::now()->isoFormat('Y') }} UPTD BLK LATRANS PROVINSI GORONTALO. All Rights Reserved.</p>
                 </div>
             </div>
         </div>

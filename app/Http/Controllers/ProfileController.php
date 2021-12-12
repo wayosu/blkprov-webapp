@@ -75,7 +75,9 @@ class ProfileController extends Controller
         $request->validate([
             'profile' => ['required'],
             'visimisi' => ['required'],
-            'sambutan' => ['required']
+            'sambutan' => ['required'],
+            'struktur' => ['mimes:png,jpg,jpeg|max:2048'],
+            'kurikulum' => ['mimes:pdf,xlsx,xls,xlx|max:2048'],
         ]);
 
         $profile = Profile::findorfail($id);
@@ -89,7 +91,7 @@ class ProfileController extends Controller
             $struktur = $request->struktur;
             $new_struktur = time().$struktur->getClientOriginalName();
             $struktur->move('uploads/other/', $new_struktur);
-            
+
             $profile_data = [
                 'profile' => $request->profile,
                 'visimisi' => $request->visimisi,
@@ -119,6 +121,23 @@ class ProfileController extends Controller
         }
 
         $profile->update($profile_data);
+
+        if ($request->has('kurikulum')) {
+            $destination_kuri = $request->kurikulum_lama;
+            if (File::exists($destination_kuri)) {
+                File::delete($destination_kuri);
+            }
+
+            $kurikulum = $request->kurikulum;
+            $new_kurikulum = time().$kurikulum->getClientOriginalName();
+            $kurikulum->move('uploads/other/', $new_kurikulum);
+
+            $kurikulum_data = [
+                'kurikulum' => 'uploads/other/'.$new_kurikulum
+            ];
+
+            $profile->update($kurikulum_data);
+        }
 
         session()->flash('success', 'Profile updated successfully.');
 

@@ -48,7 +48,7 @@
 
                 <footer class="main-footer">
                     <div class="footer-left">
-                        Copyright &copy; {{ \Carbon\Carbon::now()->isoFormat('Y') }} <div class="bullet"></div> BLK Provinsi Gorontalo
+                        Copyright &copy; {{ \Carbon\Carbon::now()->isoFormat('Y') }} <div class="bullet"></div> UPTD BLK LATRANS PROVINSI GORONTALO
                     </div>
                     <div class="footer-right">
                         1.0

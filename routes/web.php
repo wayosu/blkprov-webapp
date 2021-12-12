@@ -43,6 +43,7 @@ Route::get('/galeri', [HomeController::class, 'indexGaleri']);
 Route::get('/galeri/{gallery:slug}', [HomeController::class, 'showGaleri']);
 
 Route::get('/kejuruan', [HomeController::class, 'indexKejuruan']);
+Route::get('/downloadkurikulum', [HomeController::class, 'downloadKurikulum']);
 
 Route::group(['middleware' => ['is_admin', 'auth']], function() {
     Route::get('/admin', [App\Http\Controllers\AdminHomeController::class, 'index'])->name('admin.home');

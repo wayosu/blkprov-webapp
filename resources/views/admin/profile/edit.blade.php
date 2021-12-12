@@ -35,11 +35,23 @@
                                     </div>
                                     <div class="form-group overflow-hidden">
                                         <label>Struktur Organisasi</label>
-                                        <div class="mb-2">
-                                            <img src="{{ asset($profile->struktur) }}" alt="struktur" width="50%">
-                                        </div>
                                         <input type="hidden" name="struktur_lama" value="{{ $profile->struktur }}">
-                                        <input type="file" name="struktur" class="form-control-file">
+                                        <input type="file" name="struktur" class="form-control-file @error('struktur') is-invalid @enderror">
+                                        @error('struktur')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group overflow-hidden">
+                                        <label>Kurikulum</label>
+                                        <input type="hidden" name="kurikulum_lama" value="{{ $profile->kurikulum }}">
+                                        <input type="file" name="kurikulum" class="form-control-file @error('kurikulum') is-invalid @enderror">
+                                        @error('kurikulum')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="col-md-6">

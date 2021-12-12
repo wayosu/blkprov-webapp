@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Gallery;
+use App\Models\Kejuruan;
 use App\Models\Pengumuman;
 use Illuminate\Http\Request;
 use App\Models\Posts;
@@ -161,6 +162,21 @@ class HomeController extends Controller
 
     public function indexKejuruan()
     {
-        return view('kejuruan');
+        return view('kejuruan', [
+            "title" => 'Kejuruan',
+            "data_kejuruan" => Kejuruan::latest()->filter(request(['search']))->paginate(6)->withQueryString(),
+            "data_berita" => Posts::with(['user', 'category'])->latest()->take(3)->get(),
+            "data_pengumuman" => Pengumuman::with(['user'])->latest()->take(4)->get(),
+            "data_galeri" => Gallery::with(['user'])->latest()->take(3)->get(),
+            "data_profile" => Profile::findorfail(1)
+        ]);
+    }
+
+    public function downloadKurikulum()
+    {
+        $profile = Profile::findorfail(1);
+        $file = public_path($profile->kurikulum);
+
+        return response()->download($file);
     }
 }

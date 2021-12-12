@@ -107,7 +107,7 @@
                             <h6 class="font-weight-bold mb-1">Kata Sambutan</h6>
                             <p class="text-justify">{{ $profile->sambutan }}</p>
                         </div>
-                        <div class="form-group overflow-hidden mb-0">
+                        <div class="form-group overflow-hidden">
                             <h6 class="font-weight-bold mb-1">Struktur Organisasi</h6>
                             <div class="image-link">
                                 <a href="{{ asset($profile->struktur) }}" class="btn btn-secondary"
@@ -115,6 +115,13 @@
                                     <i class="fas fa-image"></i>
                                 </a>
                             </div>
+                        </div>
+                        <div class="form-group overflow-hidden mb-0">
+                            <h6 class="font-weight-bold mb-1">Kurikulum</h6>
+                            <a href="{{ asset($profile->kurikulum) }}" class="btn btn-secondary"
+                                target="_blank">
+                                <i class="fas fa-download"></i>
+                            </a>
                         </div>
                     </div>
                 </div>

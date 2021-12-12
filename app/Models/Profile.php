@@ -20,6 +20,7 @@ class Profile extends Model
         'youtube',
         'alamat',
         'telepon',
-        'map'
+        'map',
+        'kurikulum'
     ];
 }
