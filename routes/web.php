@@ -7,6 +7,7 @@ use App\Http\Controllers\KejuruanController;
 use App\Http\Controllers\PengumumanController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SubKejuruanController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
@@ -43,6 +44,7 @@ Route::get('/galeri', [HomeController::class, 'indexGaleri']);
 Route::get('/galeri/{gallery:slug}', [HomeController::class, 'showGaleri']);
 
 Route::get('/kejuruan', [HomeController::class, 'indexKejuruan']);
+Route::get('/kurikulum', [HomeController::class, 'indexKurikulum']);
 Route::get('/downloadkurikulum', [HomeController::class, 'downloadKurikulum']);
 
 Route::group(['middleware' => ['is_admin', 'auth']], function() {
@@ -66,6 +68,7 @@ Route::group(['middleware' => ['is_admin', 'auth']], function() {
     Route::resource('/admin/gallery', GalleryController::class);
 
     Route::resource('/admin/kejuruan', KejuruanController::class);
+    Route::resource('/admin/subkejuruan', SubKejuruanController::class);
     
     Route::get('/admin/account', [UserController::class, 'account'])->name('admin.account');
     Route::put('/admin/account/update/{id}', [UserController::class, 'accountUpdate'])->name('admin.account.update');

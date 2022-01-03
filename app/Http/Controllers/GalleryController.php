@@ -19,7 +19,7 @@ class GalleryController extends Controller
     public function index()
     {
         if (Auth::user()->roles == 1) {
-            $gallery = Gallery::paginate(10);
+            $gallery = Gallery::latest()->get();
             return view('admin.gallery.index', compact('gallery'));
         } else {
             $gallery = Gallery::where('user_id', Auth::user()->id)->latest()->get();

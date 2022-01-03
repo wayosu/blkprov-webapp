@@ -9,140 +9,57 @@
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="{{ asset('assets/front/images/logo-pemprov.png') }}" type="image/x-icon">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="{{ asset('assets/front/css/bootstrap/bootstrap.min.css') }}">
-    <!-- Font Awesome CSS -->
-    <link rel="stylesheet" href="{{ asset('assets/front/css/font-awesome/all.css') }}">
-    {{-- Plugin CSS--}}
-    <link rel="stylesheet" href="{{ asset('assets/css/magnific-popup.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <!-- Plugin CSS -->
+    <link rel="stylesheet" href="{{ asset('assets/front/css/owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/front/css/magnific-popup.css') }}">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ asset('assets/front/css/custom.css') }}">
 </head>
 
 <body>
-    <button type="button" id="backToTop" class="btn my-btn-transparent text-white"><i
-            class="fas fa-chevron-up"></i></button>
-
-    <div class="py-1 my-bg-gradient">
-        <div class="container">
-            <div class="d-flex justify-content-between align-items-center py-1 small">
-                <p class="m-0 small text-white">
-                    {{ \Carbon\Carbon::now()->isoFormat('dddd, D MMMM Y') }}
-                </p>
-                <p class="d-none d-md-block m-0 small text-white text-uppercase">UPTD BLK LATRANS Provinsi Gorontalo</p>
-                @if (Route::has('login'))
-                    @auth
-                        <a href="{{ (Auth::user()->roles == 1) ? route('admin.home') : route('penulis.home') }}" class="my-btn-login-success px-4 py-1 small shadow-sm rounded-3">{{ \Illuminate\Support\Str::limit(strip_tags(Auth::user()->name), 10, '..') }}</a>
-                    @else
-                        <a href="/login" class="my-btn-login-success px-4 py-1 small shadow-sm rounded-3">Login</a>
-                    @endauth
-                @endif
-            </div>
-        </div>
-    </div>
+    @include('layouts.front.header')
 
     @include('layouts.front.navbar')
 
-    <div class="my-content">
-        @yield('content')
-    </div>
+    @yield('content')
 
-    <footer>
-        <div class="container">
-            <div class="footer-wrap">
-                <div class="second_class">
-                    <div class="row">
-                        <div class="col-lg-4 col-sm-6">
-                            <div class="d-flex align-items-center">
-                                <img src="{{ asset('assets/front/images/logo-pemprov.png') }}" alt="logo" width="40">
-                                <h3 class="ms-2 fw-bold text-uppercase text-white">Balai Latihan Kerja Provinsi
-                                    Gorontalo</h3>
-                            </div>
-
-                            <p>
-                                Alamat :
-                                {{ $data_profile->alamat }}
-                            </p>
-                            <p>Telp : {{ $data_profile->telepon }}</p>
-                        </div>
-                        <div class="col-lg-2 col-sm-6">
-                            <h3 class="my-text-white">Quick Links</h3>
-                            <ul class="footer-links">
-                                <li><a href="/"><i class="fas fa-chevron-right"></i> Home</a>
-                                </li>
-                                <li><a href="/berita"><i class="fas fa-chevron-right"></i> Berita</a>
-                                </li>
-                                <li><a href="/pengumuman"><i class="fas fa-chevron-right"></i> Pengumuman</a>
-                                </li>
-                                <li><a href="/galeri"><i class="fas fa-chevron-right"></i> Galeri</a>
-                                </li>
-                                <li><a href="/kejuruan"><i class="fas fa-chevron-right"></i> Kejuruan</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="col-lg-2 col-sm-6">
-                            <h3 class="my-text-white">Profile BLK</h3>
-                            <ul class="footer-category">
-                                <li><a href="/profile"><i class="fas fa-chevron-right"></i> Profile</a>
-                                </li>
-                                <li><a href="/visimisi"><i class="fas fa-chevron-right"></i> Visi & Misi</a>
-                                </li>
-                                <li><a href="/sambutankepala"><i class="fas fa-chevron-right"></i> Sambutan Kepala</a>
-                                </li>
-                                <li><a href="/strukturorganisasi"><i class="fas fa-chevron-right"></i> Struktur Organisasi</a>
-                                </li>
-                            </ul>
-                            <div class="clearfix"></div>
-                        </div>
-                        <div class="col-lg-4 col-sm-6">
-                            <h3 class="my-text-white">Maps</h3>
-                            <iframe
-                                src="{{ $data_profile->map }}"
-                                width="100%" height="200" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-        {{-- <div class="my-border-bottom-primary"></div> --}}
-        <div class="copyright pt-3 mt-5">
-            <div class="container">
-                <div class="d-flex justify-content-center">
-                    <p>Copyright &copy; {{ \Carbon\Carbon::now()->isoFormat('Y') }} UPTD BLK LATRANS PROVINSI GORONTALO. All Rights Reserved.</p>
-                </div>
-            </div>
-        </div>
-    </footer>
+    @include('layouts.front.footer')
 
     <!-- Jquery -->
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
-        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-    <!-- Bootstrap JS -->
-    <script src="{{ asset('assets/front/js/bootstrap/bootstrap.bundle.min.js') }}"></script>
-    {{-- Plugin JS --}}
-    <script src="{{ asset('assets/js/jquery.magnific-popup.min.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+    <!-- Plugin JS -->
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <script src="{{ asset('assets/front/js/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('assets/front/js/jquery.magnific-popup.min.js') }}"></script>
     <!-- Custom JS -->
     <script src="{{ asset('assets/front/js/custom.js') }}"></script>
     <script>
-        var myBackToTop = $('#backToTop');
-
+        // Navbar Sticky Top
         $(window).scroll(function() {
-            if ($(window).scrollTop() > 300) {
-                myBackToTop.addClass('my-btn-show');
-            } else {
-                myBackToTop.removeClass('my-btn-show');
+            var windowpos = $(window).scrollTop();
+            var navbar = $('#navbar');
+
+            // if win >= navbar and not already a sticky
+            if (windowpos >= navbar.position().top && !navbar.hasClass("navbar-fixed-top") ) {
+                navbar.addClass("navbar-fixed-top");
+
+            // if win <= navbar and is a sticky
+            } else if( windowpos <= navbar.position().top && navbar.hasClass("navbar-fixed-top")  ) {
+                navbar.removeClass("navbar-fixed-top");
             }
         });
-
-        myBackToTop.click(function(e) {
-            e.preventDefault();
-            $('html, body').animate({
-                scrollTop: 0
-            }, 0);
-        });
-
+        
         $(document).ready(function() {
+            // Img Popup
             $('.img-link-popup').magnificPopup({
                 delegate: 'a',
                 type: 'image',

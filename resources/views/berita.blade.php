@@ -1,65 +1,68 @@
 @extends('layouts.front.app', ['title' => $title . ' -'])
 
 @section('content')
-    {{-- @include('layouts.front.announc') --}}
-
-    <section class="mb-5">
-        <div class="container">
-            <div class="row mb-4">
-                <div class="col-md-12">
-                    <div class="mb-3">
-                        <div class="d-flex flex-column flex-md-row align-items-center justify-content-between">
-                            <h3 class="my-0 mb-2 mb-md-0">{{ $title }}</h3>
-                            <form action="/berita">
-                                @if (request('kategori'))
-                                    <input type="hidden" name="kategori" value="{{ request('kategori') }}">
-                                @endif
-                                <div class="input-group">
-                                    <input type="text" class="form-control form-control-sm" placeholder="Search..."
-                                        name="search" value="{{ request('search') }}">
-                                    <button type="submit" class="btn my-bg-primary text-white"><i
-                                            class="fas fa-search"></i></button>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="dropdown-divider"></div>
+    <!-- CONTENT -->
+    <section class="content">
+        <div class="bg-header" style="background-image: url({{ asset('assets/front/images/bg5.jpg') }});">
+            <div class="container">
+                <div class="page-title-content">
+                    <div class="page-title">
+                        <h3 class="m-0">{{ $title }}</h3>
                     </div>
+                    <div class="page-breadcrumbs">
+                        <a href="/">Home</a>
+                        <span>/</span>
+                        <a class="current">{{ $title }}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-                    <div class="row g-4 mb-4">
+        <div class="content-items">
+            <div class="container">
+                <div class="berita">
+                    <div class="d-flex flex-column flex-md-row mb-3 gap-2 justify-content-between align-items-center overflow-hidden">
+
+                        <a href="/kategori" class="btn btn-kategori w-25"><span>All Kategori</span></a>
+
+                        <form action="/berita" class="w-100">
+                            @if (request('kategori'))
+                                <input type="hidden" name="kategori" value="{{ request('kategori') }}">
+                            @endif
+                            <div class="input-group">
+                                <input type="text" class="form-control form-control-sm" placeholder="Search..."
+                                    name="search" value="{{ request('search') }}">
+                                <button type="submit" class="btn btn-search-theme text-white"><i
+                                        class="fas fa-search"></i></button>
+                            </div>
+                        </form>
+
+                    </div>
+                    <div class="row gy-3">
+
                         @if ($data_berita->count())
                             @foreach ($data_berita as $berita)
                                 <div class="col-12 col-md-6 col-lg-4">
                                     <div class="card border-0 rounded-3 shadow-sm overflow-hidden">
-                                        <div class="figure rounded-0">
-                                            <img class="card-img-top my-img-zoom" src="{{ asset($berita->gambar) }}"
-                                                alt="Card image cap" style="height: 25vh;object-fit: cover;">
-                                        </div>
-                                        <a href="/berita?kategori={{ $berita->category->slug }}"
-                                            class="position-absolute px-3 my-badge py-2 small">
-                                            <span class="badge rounded-0">{{ $berita->category->name }}</span>
-                                        </a>
-                                        <div class="card-body py-3">
+                                        <figure>
+                                            <img src="{{ asset($berita->gambar) }}" alt="img-berita"
+                                                class="card-img-top">
+                                        </figure>
+                                        <div class="card-body">
                                             <a href="/berita/{{ $berita->slug }}"
-                                                class="card-title h5 my-card-title fw-normal text-decoration-none my-text-black">
-                                                {{ $berita->judul }}
+                                                class="card-title h5 text-decoration-none">
+                                                {{ \Illuminate\Support\Str::limit(strip_tags($berita->judul), 60, '...') }}
                                             </a>
-                                            <p class="fw-bold small mt-0 mb-2">
-                                                <small>
-                                                    @if ($berita->user_id == 1)
-                                                        <small>Admin</small>
-                                                    @else
-                                                        <small>{{ $berita->user->name }}</small>
-                                                    @endif
-                                                    <small>
-                                                        <span class="fw-light text-muted">-
-                                                            {{ $berita->created_at->diffForHumans() }}
-                                                        </span>
-                                                    </small>
-                                                </small>
+                                            <p class="my-1 small text-muted">
+                                                @if ($berita->user_id == 1)
+                                                    <span class="fw-bolder text-black">Admin</span>
+                                                @else
+                                                    <span class="fw-bolder text-black">{{ $berita->user->name }}</span>
+                                                @endif
+                                                - {{ $berita->created_at->diffForHumans() }}
                                             </p>
-                                            <p class="m-0 text-secondary small">
-                                                {{ \Illuminate\Support\Str::limit(strip_tags($berita->konten), 150, '...') }}
-                                            </p>
+                                            <a href="/berita?kategori={{ $berita->category->slug }}"
+                                                class="category-link text-decoration-none">{{ $berita->category->name }}</a>
                                         </div>
                                     </div>
                                 </div>
@@ -67,67 +70,15 @@
                         @else
                             <p class="mt-5 text-center fs-6">Berita tidak ditemukan.</p>
                         @endif
-                    </div>
-                    {{ $data_berita->links() }}
-                </div>
-            </div>
 
-            <div class="row gy-5 mb-5">
-                <div class="col-12 col-md-6">
-                    <div class="mb-3">
-                        <div class="d-flex flex-row align-items-center justify-content-between">
-                            <h5 class="my-0 mb-2 mb-md-0">Kategori Terbaru</h5>
-                            <a href="/kategori" class="text-decoration-none my-text-link-muted small"><small>All</small></a>
-                        </div>
-                        <div class="dropdown-divider"></div>
                     </div>
-                    <div class="row gy-3">
-                        @foreach ($data_kategori as $kategori)
-                            <div class="col-12 col-md-6">
-                                <a href="/berita?kategori={{ $kategori->slug }}" class="my-kate">
-                                    <div class="card rounded-3 text-white">
-                                        <img src="https://source.unsplash.com/500x500?{{ $kategori->name }}" alt="cover"
-                                            class="card-img"
-                                            style="height: 140px;object-fit: cover;object-position: center;">
-                                        <div class="card-img-overlay d-flex align-items-center p-0">
-                                            <h6 class="card-title text-center flex-fill p-3 m-0 my-fillbg-kate">
-                                                {{ $kategori->name }}</h6>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        @endforeach
-                    </div>
-                </div>
 
-                <div class="col-12 col-md-6">
-                    <div class="mb-3">
-                        <div class="d-flex flex-row align-items-center justify-content-between">
-                            <h5 class="my-0 mb-2 mb-md-0">Galeri Terbaru</h5>
-                            <a href="/galeri" class="text-decoration-none my-text-link-muted small"><small>All</small></a>
-                        </div>
-                        <div class="dropdown-divider"></div>
+                    <div class="mt-4">
+                        {{ $data_berita->links() }}
                     </div>
-                    <div class="row gy-3">
-                        <div class="col-12">
-                            @include('layouts.front.widget_galeri')
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row gy-5">
-                <div class="col-12">
-                    <div class="mb-3">
-                        <div class="d-flex flex-row align-items-center justify-content-between">
-                            <h5 class="my-0 mb-2 mb-md-0">Pengumuman Terbaru</h5>
-                            <a href="/pengumuman" class="text-decoration-none my-text-link-muted small"><small>All</small></a>
-                        </div>
-                        <div class="dropdown-divider"></div>
-                    </div>
-                    @include('layouts.front.widget_pengumuman')
                 </div>
             </div>
         </div>
     </section>
+    <!-- END CONTENT -->
 @endsection

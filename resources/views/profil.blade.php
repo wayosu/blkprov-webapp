@@ -1,64 +1,33 @@
-@extends('layouts.front.app', ['title' => 'Profil -'])
+@extends('layouts.front.app', ['title' => 'Tentang BLK Gorontalo -'])
 
 @section('content')
-    <section class="mb-5">
+<!-- CONTENT -->
+<section class="content">
+    <div class="bg-header" style="background-image: url({{ asset('assets/front/images/bg5.jpg') }});">
         <div class="container">
-            <div class="row mb-5">
-                <div class="col-12">
-                    <div class="mb-3">
-                        <div class="d-flex align-items-center justify-content-between">
-                            <h3 class="my-0">Profil</h3>
-                        </div>
-                        <div class="dropdown-divider"></div>
-                    </div>
-                    <article class="small" style="text-align: justify">{!! $data_profile->profile !!}</article>
+            <div class="page-title-content">
+                <div class="page-title">
+                    <h3 class="m-0">Tentang BLK Gorontalo</h3>
                 </div>
-            </div>
-
-            <div class="row gy-5 mb-5">
-                <div class="col-12">
-                    <div class="mb-3">
-                        <div class="d-flex flex-row align-items-center justify-content-between">
-                            <h5 class="my-0 mb-2 mb-md-0">Pengumuman Terbaru</h5>
-                            <a href="/pengumuman" class="text-decoration-none my-text-link-muted small"><small>All</small></a>
-                        </div>
-                        <div class="dropdown-divider"></div>
-                    </div>
-                    @include('layouts.front.widget_pengumuman')
-                </div>
-            </div>
-
-            <div class="row gy-5">
-                <div class="col-12 col-md-6">
-                    <div class="mb-3">
-                        <div class="d-flex flex-row align-items-center justify-content-between">
-                            <h5 class="my-0 mb-2 mb-md-0">Berita Terbaru</h5>
-                            <a href="/berita" class="text-decoration-none my-text-link-muted small"><small>All</small></a>
-                        </div>
-                        <div class="dropdown-divider"></div>
-                    </div>
-                    <div class="row gy-3">
-                        <div class="col-12">
-                            @include('layouts.front.widget_berita')
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-12 col-md-6">
-                    <div class="mb-3">
-                        <div class="d-flex flex-row align-items-center justify-content-between">
-                            <h5 class="my-0 mb-2 mb-md-0">Galeri Terbaru</h5>
-                            <a href="/galeri" class="text-decoration-none my-text-link-muted small"><small>All</small></a>
-                        </div>
-                        <div class="dropdown-divider"></div>
-                    </div>
-                    <div class="row gy-3">
-                        <div class="col-12">
-                            @include('layouts.front.widget_galeri')
-                        </div>
-                    </div>
+                <div class="page-breadcrumbs">
+                    <a href="/">Home</a>
+                    <span>/</span>
+                    <a href="#">Profil</a>
+                    <span>/</span>
+                    <a class="current">Tentang BLK Gorontalo</a>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+
+    <div class="content-items">
+        <div class="container">
+            <div class="d-flex flex-column gap-3">
+                <img src="{{ asset('assets/front/images/profil.jpg') }}" alt="profil-img" class="profil-img">
+                {!! $data_profile->profile !!}
+            </div>
+        </div>
+    </div>
+</section>
+<!-- END CONTENT -->
 @endsection

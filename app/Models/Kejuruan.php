@@ -22,4 +22,8 @@ class Kejuruan extends Model
                             ->orWhere('deskripsi', 'like', '%' . $search . '%');
         });
     }
+
+    public function sub_kejuruans() {
+        return $this->hasMany(SubKejuruan::class);
+    }
 }

@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Models\Posts;
 use App\Models\Profile;
 use App\Models\User;
+use Share;
 
 class HomeController extends Controller
 {
@@ -21,15 +22,21 @@ class HomeController extends Controller
     public function index()
     {
         $data_pengumuman = Pengumuman::with(['user'])->latest()->take(4)->get();
-        $data_hero = Posts::orderBy('created_at', 'DESC')->take(5)->get();
-        $data_heroLeft = $data_hero->splice(0, 1);
-        $data_heroRight = $data_hero->splice(0, 4);
         
         $data_terbaru = Posts::with(['user', 'category'])->latest()->take(3)->get();
-        $data_galeri = Gallery::with(['user'])->latest()->take(3)->get();
+        
+        $data_kejuruan = Kejuruan::latest()->get();
+        
+        $data_galeri = Gallery::with(['user'])->orderBy('created_at', 'DESC')->take(5)->get();
+        $first_image = $data_galeri->splice(0, 1);
+        $second_image = $data_galeri->splice(0, 2);
+        $third_image = $data_galeri->splice(0, 1);
+        $fourth_image = $data_galeri->splice(0, 1);
+
         $data_profile = Profile::findorfail(1);
         
-        return view('home', compact('data_heroLeft', 'data_heroRight', 'data_terbaru', 'data_pengumuman', 'data_galeri', 'data_profile'));
+        // return $fourth_image;
+        return view('home', compact('data_terbaru', 'data_pengumuman', 'data_kejuruan', 'first_image', 'second_image', 'third_image', 'fourth_image', 'data_profile'));
     }
 
     public function indexProfil()
@@ -83,10 +90,7 @@ class HomeController extends Controller
         }
         return view('berita', [
             "title" => "Berita " . $title,
-            "data_berita" => Posts::with(['user', 'category'])->latest()->filter(request(['search', 'kategori']))->paginate(6)->withQueryString(),
-            "data_kategori" => Category::latest()->take(4)->get(),
-            "data_galeri" => Gallery::with(['user'])->latest()->take(4)->get(),
-            "data_pengumuman" => Pengumuman::latest()->take(4)->get(),
+            "data_berita" => Posts::with(['user', 'category'])->latest()->filter(request(['search', 'kategori']))->paginate(9)->withQueryString(),
             "data_profile" => $data_profile
         ]);
     }
@@ -97,6 +101,8 @@ class HomeController extends Controller
             "title" => $post->judul,
             "data_berita" => $post,
             "berita_lainnya" => Posts::where('id', '!=', $post->id)->latest()->take(3)->get(),
+            "data_galeri" => Gallery::with(['user'])->latest()->take(3)->get(),
+            "data_pengumuman" => Pengumuman::latest()->take(3)->get(),
             "data_profile" => Profile::findorfail(1)
         ]);
     }
@@ -122,12 +128,10 @@ class HomeController extends Controller
 
     public function indexPengumuman()
     {
-        $data_pengumuman = Pengumuman::with(['user'])->latest()->filter(request(['search']))->paginate(6)->withQueryString();
+        $data_pengumuman = Pengumuman::with(['user'])->latest()->filter(request(['search']))->paginate(9)->withQueryString();
         $data_profile = Profile::findorfail(1);
-        $data_berita= Posts::with(['user', 'category'])->latest()->take(4)->get();
-        $data_galeri = Gallery::with(['user'])->latest()->take(4)->get();
 
-        return view('pengumuman', compact('data_pengumuman', 'data_profile', 'data_berita', 'data_galeri'));
+        return view('pengumuman', compact('data_pengumuman', 'data_profile'));
     }
 
     public function showPengumuman(Pengumuman $pengumuman)
@@ -135,6 +139,8 @@ class HomeController extends Controller
         return view('pengumuman_isi', [
             "title" => $pengumuman->judul,
             "data_pengumuman" => $pengumuman,
+            "data_berita" => Posts::latest()->take(3)->get(),
+            "data_galeri" => Gallery::latest()->take(3)->get(),
             "pengumuman_lainnya" => Pengumuman::where('id', '!=', $pengumuman->id)->latest()->take(3)->get(),
             "data_profile" => Profile::findorfail(1)
         ]);
@@ -142,19 +148,19 @@ class HomeController extends Controller
 
     public function indexGaleri()
     {
-        $data_pengumuman = Pengumuman::with(['user'])->latest()->take(4)->get();
         $data_profile = Profile::findorfail(1);
-        $data_berita= Posts::with(['user', 'category'])->latest()->take(3)->get();
-        $data_galeri = Gallery::with(['user'])->latest()->filter(request(['search']))->paginate(6)->withQueryString();
+        $data_galeri = Gallery::with(['user'])->latest()->filter(request(['search']))->paginate(9)->withQueryString();
 
-        return view('galeri', compact('data_berita', 'data_profile', 'data_pengumuman', 'data_galeri'));
+        return view('galeri', compact('data_profile', 'data_galeri'));
     }
 
     public function showGaleri(Gallery $gallery)
     {
         return view('galeri_isi', [
-            "title" => $gallery->judul,
+            "title" => $gallery->title,
             "data_galeri" => $gallery,
+            "data_pengumuman" => Pengumuman::latest()->take(3)->get(),
+            "data_berita" => Posts::latest()->take(3)->get(),
             "galeri_lainnya" => $gallery::where('id', '!=', $gallery->id)->latest()->take(3)->get(),
             "data_profile" => Profile::findorfail(1)
         ]);
@@ -164,10 +170,16 @@ class HomeController extends Controller
     {
         return view('kejuruan', [
             "title" => 'Kejuruan',
-            "data_kejuruan" => Kejuruan::latest()->filter(request(['search']))->paginate(6)->withQueryString(),
-            "data_berita" => Posts::with(['user', 'category'])->latest()->take(3)->get(),
-            "data_pengumuman" => Pengumuman::with(['user'])->latest()->take(4)->get(),
-            "data_galeri" => Gallery::with(['user'])->latest()->take(3)->get(),
+            "data_kejuruan" => Kejuruan::latest()->filter(request(['search']))->paginate(9)->withQueryString(),
+            "data_profile" => Profile::findorfail(1)
+        ]);
+    }
+
+    public function indexKurikulum()
+    {
+        return view('kurikulum', [
+            "title" => 'Kurikulum',
+            "data_kejuruan" => Kejuruan::latest()->get(),
             "data_profile" => Profile::findorfail(1)
         ]);
     }

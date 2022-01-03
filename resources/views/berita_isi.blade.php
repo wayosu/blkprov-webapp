@@ -1,80 +1,153 @@
 @extends('layouts.front.app', ['title' => $title . ' -'])
 
 @section('content')
-    {{-- @include('layouts.front.announc') --}}
-
-    <section class="mb-5">
-        <div class="container">
-            <div class="row justify-content-center gy-5">
-                <div class="col-md-12">
-                    <div>
-                        <h1 class="my-2">{{ $data_berita->judul }}</h1>
-                        <p class="text-uppercase small mb-0">
-                            <span><i class="far fa-clock"></i> {{ $data_berita->created_at->isoFormat('dddd, D MMMM Y') }} by</span>
-                            <span class="fw-bold">{{ $data_berita->user->name }}</span> in
-                            <a href="/berita?kategori={{ $data_berita->category->slug }}" class="text-decoration-none my-text-link-danger">{{ $data_berita->category->name }}</a>
-                        </p>
-                        <div class="dropdown-divider"></div>
-    
-                        <img src="{{ asset($data_berita->gambar) }}" alt="gambar" class="img-fluid rounded-3" style="width: 100%; height: 50%; object-fit: cover; object-position: center">
-                        
-                        <article class="my-3">
-                            {!! $data_berita->konten !!}
-                        </article>
-    
-                        <a href="/berita" class="my-btn-backto-danger small rounded-3"><i class="fas fa-arrow-left"></i> Kembali ke berita</a>
+    <!-- CONTENT -->
+    <section class="content">
+        <div class="bg-header" style="background-image: url({{ asset('assets/front/images/bg5.jpg') }});">
+            <div class="container">
+                <div class="page-title-content">
+                    <div class="page-title">
+                        <h3 class="m-0">{{ $title }}</h3>
+                    </div>
+                    <div class="page-breadcrumbs">
+                        <a href="/">Home</a>
+                        <span>/</span>
+                        <a href="/berita">Berita</a>
+                        <span>/</span>
+                        <a class="current">{{ $title }}</a>
                     </div>
                 </div>
+            </div>
+        </div>
 
-                <div class="col-md-12">
-                    <div class="mb-3">
-                        <div class="d-flex flex-row align-items-center justify-content-between">
-                            <h3 class="my-0 mb-2 mb-md-0">Berita Lainnya</h3>
-                            <a href="/berita" class="text-decoration-none my-text-link-muted small">All</a>
-                        </div>
-                        <div class="dropdown-divider"></div>
-                    </div>
-                    <div class="row gy-3">
-                        @foreach ($berita_lainnya as $bl)
-                            <div class="col-12 col-md-4">
-                                <div class="card border-0 rounded-3 shadow-sm overflow-hidden">
-                                    <div class="figure rounded-0">
-                                        <img class="card-img-top my-img-zoom" src="{{ asset($bl->gambar) }}"
-                                            alt="Card image cap" style="height: 25vh;object-fit: cover;">
-                                    </div>
-                                    <a href="/berita?kategori={{ $bl->category->slug }}"
-                                        class="position-absolute px-3 my-badge py-2 small">
-                                        <span class="badge rounded-0">{{ $bl->category->name }}</span>
-                                    </a>
-                                    <div class="card-body py-3">
-                                        <a href="/berita/{{ $bl->slug }}"
-                                            class="card-title h5 my-card-title fw-normal text-decoration-none my-text-black">
-                                            {{ $bl->judul }}
-                                        </a>
-                                        <p class="fw-bold small mt-0 mb-2">
-                                            <small>
-                                                @if ($bl->user_id == 1)
-                                                    <small>Admin</small>
-                                                @else
-                                                    <small>{{ $bl->user->name }}</small>
-                                                @endif
-                                                <small>
-                                                    <span class="fw-light text-muted">-
-                                                        {{ $bl->created_at->diffForHumans() }}
-                                                    </span>
-                                                </small>
-                                            </small>
-                                        </p>
-                                        <p class="m-0 text-secondary small">
-                                            {{ \Illuminate\Support\Str::limit(strip_tags($bl->konten), 150, '...') }}
-                                        </p>
+        <div class="content-items">
+            <div class="container">
+                <div class="isi-berita">
+                    <div class="row gy-5">
+                        <div class="col-12 col-lg-8">
+                            <div class="header-berita">
+                                <h3 class="m-0 title-berita">{{ $data_berita->judul }}</h3>
+                                <div class="d-flex align-items-center mt-2 mb-4 date-berita">
+                                    <p class="m-0">{{ $data_berita->created_at->isoFormat('LLLL') }} by
+                                        {{ $data_berita->user->name }} in <a
+                                            href="/berita?kategori={{ $data_berita->category->slug }}"
+                                            class="text-decoration-none"
+                                            style="color: #5E35B1;">{{ $data_berita->category->name }}</a></p>
+                                </div>
+                                <img src="{{ asset($data_berita->gambar) }}" alt="berita-img" class="img-berita">
+                            </div>
+                            <div class="body-berita mt-4">
+                                <article>
+                                    {!! $data_berita->konten !!}
+                                </article>
+                            </div>
+                            <div class="footer-berita mt-4">
+                                <div class="btn-share-berita">
+                                    <span><i class="fas fa-share-alt"></i> SHARE</span>
+                                    <div class="btn-share-container">
+                                        <a href="#" id="facebook-btn" target="_BLANK"><i class="fab fa-facebook-f"></i></a>
+                                        <a href="#" id="twitter-btn" target="_BLANK"><i class="fab fa-twitter"></i></a>
+                                        <a href="#" id="whatsapp-btn" target="_BLANK"><i class="fab fa-whatsapp"></i></a>
                                     </div>
                                 </div>
                             </div>
-                        @endforeach
+                        </div>
+                        <div class="col-12 col-lg-4">
+
+                            <div class="sidebar">
+                                <div class="row gy-5">
+                                    <div class="col-12 col-md-6 col-lg-12">
+                                        <div class="pengumuman-terbaru">
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <h5 class="fw-bold m-0">PENGUMUMAN TERBARU</h5>
+                                                <a href="/pengumuman" class="text-decoration-none"
+                                                    style="font-size: 12px !important;">All</a>
+                                            </div>
+                                            <div class="dropdown-divider"></div>
+                                            <div class="d-flex gap-3 flex-column">
+
+                                                @foreach ($data_pengumuman as $pengumuman)
+                                                    <div class="card border-0 shadow-sm overflow-hidden">
+                                                        <div class="card-body p-0">
+                                                            <div class="row">
+                                                                <div class="col-12 col-lg-5">
+                                                                    <img src="{{ asset('assets/front/images/2.jpg') }}"
+                                                                        alt="" class="img-sidebar">
+                                                                </div>
+                                                                <div class="col-12 col-lg-7">
+                                                                    <div class="px-2 px-lg-0 py-2">
+                                                                        <a href="/pengumuman/{{ $pengumuman->slug }}"
+                                                                            class="h6 text-decoration-none">{{ \Illuminate\Support\Str::limit(strip_tags($pengumuman->judul), 60, '...') }}</a>
+                                                                        <p class="m-0">
+                                                                            {{ $pengumuman->created_at->diffForHumans() }}
+                                                                        </p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                @endforeach
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12 col-md-6 col-lg-12">
+                                        <div class="galeri-terbaru">
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <h5 class="fw-bold m-0">GALERI TERBARU</h5>
+                                                <a href="/galeri" class="text-decoration-none"
+                                                    style="font-size: 12px !important;">All</a>
+                                            </div>
+                                            <div class="dropdown-divider"></div>
+                                            <div class="d-flex gap-3 flex-column">
+
+                                                @foreach ($data_galeri as $galeri)
+                                                    <div class="card border-0 shadow-sm overflow-hidden">
+                                                        <div class="card-body p-0">
+                                                            <div class="row">
+                                                                <div class="col-12 col-lg-5">
+                                                                    <img src="{{ asset($galeri->cover) }}" alt=""
+                                                                        class="img-sidebar">
+                                                                </div>
+                                                                <div class="col-12 col-lg-7">
+                                                                    <div class="px-2 px-lg-0 py-2">
+                                                                        <a href="/galeri/{{ $galeri->slug }}"
+                                                                            class="h6 text-decoration-none">{{ \Illuminate\Support\Str::limit(strip_tags($galeri->title), 60, '...') }}</a>
+                                                                        <p class="m-0">
+                                                                            {{ $galeri->created_at->diffForHumans() }}
+                                                                        </p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                @endforeach
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+    <!-- END CONTENT -->
+
+    <script>
+        const facebookBtn = document.getElementById('facebook-btn');
+        const twitterBtn = document.getElementById('twitter-btn');
+        const whatsappBtn = document.getElementById('whatsapp-btn');
+
+        let postUrl = encodeURI(document.location.href);
+        let postTitle = encodeURI('{{ $data_berita->judul }}');
+
+        facebookBtn.setAttribute("href", `https://www.facebook.com/sharer.php?u=${postUrl}`);
+        twitterBtn.setAttribute("href", `https://twitter.com/share?url=${postUrl}&text=${postTitle}`);
+        whatsappBtn.setAttribute("href", `https://wa.me/?text=${postTitle} ${postUrl}`);
+    </script>
 @endsection

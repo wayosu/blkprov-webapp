@@ -1,66 +1,32 @@
 @extends('layouts.front.app', ['title' => 'Struktur Organisasi -'])
 
 @section('content')
-    <section class="mb-5">
+<!-- CONTENT -->
+<section class="content">
+    <div class="bg-header" style="background-image: url({{ asset('assets/front/images/bg5.jpg') }});">
         <div class="container">
-            <div class="row mb-5">
-                <div class="col-12">
-                    <div class="mb-3">
-                        <div class="d-flex align-items-center justify-content-between">
-                            <h3 class="my-0">Struktur Organisasi</h3>
-                        </div>
-                        <div class="dropdown-divider"></div>
-                    </div>
-                    <div class="text-center">
-                        <img src="{{ asset($data_profile->struktur) }}" alt="struktur" width="50%">
-                    </div>
+            <div class="page-title-content">
+                <div class="page-title">
+                    <h3 class="m-0">Struktur Organisasi</h3>
                 </div>
-            </div>
-
-            <div class="row gy-5 mb-5">
-                <div class="col-12">
-                    <div class="mb-3">
-                        <div class="d-flex flex-row align-items-center justify-content-between">
-                            <h5 class="my-0 mb-2 mb-md-0">Pengumuman Terbaru</h5>
-                            <a href="/pengumuman" class="text-decoration-none my-text-link-muted small"><small>All</small></a>
-                        </div>
-                        <div class="dropdown-divider"></div>
-                    </div>
-                    @include('layouts.front.widget_pengumuman')
-                </div>
-            </div>
-
-            <div class="row gy-5">
-                <div class="col-12 col-md-6">
-                    <div class="mb-3">
-                        <div class="d-flex flex-row align-items-center justify-content-between">
-                            <h5 class="my-0 mb-2 mb-md-0">Berita Terbaru</h5>
-                            <a href="/berita" class="text-decoration-none my-text-link-muted small"><small>All</small></a>
-                        </div>
-                        <div class="dropdown-divider"></div>
-                    </div>
-                    <div class="row gy-3">
-                        <div class="col-12">
-                            @include('layouts.front.widget_berita')
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-12 col-md-6">
-                    <div class="mb-3">
-                        <div class="d-flex flex-row align-items-center justify-content-between">
-                            <h5 class="my-0 mb-2 mb-md-0">Galeri Terbaru</h5>
-                            <a href="/galeri" class="text-decoration-none my-text-link-muted small"><small>All</small></a>
-                        </div>
-                        <div class="dropdown-divider"></div>
-                    </div>
-                    <div class="row gy-3">
-                        <div class="col-12">
-                            @include('layouts.front.widget_galeri')
-                        </div>
-                    </div>
+                <div class="page-breadcrumbs">
+                    <a href="/">Home</a>
+                    <span>/</span>
+                    <a href="#">Profil</a>
+                    <span>/</span>
+                    <a class="current">Struktur Organisasi</a>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+
+    <div class="content-items">
+        <div class="container">
+            <div class="d-flex gap-3 justify-content-center">
+                <img src="{{ asset($data_profile->struktur) }}" alt="struktur-img" class="struktur-img">
+            </div>
+        </div>
+    </div>
+</section>
+<!-- END CONTENT -->
 @endsection

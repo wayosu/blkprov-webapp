@@ -16,6 +16,8 @@
                     <div class="card-body">
                         <a href="{{ route('kejuruan.create') }}" class="btn btn-primary mb-4"><i
                                 class="fas fa-plus-circle"></i> Create Kejuruan</a>
+                        <a href="{{ route('subkejuruan.index') }}" class="btn btn-primary mb-4"><i
+                                    class="fas fa-list-ul"></i> Sub Kejuruan</a>
                         <div class="table-responsive">
                             <table class="table table-striped table-md table-bordered data-table">
                                 <thead>
