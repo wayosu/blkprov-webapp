@@ -43,16 +43,6 @@
                                             </div>
                                         @enderror
                                     </div>
-                                    <div class="form-group overflow-hidden">
-                                        <label>Kurikulum</label>
-                                        <input type="hidden" name="kurikulum_lama" value="{{ $profile->kurikulum }}">
-                                        <input type="file" name="kurikulum" class="form-control-file @error('kurikulum') is-invalid @enderror">
-                                        @error('kurikulum')
-                                            <div class="invalid-feedback">
-                                                {{ $message }}
-                                            </div>
-                                        @enderror
-                                    </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -66,6 +56,10 @@
                                     <div class="form-group">
                                         <label>Maps</label>
                                         <input type="text" name="map" class="form-control" value="{{ $profile->map }}">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Video</label>
+                                        <input type="text" name="video" class="form-control" value="{{ $profile->video }}">
                                     </div>
                                     <div class="form-group">
                                         <label>Twitter</label>

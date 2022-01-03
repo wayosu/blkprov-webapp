@@ -17,7 +17,11 @@
                         <a href="{{ route('pengumuman.index') }}" class="btn btn-secondary mb-4"><i
                                 class="fas fa-arrow-circle-left"></i> Back to Pengumuman</a>
 
-                        <form action="{{ route('pengumuman.update', $pengumuman->id) }}" method="POST">
+                        <div class="mb-4 d-flex justify-content-center">
+                            <img class="card-img-top" width="100%" height="300" style="object-fit: cover;object-position:center;" src="{{ asset($pengumuman->gambar) }}" alt="Card image cap">
+                        </div>
+
+                        <form action="{{ route('pengumuman.update', $pengumuman->id) }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('put')
                             <div class="form-group">
@@ -37,6 +41,11 @@
                                         {{ $message }}
                                     </div>
                                 @enderror
+                            </div>
+                            <div class="form-group">
+                                <label>Thumbnail</label>
+                                <input type="hidden" name="gambar_lama" value="{{ $pengumuman->gambar }}">
+                                <input type="file" name="gambar" class="form-control-file">
                             </div>
                             <button type="submit" class="btn btn-primary">Update</button>
                         </form>

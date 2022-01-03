@@ -23,8 +23,9 @@
                                 <thead>
                                     <tr align="center">
                                         <th width="3%">#</th>
-                                        <th width="35%">Pengumuman</th>
+                                        <th width="30%">Pengumuman</th>
                                         <th width="30%">Tanggal Buat</th>
+                                        <th width="5%">Thumbnail</th>
                                         <th width="20%">Penulis</th>
                                         <th width="12%">Action</th>
                                     </tr>
@@ -34,7 +35,15 @@
                                         <tr>
                                             <td align="center" style="vertical-align: middle">{{ $loop->iteration }}</td>
                                             <td style="vertical-align: middle">{{ $hasil->judul }}</td>                                        
-                                            <td style="vertical-align: middle">{{ $hasil->created_at->isoFormat('LLLL') }}</td>                                        
+                                            <td style="vertical-align: middle">{{ $hasil->created_at->isoFormat('LLLL') }}</td>      
+                                            <td align="center" style="vertical-align: middle">
+                                                <div class="image-link">
+                                                    <a href="{{ asset($hasil->gambar) }}" class="btn btn-secondary"
+                                                        target="_blank">
+                                                        <i class="fas fa-image"></i>
+                                                    </a>
+                                                </div>
+                                            </td>                                  
                                             <td align="center" style="vertical-align: middle">{{ $hasil->user->name }}</td>
                                             <td style="vertical-align: middle">
                                                 <form action="{{ route('pengumuman.destroy', $hasil->id) }}" method="POST">

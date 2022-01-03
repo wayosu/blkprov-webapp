@@ -117,11 +117,8 @@
                             </div>
                         </div>
                         <div class="form-group overflow-hidden mb-0">
-                            <h6 class="font-weight-bold mb-1">Kurikulum</h6>
-                            <a href="{{ asset($profile->kurikulum) }}" class="btn btn-secondary"
-                                target="_blank">
-                                <i class="fas fa-download"></i>
-                            </a>
+                            <h6 class="font-weight-bold mb-1">Video</h6>
+                            <iframe src="{{ $profile->video }}" frameborder="0" width="500" height="300"></iframe>
                         </div>
                     </div>
                 </div>

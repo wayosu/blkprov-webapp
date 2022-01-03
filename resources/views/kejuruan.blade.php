@@ -39,24 +39,12 @@
                                     <div class="card-body p-0">
                                         <div class="bg-name text-center">
                                             <h4 class="mt-0 mb-3">{{ $kejuruan->nama }}</h4>
-                                            <a data-bs-toggle="collapse" href="#collapse{{ $kejuruan->id }}" role="button" aria-expanded="false" aria-controls="collapse{{ $kejuruan->id }}" class="btn-download">
+                                            <a href="/kejuruan/{{ $kejuruan->slug }}" class="btn-download">
                                                 <i class="fas fa-list"></i> Lebih Lengkap
                                             </a>
                                         </div>
-                                        <div class="collapse mt-0" id="collapse{{ $kejuruan->id }}">
-                                            <div class="dropdown-divider"></div>
-                                            <div class="p-3">
-                                                <ul class="m-0">
-                                                    <li><a href="#">Computer Operator Assistant</a></li>
-                                                    <li><a href="#">Pembuatan Desain Grafis</a></li>
-                                                    <li><a href="#">Desain Grafis Muda</a></li>
-                                                    <li><a href="#">Perakiran Komputer</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
                                     </div>
                                 </div>
-                                
                             </div>
                         @endforeach
                     @else

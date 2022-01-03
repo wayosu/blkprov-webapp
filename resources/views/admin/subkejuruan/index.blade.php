@@ -22,29 +22,31 @@
                             <table class="table table-striped table-md table-bordered data-table">
                                 <thead>
                                     <tr align="center">
-                                        <th width="3%">#</th>
+                                        <th width="2%">#</th>
                                         <th width="35%">Kejuruan</th>
-                                        <th width="35%">Nama Sub</th>
-                                        <th width="35%">Kurikulum</th>
-                                        <th width="20%">Gambar</th>
-                                        <th width="12%">Action</th>
+                                        <th width="30%">Nama Sub</th>
+                                        <th width="10%">Kurikulum</th>
+                                        <th width="10%">Gambar</th>
+                                        <th width="15%">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {{-- @foreach ($kejuruan as $result => $hasil)
+                                    @foreach ($subkejuruan as $result => $hasil)
                                         <tr>
                                             <td align="center" style="vertical-align: middle">{{ $loop->iteration }}</td>
+                                            <td style="vertical-align: middle">{{ $hasil->kejuruan->nama }}</td>                                        
                                             <td style="vertical-align: middle">{{ $hasil->nama }}</td>                                        
+                                            <td style="vertical-align: middle"><a href="{{ asset($hasil->kurikulum) }}" target="_blank" class="btn btn-secondary"><i class="fas fa-file-alt"></i></a></td>                                        
                                             <td style="vertical-align: middle">
                                                 <div class="image-link">
-                                                    <a href="{{ asset($hasil->gambar) }}" class="btn btn-secondary" target="_blank">
+                                                    <a href="{{ asset($hasil->image) }}" class="btn btn-secondary" target="_blank">
                                                         <i class="fas fa-image"></i>
                                                     </a>
                                                 </div>
                                             </td>
                                             <td style="vertical-align: middle">
-                                                <form action="{{ route('kejuruan.destroy', $hasil->id) }}" method="POST">
-                                                    <a href="{{ route('kejuruan.edit', $hasil->id) }}"
+                                                <form action="{{ route('subkejuruan.destroy', $hasil->id) }}" method="POST">
+                                                    <a href="{{ route('subkejuruan.edit', $hasil->id) }}"
                                                         class="btn btn-warning"><i class="fas fa-edit"></i></a>
                                                     @csrf
                                                     @method('delete')
@@ -52,7 +54,7 @@
                                                 </form>
                                             </td>
                                         </tr>
-                                    @endforeach --}}
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

@@ -30,9 +30,19 @@
                                 <div class="card-body p-0">
                                     <div class="bg-name text-center">
                                         <h4 class="mt-0 mb-3">{{ $kejuruan->nama }}</h4>
-                                        <a href="#" class="btn-download">
+                                        <a data-bs-toggle="collapse" href="#collapse{{ $kejuruan->id }}" role="button" aria-expanded="false" aria-controls="collapse{{ $kejuruan->id }}" class="btn-download">
                                             <i class="fas fa-download"></i> Download
                                         </a>
+                                    </div>
+                                    <div class="collapse mt-0" id="collapse{{ $kejuruan->id }}">
+                                        <div class="dropdown-divider"></div>
+                                        <div class="p-3">
+                                            <ul class="m-0">
+                                                @foreach ($kejuruan->subkejuruan as $sub)
+                                                    <li><a href="{{ asset($sub->kurikulum) }}">{{ $sub->nama }}</a></li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

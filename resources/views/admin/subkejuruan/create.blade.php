@@ -55,6 +55,15 @@
                                     </div>
                                 @enderror
                             </div>
+                            <div class="form-group">
+                                <label>Detail</label>
+                                <textarea name="detail" class="form-control summernote-simple @error('detail') is-invalid @enderror"></textarea>
+                                @error('detail')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
                             <button type="submit" class="btn btn-primary">Create</button>
                         </form>
                     </div>

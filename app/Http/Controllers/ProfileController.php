@@ -77,7 +77,7 @@ class ProfileController extends Controller
             'visimisi' => ['required'],
             'sambutan' => ['required'],
             'struktur' => ['mimes:png,jpg,jpeg|max:2048'],
-            'kurikulum' => ['mimes:pdf,xlsx,xls,xlx|max:2048'],
+            'video' => ['required'],
         ]);
 
         $profile = Profile::findorfail($id);
@@ -103,7 +103,8 @@ class ProfileController extends Controller
                 'youtube' => $request->youtube,
                 'alamat' => $request->alamat,
                 'telepon' => $request->telepon,
-                'map' => $request->map
+                'map' => $request->map,
+                'video' => $request->video
             ];
         } else {
             $profile_data = [
@@ -116,28 +117,12 @@ class ProfileController extends Controller
                 'youtube' => $request->youtube,
                 'alamat' => $request->alamat,
                 'telepon' => $request->telepon,
-                'map' => $request->map
+                'map' => $request->map,
+                'video' => $request->video
             ];
         }
 
         $profile->update($profile_data);
-
-        if ($request->has('kurikulum')) {
-            $destination_kuri = $request->kurikulum_lama;
-            if (File::exists($destination_kuri)) {
-                File::delete($destination_kuri);
-            }
-
-            $kurikulum = $request->kurikulum;
-            $new_kurikulum = time().$kurikulum->getClientOriginalName();
-            $kurikulum->move('uploads/other/', $new_kurikulum);
-
-            $kurikulum_data = [
-                'kurikulum' => 'uploads/other/'.$new_kurikulum
-            ];
-
-            $profile->update($kurikulum_data);
-        }
 
         session()->flash('success', 'Profile updated successfully.');
 

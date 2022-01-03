@@ -80,7 +80,7 @@
                                                     <div class="card-body p-0">
                                                         <div class="row">
                                                             <div class="col-12 col-lg-5">
-                                                                <img src="{{ asset('assets/front/images/2.jpg') }}"
+                                                                <img src="{{ asset($pengumuman->gambar) }}"
                                                                     alt="" class="img-sidebar">
                                                             </div>
                                                             <div class="col-12 col-lg-7">

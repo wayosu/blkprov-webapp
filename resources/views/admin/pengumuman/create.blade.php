@@ -17,7 +17,7 @@
                         <a href="{{ route('pengumuman.index') }}" class="btn btn-secondary mb-4"><i
                                 class="fas fa-arrow-circle-left"></i> Back to Pengumuman</a>
 
-                        <form action="{{ route('pengumuman.store') }}" method="POST">
+                        <form action="{{ route('pengumuman.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
                                 <label>Judul</label>
@@ -36,6 +36,10 @@
                                         {{ $message }}
                                     </div>
                                 @enderror
+                            </div>
+                            <div class="form-group">
+                                <label>Thumbnail</label>
+                                <input type="file" name="gambar" class="form-control-file">
                             </div>
                             <button type="submit" class="btn btn-primary">Create</button>
                         </form>

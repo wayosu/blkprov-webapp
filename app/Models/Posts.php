@@ -12,7 +12,7 @@ class Posts extends Model
 
     use SoftDeletes;
 
-    protected $fillable = ['judul', 'category_id', 'konten', 'gambar', 'slug', 'user_id'];
+    protected $fillable = ['judul', 'category_id', 'konten', 'gambar', 'slug', 'user_id', 'status'];
     protected $with = ['category', 'user'];
     
     public function scopeFilter($query, array $filters)

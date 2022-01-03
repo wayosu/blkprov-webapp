@@ -3,6 +3,7 @@
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\InstruktorController;
 use App\Http\Controllers\KejuruanController;
 use App\Http\Controllers\PengumumanController;
 use App\Http\Controllers\PostController;
@@ -57,6 +58,7 @@ Route::group(['middleware' => ['is_admin', 'auth']], function() {
     Route::get('/admin/post/recyclebin', [PostController::class, 'recyclebin'])->name('post.recyclebin');
     Route::get('/admin/post/restore/{id}', [PostController::class, 'restore'])->name('post.restore');
     Route::delete('/admin/post/deletepermanently/{id}', [PostController::class, 'deletePermanently'])->name('post.deletepermanently');
+    Route::put('/admin/post/publishing/{id}', [PostController::class, 'publishing'])->name('post.publishing');
     Route::resource('/admin/post', PostController::class);
 
     Route::get('/admin/pengumuman/recyclebin', [PengumumanController::class, 'recyclebin'])->name('pengumuman.recyclebin');
@@ -69,6 +71,7 @@ Route::group(['middleware' => ['is_admin', 'auth']], function() {
 
     Route::resource('/admin/kejuruan', KejuruanController::class);
     Route::resource('/admin/subkejuruan', SubKejuruanController::class);
+    Route::resource('/admin/instruktor', InstruktorController::class);
     
     Route::get('/admin/account', [UserController::class, 'account'])->name('admin.account');
     Route::put('/admin/account/update/{id}', [UserController::class, 'accountUpdate'])->name('admin.account.update');

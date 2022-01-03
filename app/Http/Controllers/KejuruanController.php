@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kejuruan;
+use App\Models\SubKejuruan;
 use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class KejuruanController extends Controller
 {
@@ -50,6 +52,7 @@ class KejuruanController extends Controller
             'nama' => $request->nama,
             'deskripsi' => $request->deskripsi,
             'gambar' => 'uploads/other/'.$new_gambar,
+            'slug' => Str::slug($request->nama),
         ]);
 
         $gambar->move('uploads/other/', $new_gambar);
@@ -112,11 +115,13 @@ class KejuruanController extends Controller
                 'nama' => $request->nama,
                 'deskripsi' => $request->deskripsi,
                 'gambar' => 'uploads/other/'.$new_gambar,
+                'slug' => Str::slug($request->nama),
             ];
         } else {
             $kejuruan_data = [
                 'nama' => $request->nama,
                 'deskripsi' => $request->deskripsi,
+                'slug' => Str::slug($request->nama),
             ];
         }
 
@@ -135,12 +140,28 @@ class KejuruanController extends Controller
      */
     public function destroy($id)
     {
-        $gallery = Kejuruan::findOrFail($id);
-        $destination = $gallery->gambar;
+        $kejuruan = Kejuruan::findOrFail($id);
+        $destination = $kejuruan->gambar;
         if (File::exists($destination)) {
             File::delete($destination);
         }
-        $gallery->delete();
+
+        $kurikulums = SubKejuruan::where('kejuruan_id', $kejuruan->id)->get();
+        foreach($kurikulums as $kurikulum) {
+            if (File::exists($kurikulum->kurikulum)) {
+                File::delete($kurikulum->kurikulum);
+            }
+        }
+
+        $images = SubKejuruan::where('kejuruan_id', $kejuruan->id)->get();
+        foreach($images as $image) {
+            if (File::exists($image->image)) {
+                File::delete($image->image);
+            }
+        }
+
+        $kejuruan->subkejuruan()->delete();
+        $kejuruan->delete();
 
         session()->flash('success', 'Kejuruan deleted successfully.');
 

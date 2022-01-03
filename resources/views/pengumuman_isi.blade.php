@@ -31,7 +31,7 @@
                                 <p class="m-0">{{  $data_pengumuman->created_at->isoFormat('LLLL')  }} by
                                     {{ $data_pengumuman->user->name }}</p>
                             </div>
-                            <img src="assets/images/2.jpg" alt="pengumuman-img" class="img-berita">
+                            <img src="{{ asset($data_pengumuman->gambar) }}" alt="pengumuman-img" class="img-berita">
                         </div>
                         <div class="body-berita mt-4">
                             <article>

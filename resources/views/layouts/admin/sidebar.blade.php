@@ -39,7 +39,11 @@
                 <li><a class="nav-link" href="{{ route('kejuruan.index') }}">
                     <i class="fas fa-shapes"></i>
                     <span>Kejuruan</span></a>
-                </li>                
+                </li>
+                <li><a class="nav-link" href="{{ route('instruktor.index') }}">
+                    <i class="fas fa-user-tie"></i>
+                    <span>Instruktor</span></a>
+                </li>                  
                 <li><a class="nav-link" href="{{ route('user.index') }}">
                     <i class="fas fa-user"></i>
                     <span>Users</span></a>

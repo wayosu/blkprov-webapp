@@ -21,7 +21,10 @@ class PostController extends Controller
     {
         if (Auth::user()->roles == 1) {
             $post = Posts::latest()->get();
-            return view('admin.post.index', compact('post'));
+            $total_berita_pending = Posts::where('status', 0)->count();
+            $total_berita_publish = Posts::where('status', 1)->count();
+            $total_berita_rejected = Posts::where('status', 2)->count();
+            return view('admin.post.index', compact('post', 'total_berita_pending', 'total_berita_publish', 'total_berita_rejected'));
         } else {
             $post = Posts::where('user_id', Auth::user()->id)->latest()->get();
             return view('penulis.post.index', compact('post'));
@@ -231,6 +234,31 @@ class PostController extends Controller
         } else {
             return redirect()->route('penulis.post.recyclebin');
         }
+    }
+
+    public function publishing(Request $request, $id)
+    {
+        $post = Posts::findorfail($id);
+
+        $publish = 1;
+        $rejected = 2;
+
+        if ($request->has('publish')) {
+            $post_data = [
+                "status" => $publish,
+            ];
+            $post->update($post_data);
+            session()->flash('success', 'Post publish successfully.');
+        } else if ($request->has('rejected')) {
+            $post_data = [
+                "status" => $rejected,
+            ];
+            $post->update($post_data);
+            session()->flash('success', 'Post rejected successfully.');
+        }
+        
+        return redirect()->route('post.index');
+
     }
 
 }

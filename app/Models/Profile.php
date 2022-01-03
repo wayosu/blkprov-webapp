@@ -21,6 +21,6 @@ class Profile extends Model
         'alamat',
         'telepon',
         'map',
-        'kurikulum'
+        'video'
     ];
 }

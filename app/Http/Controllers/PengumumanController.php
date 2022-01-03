@@ -51,14 +51,21 @@ class PengumumanController extends Controller
         $request->validate([
             'judul' => ['required'],
             'isi' => ['required'],
+            'gambar' => ['required']
         ]);
 
-        Pengumuman::create([
+        $gambar = $request->gambar;
+        $new_gambar = time().$gambar->getClientOriginalName();
+
+        $pengumuman = Pengumuman::create([
             'judul' => $request->judul,
             'isi' => $request->isi,
+            'gambar' => 'uploads/pengumuman/'.$new_gambar,
             'slug' => Str::slug($request->judul),
             'user_id' => Auth::id(),
         ]);
+
+        $gambar->move('uploads/pengumuman/', $new_gambar);
 
         session()->flash('success', 'Pengumuman created successfully');
 
@@ -111,14 +118,34 @@ class PengumumanController extends Controller
             'isi' => ['required'],
         ]);
 
-        $pengumuman = [
-            'judul' => $request->judul,
-            'isi' => $request->isi,
-            'slug' => Str::slug($request->judul)
-        ];
+        $pengumuman = Pengumuman::findorfail($id);
         
-        Pengumuman::whereId($id)->update($pengumuman);
-
+        if ($request->has('gambar')) {
+            $destination = $request->gambar_lama;
+            if (File::exists($destination)) {
+                File::delete($destination);
+            }
+            
+            $gambar = $request->gambar;
+            $new_gambar = time().$gambar->getClientOriginalName();
+            $gambar->move('uploads/pengumuman/', $new_gambar);
+            
+            $pengumuman_data = [
+                'judul' => $request->judul,
+                'isi' => $request->isi,
+                'gambar' => 'uploads/pengumuman/'.$new_gambar,
+                'slug' => Str::slug($request->judul)
+            ];
+        } else {
+            $pengumuman_data = [
+                'judul' => $request->judul,
+                'isi' => $request->isi,
+                'slug' => Str::slug($request->judul)
+            ];
+        }
+        
+        $pengumuman->update($pengumuman_data);
+        
         session()->flash('success', 'Pengumuman successfully updated');
 
         if (Auth::user()->roles == 1) {

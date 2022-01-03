@@ -5,17 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class SubKejuruan extends Model
+class Instruktor extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'nama',
-        'kurikulum',
-        'image',
+        'nip',
         'kejuruan_id',
-        'slug',
-        'detail',
+        'tahun_diklat',
+        'penempatan',
+        'keterangan',
     ];
 
     public function kejuruan() {

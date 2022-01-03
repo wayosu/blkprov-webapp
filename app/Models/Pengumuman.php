@@ -10,7 +10,7 @@ class Pengumuman extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['judul', 'isi', 'slug', 'user_id'];
+    protected $fillable = ['judul', 'isi', 'slug', 'user_id', 'gambar'];
     protected $table = 'pengumumans';
 
     protected $with = ['user'];

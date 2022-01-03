@@ -12,7 +12,8 @@ class Kejuruan extends Model
     protected $fillable = [
         'nama',
         'gambar',
-        'deskripsi'
+        'deskripsi',
+        'slug',
     ];
 
     public function scopeFilter($query, array $filters)
@@ -23,7 +24,11 @@ class Kejuruan extends Model
         });
     }
 
-    public function sub_kejuruans() {
+    public function subkejuruan() {
         return $this->hasMany(SubKejuruan::class);
+    }
+
+    public function instruktor() {
+        return $this->hasMany(Instruktor::class);
     }
 }

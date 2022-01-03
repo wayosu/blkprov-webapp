@@ -37,7 +37,7 @@
                             <div class="col-12 col-md-4">
                                 <div class="card border-0 rounded-3 shadow-sm overflow-hidden">
                                     <figure>
-                                        <img src="assets/images/2.jpg" alt="img-berita" class="card-img-top">
+                                        <img src="{{ $pengumuman->gambar }}" alt="img-berita" class="card-img-top">
                                     </figure>
                                     <div class="card-body">
                                         <a href="/pengumuman/{{ $pengumuman->slug }}" class="card-title h5 text-decoration-none">

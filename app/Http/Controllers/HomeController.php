@@ -23,7 +23,7 @@ class HomeController extends Controller
     {
         $data_pengumuman = Pengumuman::with(['user'])->latest()->take(4)->get();
         
-        $data_terbaru = Posts::with(['user', 'category'])->latest()->take(3)->get();
+        $data_terbaru = Posts::with(['user', 'category'])->where('status', 1)->latest()->take(3)->get();
         
         $data_kejuruan = Kejuruan::latest()->get();
         
@@ -90,7 +90,7 @@ class HomeController extends Controller
         }
         return view('berita', [
             "title" => "Berita " . $title,
-            "data_berita" => Posts::with(['user', 'category'])->latest()->filter(request(['search', 'kategori']))->paginate(9)->withQueryString(),
+            "data_berita" => Posts::with(['user', 'category'])->where('status', 1)->latest()->filter(request(['search', 'kategori']))->paginate(9)->withQueryString(),
             "data_profile" => $data_profile
         ]);
     }
@@ -100,7 +100,6 @@ class HomeController extends Controller
         return view('berita_isi', [
             "title" => $post->judul,
             "data_berita" => $post,
-            "berita_lainnya" => Posts::where('id', '!=', $post->id)->latest()->take(3)->get(),
             "data_galeri" => Gallery::with(['user'])->latest()->take(3)->get(),
             "data_pengumuman" => Pengumuman::latest()->take(3)->get(),
             "data_profile" => Profile::findorfail(1)
@@ -139,9 +138,8 @@ class HomeController extends Controller
         return view('pengumuman_isi', [
             "title" => $pengumuman->judul,
             "data_pengumuman" => $pengumuman,
-            "data_berita" => Posts::latest()->take(3)->get(),
+            "data_berita" => Posts::where('status', 1)->latest()->take(3)->get(),
             "data_galeri" => Gallery::latest()->take(3)->get(),
-            "pengumuman_lainnya" => Pengumuman::where('id', '!=', $pengumuman->id)->latest()->take(3)->get(),
             "data_profile" => Profile::findorfail(1)
         ]);
     }
@@ -160,8 +158,7 @@ class HomeController extends Controller
             "title" => $gallery->title,
             "data_galeri" => $gallery,
             "data_pengumuman" => Pengumuman::latest()->take(3)->get(),
-            "data_berita" => Posts::latest()->take(3)->get(),
-            "galeri_lainnya" => $gallery::where('id', '!=', $gallery->id)->latest()->take(3)->get(),
+            "data_berita" => Posts::where('status', 1)->latest()->take(3)->get(),
             "data_profile" => Profile::findorfail(1)
         ]);
     }

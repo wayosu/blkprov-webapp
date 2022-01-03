@@ -29,6 +29,9 @@ class AdminHomeController extends Controller
         return view('admin.home', [
             "total_user" => User::count(),
             "total_berita" => Posts::count(),
+            "total_berita_pending" => Posts::where('status', 0)->count(),
+            "total_berita_publish" => Posts::where('status', 1)->count(),
+            "total_berita_rejected" => Posts::where('status', 2)->count(),
             "total_pengumuman" => Pengumuman::count(),
             "total_galeri" => Gallery::count(),
             "berita_terbaru" => Posts::with(['user', 'category'])->latest()->take(5)->get(),

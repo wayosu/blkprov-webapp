@@ -24,16 +24,47 @@
             </div>
 
             <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                <div class="card card-statistic-1">
-                    <div class="card-icon bg-danger">
-                        <i class="far fa-newspaper"></i>
-                    </div>
-                    <div class="card-wrap">
-                        <div class="card-header">
-                            <h4>Berita</h4>
+                <a data-toggle="collapse" href="#collapseBerita" role="button" aria-expanded="false"
+                    aria-controls="collapseBerita">
+                    <div class="card card-statistic-1">
+                        <div class="card-icon bg-danger">
+                            <i class="far fa-newspaper"></i>
                         </div>
-                        <div class="card-body">
-                            {{ $total_berita }}
+                        <div class="card-wrap">
+                            <div class="card-header">
+                                <h4>Berita</h4>
+                            </div>
+                            <div class="card-body">
+                                {{ $total_berita }}
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <div class="collapse" id="collapseBerita">
+                    <div class="d-flex flex-column">
+                        <div class="card card-warning">
+                            <div class="card-header">
+                                <h4 class="text-warning">Pending</h4>
+                                <div class="card-header-action">
+                                    <h4 class="text-warning">{{ $total_berita_pending }}</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card card-success">
+                            <div class="card-header">
+                                <h4 class="text-success">Publish</h4>
+                                <div class="card-header-action">
+                                    <h4 class="text-success">{{ $total_berita_publish }}</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card card-danger">
+                            <div class="card-header">
+                                <h4 class="text-danger">Rejected</h4>
+                                <div class="card-header-action">
+                                    <h4 class="text-danger">{{ $total_berita_rejected }}</h4>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -88,8 +119,9 @@
                                     <tr>
                                         <th>Judul</th>
                                         <th>Kategori</th>
-                                        <th>Penulis</th>
                                         <th>Thumbnail</th>
+                                        <th>Penulis</th>
+                                        <th>Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -98,20 +130,30 @@
                                             <tr>
                                                 <td>{{ $bt->judul }}</td>
                                                 <td>{{ $bt->category->name }}</td>
-                                                <td>{{ $bt->user->name }}</td>
                                                 <td>
                                                     <div class="image-link">
-                                                        <a href="{{ asset($bt->gambar) }}" class="btn btn-secondary" target="_blank">
+                                                        <a href="{{ asset($bt->gambar) }}" class="btn btn-secondary"
+                                                            target="_blank">
                                                             <i class="fas fa-image"></i>
                                                         </a>
                                                     </div>
+                                                </td>
+                                                <td>{{ $bt->user->name }}</td>
+                                                <td>
+                                                    @if ($bt->status == 0)
+                                                        <span class="badge badge-warning">Pending</span>
+                                                    @elseif ($bt->status == 1)
+                                                        <span class="badge badge-success">Publish</span>
+                                                    @else
+                                                        <span class="badge badge-danger">Rejected</span>
+                                                    @endif
                                                 </td>
                                             </tr>
                                         @endforeach
                                     @else
                                         <tr>
                                             <td colspan="4" align="center">Belum ada berita yang terinput.</td>
-                                        </tr>  
+                                        </tr>
                                     @endif
                                 </tbody>
                             </table>
@@ -150,7 +192,7 @@
                                     @else
                                         <tr>
                                             <td colspan="4" align="center">Belum ada pengumuman yang terinput.</td>
-                                        </tr>  
+                                        </tr>
                                     @endif
                                 </tbody>
                             </table>
@@ -184,7 +226,8 @@
                                                 <td>{{ $gt->user->name }}</td>
                                                 <td>
                                                     <div class="image-link">
-                                                        <a href="{{ asset($gt->cover) }}" class="btn btn-secondary" target="_blank">
+                                                        <a href="{{ asset($gt->cover) }}" class="btn btn-secondary"
+                                                            target="_blank">
                                                             <i class="fas fa-image"></i>
                                                         </a>
                                                     </div>
@@ -194,7 +237,7 @@
                                     @else
                                         <tr>
                                             <td colspan="4" align="center">Belum ada galeri yang terinput.</td>
-                                        </tr>  
+                                        </tr>
                                     @endif
                                 </tbody>
                             </table>
