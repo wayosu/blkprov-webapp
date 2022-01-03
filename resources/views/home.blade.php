@@ -85,7 +85,7 @@
                 <div class="kejuruan-carousel owl-carousel">
                     @foreach ($data_kejuruan as $kejuruan)                        
                         <div class="slider-item">
-                            <a href="" class="text-decoration-none">
+                            <a href="/kejuruan/{{ $kejuruan->slug }}" class="text-decoration-none">
                                 <div class="bg-glass py-3 px-4">
                                     <h4 class="m-0">{{ $kejuruan->nama }}</h4>
                                 </div>

@@ -27,6 +27,7 @@
                                         <th>Kategori</th>
                                         <th>Tanggal Buat</th>
                                         <th>Thumbnail</th>
+                                        <th>Status</th>
                                         <th>Penulis</th>
                                         <th>Action</th>
                                     </tr>
@@ -37,11 +38,6 @@
                                             <td align="center" style="vertical-align: middle">{{ $loop->iteration }}</td>
                                             <td style="vertical-align: middle">{{ $hasil->judul }}</td>
                                             <td style="vertical-align: middle">{{ $hasil->category->name }}</td>
-                                            {{-- <td align="center" style="vertical-align: middle">
-                                                @foreach ($hasil->tags as $tag)
-                                                    <h6><span class="badge badge-sm badge-primary">{{ $tag->name }}</span></h6>
-                                                @endforeach
-                                            </td> --}}
                                             <td>{{ $hasil->created_at->isoFormat('LLLL') }}</td>
                                             <td align="center" style="vertical-align: middle">
                                                 <div class="image-link">
@@ -49,6 +45,15 @@
                                                         <i class="fas fa-image"></i>
                                                     </a>
                                                 </div>
+                                            </td>
+                                            <td style="vertical-align: middle" align="center">
+                                                @if ($hasil->status == 2)
+                                                    <span class="badge badge-danger px-4">Rejected</span>
+                                                @elseif ($hasil->status == 1)
+                                                    <span class="badge badge-success px-4">Publish</span>
+                                                @else
+                                                    <span class="badge badge-warning px-4">Pending</span>
+                                                @endif
                                             </td>
                                             <td align="center" style="vertical-align: middle">{{ $hasil->user->name }}</td>
                                             <td align="center" style="vertical-align: middle">

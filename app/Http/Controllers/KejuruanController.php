@@ -161,6 +161,7 @@ class KejuruanController extends Controller
         }
 
         $kejuruan->subkejuruan()->delete();
+        $kejuruan->instruktor()->delete();
         $kejuruan->delete();
 
         session()->flash('success', 'Kejuruan deleted successfully.');

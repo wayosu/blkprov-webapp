@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Gallery;
+use App\Models\Instruktor;
 use App\Models\Kejuruan;
 use App\Models\Pengumuman;
 use Illuminate\Http\Request;
 use App\Models\Posts;
 use App\Models\Profile;
+use App\Models\SubKejuruan;
 use App\Models\User;
 use Share;
 
@@ -172,6 +174,24 @@ class HomeController extends Controller
         ]);
     }
 
+    public function showKejuruan(Kejuruan $kejuruan)
+    {
+        return view('kejuruan_isi', [
+            "title" => $kejuruan->nama,
+            "data_kejuruan" => $kejuruan,
+            "data_profile" => Profile::findorfail(1)
+        ]);
+    }
+
+    public function showSubKejuruan(SubKejuruan $subKejuruan)
+    {
+        return view('subkejuruan', [
+            "title" => $subKejuruan->nama,
+            "data_subkejuruan" => $subKejuruan,
+            "data_profile" => Profile::findorfail(1)
+        ]);
+    }
+
     public function indexKurikulum()
     {
         return view('kurikulum', [
@@ -187,5 +207,14 @@ class HomeController extends Controller
         $file = public_path($profile->kurikulum);
 
         return response()->download($file);
+    }
+
+    public function indexInstruktur()
+    {
+        return view('daftar_instruktur', [
+            "title" => 'Daftar Instruktur',
+            "data_instruktur" => Instruktor::get(),
+            "data_profile" => Profile::findorfail(1)
+        ]);
     }
 }

@@ -26,28 +26,23 @@
                 <div class="col-12 col-md-7 col-lg-9">
                     <div class="kurikulum">
                         <div class="row gy-4">
-                            @foreach ($data_kejuruan->subkejuruan as $subkejuruan)                                
-                                <div class="col-12 col-lg-6">
-                                    <div class="card border-0 rounded-0 shadow overflow-hidden">
-                                        <div class="card-body p-0">
-                                            <div class="bg-name text-center">
-                                                <h4 class="mt-0 mb-3">{{ $subkejuruan->nama }}</h4>
-                                                <a href="/subkejuruan/{{ $subkejuruan->slug }}" class="btn-download">
-                                                    <i class="fas fa-list"></i> Lebih Lengkap
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
+                           <div class="col">
+                                <article>
+                                    {!! $data_subkejuruan->detail !!}
+                                </article>
+                                <div class="dropdown-divider"></div>
+                                <div class="mt-3">
+                                    <a href="{{ asset($data_subkejuruan->kurikulum) }}" class="btn-download-sub"><i class="fas fa-download"></i> Download Kurikulum</a>
                                 </div>
-                            @endforeach
+                           </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-12 col-md-5 col-lg-3">
                     <div class="card border-0 card-body p-0">
                         <div class="img-link-popup">
-                            <a href="{{ asset($data_kejuruan->gambar) }}" target="_blank">
-                                <img src="{{ asset($data_kejuruan->gambar) }}" alt="" class="img-kejuruan shadow">
+                            <a href="{{ asset($data_subkejuruan->image) }}" target="_blank">
+                                <img src="{{ asset($data_subkejuruan->image) }}" alt="" class="img-kejuruan shadow">
                             </a>
                         </div>
                     </div>

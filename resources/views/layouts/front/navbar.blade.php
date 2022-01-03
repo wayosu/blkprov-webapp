@@ -28,6 +28,7 @@
                         <li><a class="dropdown-item" href="/sambutankepala">Sambutan Kepala</a></li>
                         <li><a class="dropdown-item" href="/strukturorganisasi">Struktur Organisasi</a></li>
                         <li><a class="dropdown-item" href="/kurikulum">Kurikulum</a></li>
+                        <li><a class="dropdown-item" href="/daftarinstruktur">Daftar Instruktur</a></li>
                     </ul>
                 </li>
                 <li class="nav-item">

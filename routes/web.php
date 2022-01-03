@@ -45,8 +45,13 @@ Route::get('/galeri', [HomeController::class, 'indexGaleri']);
 Route::get('/galeri/{gallery:slug}', [HomeController::class, 'showGaleri']);
 
 Route::get('/kejuruan', [HomeController::class, 'indexKejuruan']);
+Route::get('/kejuruan/{kejuruan:slug}', [HomeController::class, 'showKejuruan']);
+Route::get('/subkejuruan/{subKejuruan:slug}', [HomeController::class, 'showSubKejuruan']);
+
 Route::get('/kurikulum', [HomeController::class, 'indexKurikulum']);
 Route::get('/downloadkurikulum', [HomeController::class, 'downloadKurikulum']);
+
+Route::get('/daftarinstruktur', [HomeController::class, 'indexInstruktur']);
 
 Route::group(['middleware' => ['is_admin', 'auth']], function() {
     Route::get('/admin', [App\Http\Controllers\AdminHomeController::class, 'index'])->name('admin.home');

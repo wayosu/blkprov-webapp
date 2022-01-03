@@ -300,6 +300,23 @@ body {
     background: linear-gradient(to right,var(--dark) 0%,var(--secondary) 100%);
 }
 
+.btn-download-sub {
+    display: inline-block;
+    text-decoration: none;
+    color: var(--dark);
+    background: var(--white);
+    border: 2px solid var(--dark);
+    padding: 6px 12px;
+    font-size: 12px;
+    border-radius: 4px;
+    transition: .2s ease-in-out;
+}
+
+.btn-download-sub:hover {
+    color: var(--white);
+    background: var(--dark);
+}
+
 @media (max-width: 575px)
 {
     .btn-kategori {
@@ -398,6 +415,12 @@ body {
 .img-sidebar {
     height: calc(100vh - 847px);
     min-height: 130px;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.img-kejuruan {
     width: 100%;
     object-fit: cover;
     object-position: center;
