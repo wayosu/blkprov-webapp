@@ -494,6 +494,13 @@ body {
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
+    font-size: 18px !important;
+}
+
+@media (max-width: 991px) {
+    .navbar .navbar-brand .text-brand {
+        font-size: 18px !important;
+    }
 }
 
 .navbar .nav-link {

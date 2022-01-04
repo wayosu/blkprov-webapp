@@ -115,31 +115,68 @@ class SubKejuruanController extends Controller
         
         $subkejuruan = SubKejuruan::findorfail($id);
 
-        if ($request->has('kurikulum') || $request->has('image')) {
+        if ($request->has('kurikulum')) {
             $destination_kurikulum = $request->kurikulum_lama;
+
+            if (File::exists($destination_kurikulum)) {
+                File::delete($destination_kurikulum);
+            }
+
+            $kurikulum = $request->kurikulum;
+            $new_kurikulum = time().$kurikulum->getClientOriginalName();
+            $kurikulum->move('uploads/subkejuruan/kurikulum/', $new_kurikulum);
+
+            $subkejuruan_data = [
+                'nama' => $request->nama,
+                'kejuruan_id' => $request->kejuruan_id,
+                'slug' => Str::slug($request->nama),
+                'kurikulum' => 'uploads/subkejuruan/kurikulum/'.$new_kurikulum,
+                'detail' => $request->detail,
+            ];
+        } else if ($request->has('image')) {
             $destination_image = $request->image_lama;
             
+            if (File::exists($destination_image)) {
+                File::delete($destination_image);
+            }
+
+            $image = $request->image;
+            $new_image = time().$image->getClientOriginalName();
+            $image->move('uploads/subkejuruan/image/', $new_image);
+
+            $subkejuruan_data = [
+                'nama' => $request->nama,
+                'kejuruan_id' => $request->kejuruan_id,
+                'slug' => Str::slug($request->nama),
+                'image' => 'uploads/subkejuruan/image/'.$new_image,
+                'detail' => $request->detail,
+            ];
+        
+        } else if ($request->has('kurikulum') || $request->has('image')) {
+            $destination_kurikulum = $request->kurikulum_lama;
+            $destination_image = $request->image_lama;
+
             if (File::exists($destination_kurikulum) || File::exists($destination_image)) {
                 File::delete($destination_kurikulum);
                 File::delete($destination_image);
-
-                $kurikulum = $request->kurikulum;
-                $new_kurikulum = time().$kurikulum->getClientOriginalName();
-                $kurikulum->move('uploads/subkejuruan/kurikulum/', $new_kurikulum);
-
-                $image = $request->image;
-                $new_image = time().$image->getClientOriginalName();
-                $image->move('uploads/subkejuruan/image/', $new_image);
-
-                $subkejuruan_data = [
-                    'nama' => $request->nama,
-                    'kejuruan_id' => $request->kejuruan_id,
-                    'slug' => Str::slug($request->nama),
-                    'kurikulum' => 'uploads/subkejuruan/kurikulum/'.$new_kurikulum,
-                    'image' => 'uploads/subkejuruan/image/'.$new_image,
-                    'detail' => $request->detail,
-                ];
             }
+
+            $kurikulum = $request->kurikulum;
+            $new_kurikulum = time().$kurikulum->getClientOriginalName();
+            $kurikulum->move('uploads/subkejuruan/kurikulum/', $new_kurikulum);
+
+            $image = $request->image;
+            $new_image = time().$image->getClientOriginalName();
+            $image->move('uploads/subkejuruan/image/', $new_image);
+
+            $subkejuruan_data = [
+                'nama' => $request->nama,
+                'kejuruan_id' => $request->kejuruan_id,
+                'slug' => Str::slug($request->nama),
+                'kurikulum' => 'uploads/subkejuruan/kurikulum/'.$new_kurikulum,
+                'image' => 'uploads/subkejuruan/image/'.$new_image,
+                'detail' => $request->detail,
+            ];
         } else {
             $subkejuruan_data = [
                 'nama' => $request->nama,

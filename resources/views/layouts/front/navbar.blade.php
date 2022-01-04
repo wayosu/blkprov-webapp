@@ -2,9 +2,9 @@
 <nav id="navbar" class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
         <a class="navbar-brand" href="/">
-            <div class="d-flex align-items-center">
+            <div class="d-none d-md-flex align-items-center">
                 <img src="{{ asset('assets/front/images/logo-pemprov.png') }}" alt="" width="35">
-                <span class="fs-6 ms-2 text-brand">BLK GORONTALO</span>
+                <span class="fs-6 ms-2 text-brand">BLK PROVINSI GORONTALO</span>
             </div>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
