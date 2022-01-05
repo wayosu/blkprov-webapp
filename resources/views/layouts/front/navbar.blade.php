@@ -6,6 +6,10 @@
                 <img src="{{ asset('assets/front/images/logo-pemprov.png') }}" alt="" width="35">
                 <span class="fs-6 ms-2 text-brand">BLK PROVINSI GORONTALO</span>
             </div>
+            <div class="d-flex d-md-none align-items-center">
+                <img src="{{ asset('assets/front/images/logo-pemprov.png') }}" alt="" width="30">
+                <span class="fs-6 ms-2 text-brand">BLK PROV. GORONTALO</span>
+            </div>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
             data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"

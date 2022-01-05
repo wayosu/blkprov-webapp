@@ -497,15 +497,20 @@ body {
     font-size: 18px !important;
 }
 
-@media (max-width: 991px) {
+@media (max-width: 575px) {
     .navbar .navbar-brand .text-brand {
-        font-size: 18px !important;
+        font-size: 14px !important;
+    }
+
+    .navbar-toggler {
+        padding: 3px 6px !important;
     }
 }
 
 .navbar .nav-link {
     padding: 1.7rem 1rem;
     outline: none !important;   
+    font-size: 16px;
 }
 
 .navbar .nav-link:focus,
