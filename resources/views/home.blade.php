@@ -4,44 +4,20 @@
     <!-- BANNER -->
     <section class="home-slider owl-carousel">
 
-        <div class="slider-item" style="background-image: url({{ asset('assets/front/images/2.jpg') }});">
+        @foreach ($data_galeri_latest as $dgt)
+        <div class="slider-item" style="background-image: url('{{ asset($dgt->cover) }}');">
             <div class="container">
                 <div class="row slider-text align-items-center">
                     <div class="col-md-6 col-sm-12">
-                        <span class="type-content">Berita</span>
-                        <h2>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</h2>
-                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Autem architecto, sed voluptate quis vero rerum ducimus fuga, assumenda libero esse aperiam harum sequi? Illo maiores voluptas, quae voluptatum impedit distinctio inventore. Possimus enim molestias recusandae molestiae explicabo neque hic laudantium.</p>
-                        <p><a href="" class="btn btn-slider-theme">Selengkapnya</a></p>
+                        <span class="type-content">Galeri</span>
+                        <h2>{{ \Illuminate\Support\Str::limit(strip_tags($dgt->title), 60, '...') }}</h2>
+                        <p>{{ \Illuminate\Support\Str::limit(strip_tags($dgt->body), 180, '...') }}</p>
+                        <p><a href="/galeri/{{ $dgt->slug }}" class="btn btn-slider-theme">Selengkapnya</a></p>
                     </div>
                 </div>
             </div>
         </div>
-
-        <div class="slider-item" style="background-image: url({{ asset('assets/front/images/3.jpg') }});">
-            <div class="container">
-                <div class="row slider-text align-items-center">
-                    <div class="col-md-6 col-sm-12">
-                        <span class="type-content">Pengumuman</span>
-                        <h2>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</h2>
-                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Autem architecto, sed voluptate quis vero rerum ducimus fuga, assumenda libero esse aperiam harum sequi? Illo maiores voluptas, quae voluptatum impedit distinctio inventore. Possimus enim molestias recusandae molestiae explicabo neque hic laudantium.</p>
-                        <p><a href="" class="btn btn-slider-theme">Selengkapnya</a></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="slider-item" style="background-image: url({{ asset('assets/front/images/5.jpg') }});">
-            <div class="container">
-                <div class="row slider-text align-items-center">
-                    <div class="col-md-6 col-sm-12">
-                        <span class="type-content">Berita</span>
-                        <h2>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</h2>
-                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Autem architecto, sed voluptate quis vero rerum ducimus fuga, assumenda libero esse aperiam harum sequi? Illo maiores voluptas, quae voluptatum impedit distinctio inventore. Possimus enim molestias recusandae molestiae explicabo neque hic laudantium.</p>
-                        <p><a href="" class="btn btn-slider-theme">Selengkapnya</a></p>
-                    </div>
-                </div>
-            </div>
-        </div>
+        @endforeach
 
     </section>
     <!-- END BANNER -->

@@ -34,11 +34,12 @@ class HomeController extends Controller
         $second_image = $data_galeri->splice(0, 2);
         $third_image = $data_galeri->splice(0, 1);
         $fourth_image = $data_galeri->splice(0, 1);
+        $data_galeri_latest = Gallery::with(['user'])->latest()->take(5)->get();
 
         $data_profile = Profile::findorfail(1);
         
         // return $fourth_image;
-        return view('home', compact('data_terbaru', 'data_pengumuman', 'data_kejuruan', 'first_image', 'second_image', 'third_image', 'fourth_image', 'data_profile'));
+        return view('home', compact('data_terbaru', 'data_pengumuman', 'data_kejuruan', 'first_image', 'second_image', 'third_image', 'fourth_image', 'data_galeri_latest', 'data_profile'));
     }
 
     public function indexProfil()

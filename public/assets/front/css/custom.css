@@ -976,7 +976,7 @@ body {
     height: 10px;
     margin: 5px;
     border-radius: 50%;
-    background: #ccc;
+    background: transparent;
 }
 
 .owl-carousel .owl-dots .owl-dot.active {
@@ -1056,6 +1056,10 @@ body {
 }
 
 @media (max-width: 991px) {
+    .owl-carousel .owl-dots {
+        bottom: 40px !important;
+    }
+
     .owl-carousel.home-slider .slider-item.slider-text h2 {
         font-size: 40px;
     }
