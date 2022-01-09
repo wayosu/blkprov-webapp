@@ -48,7 +48,7 @@ Route::get('/kejuruan', [HomeController::class, 'indexKejuruan']);
 Route::get('/kejuruan/{kejuruan:slug}', [HomeController::class, 'showKejuruan']);
 Route::get('/subkejuruan/{subKejuruan:slug}', [HomeController::class, 'showSubKejuruan']);
 
-Route::get('/kurikulum', [HomeController::class, 'indexKurikulum']);
+Route::get('/programpelatihan', [HomeController::class, 'indexProgramPelatihan']);
 Route::get('/downloadkurikulum', [HomeController::class, 'downloadKurikulum']);
 
 Route::get('/daftarinstruktur', [HomeController::class, 'indexInstruktur']);

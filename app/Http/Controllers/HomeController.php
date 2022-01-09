@@ -193,10 +193,10 @@ class HomeController extends Controller
         ]);
     }
 
-    public function indexKurikulum()
+    public function indexProgramPelatihan()
     {
-        return view('kurikulum', [
-            "title" => 'Kurikulum',
+        return view('program_pelatihan', [
+            "title" => 'Program Pelatihan',
             "data_kejuruan" => Kejuruan::latest()->get(),
             "data_profile" => Profile::findorfail(1)
         ]);
